@@ -14,11 +14,13 @@ public class UtenteDAO {
 		String email = registrazioneUtente.getEmail();
 		String password = registrazioneUtente.getPassword();
 		
-		String DBurl = "sql11.freemysqlhosting.net:3306";
+		String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11512766";
 		String DBusername = "sql11512766";
 		String DBpassword = "z9114hAzpB";
 		
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			
 			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
 			
 			PreparedStatement pstmt = null;
@@ -34,7 +36,7 @@ public class UtenteDAO {
 			
 			return result > 0;
 			
-		} catch(SQLException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		

@@ -7,7 +7,7 @@
 		<title>Registrazione</title>
 	</head>
 	<body>
-		<form action="/RegistrazioneUtente" method="POST">
+		<form action="RegistrazioneUtenteController" method="POST">
 			 Nome <input type="text" name="nome">
 			 Cognome <input type="text" name="cognome">
 			 Email <input type="email" name="email">

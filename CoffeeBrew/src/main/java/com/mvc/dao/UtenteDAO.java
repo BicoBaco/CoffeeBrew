@@ -5,7 +5,6 @@ import com.mvc.bean.UtenteBean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class UtenteDAO {
 	public static boolean registraUtente(UtenteBean registrazioneUtente) {
@@ -19,8 +18,9 @@ public class UtenteDAO {
 		String DBpassword = "z9114hAzpB";
 		
 		try {
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
+				
 			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
 			
 			PreparedStatement pstmt = null;

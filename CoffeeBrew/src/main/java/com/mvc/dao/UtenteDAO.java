@@ -19,7 +19,7 @@ public class UtenteDAO {
 		String DBpassword = "z9114hAzpB";
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
 			

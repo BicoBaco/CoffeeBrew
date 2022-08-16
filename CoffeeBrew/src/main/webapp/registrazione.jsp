@@ -8,11 +8,12 @@
 	</head>
 	<body>
 		<form action="RegistrazioneUtenteController" method="POST">
-			 Nome <input type="text" name="nome">
-			 Cognome <input type="text" name="cognome">
-			 Email <input type="email" name="email">
-			 Password <input type="password" name="password">
-			 <input type="submit"/>
+			 Nome <input type="text" name="nome"> <br>
+			 Cognome <input type="text" name="cognome"> <br>
+			 Email <input type="email" name="email"> <br>
+			 Password <input type="password" name="password"> <br>
+			 <input type="submit"/> <br>	 
 		</form>
+		<a href="accesso.jsp">Accesso Utenti</a>
 	</body>
 </html>

@@ -5,8 +5,11 @@ import com.mvc.bean.UtenteBean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UtenteDAO {
+	
 	public static boolean registraUtente(UtenteBean registrazioneUtente) {
 		String nome = registrazioneUtente.getNome();
 		String cognome = registrazioneUtente.getCognome();
@@ -41,5 +44,49 @@ public class UtenteDAO {
 		}
 		
 		return false;
+	}
+	
+	public static boolean accediUtente(UtenteBean accessoUtente) {
+		String email = accessoUtente.getEmail();
+		String password = accessoUtente.getPassword();
+				
+		String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11512766";
+		String DBusername = "sql11512766";
+		String DBpassword = "z9114hAzpB";
+		
+		ResultSet result = null;
+		boolean check = false;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+				
+			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
+			
+			PreparedStatement pstmt = null;
+			pstmt = connection.prepareStatement("SELECT * FROM Utente WHERE email = ? AND password = ?");
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			result = pstmt.executeQuery();
+
+			
+			try {
+				if(result.next()) {
+					accessoUtente.setNome(result.getString("nome"));
+					accessoUtente.setCognome(result.getString("cognome"));
+					check = true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			pstmt.close();
+			connection.close();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return check;
 	}
 }

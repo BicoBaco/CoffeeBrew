@@ -8,7 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
-    <welcome-file>Registrazione.jsp</welcome-file>
+    <welcome-file>registrazione.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -19,5 +19,15 @@
   <servlet-mapping>
     <servlet-name>RegistrazioneUtenteController</servlet-name>
     <url-pattern>/RegistrazioneUtenteController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AccessoUtenteController</display-name>
+    <servlet-name>AccessoUtenteController</servlet-name>
+    <servlet-class>com.mvc.controller.AccessoUtenteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccessoUtenteController</servlet-name>
+    <url-pattern>/AccessoUtenteController</url-pattern>
   </servlet-mapping>
 </web-app>

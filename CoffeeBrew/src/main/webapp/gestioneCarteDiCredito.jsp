@@ -13,6 +13,22 @@
 		TODO Lista Carte <br>
 		<% ArrayList<CartaDiCreditoBean> listaCarte = (ArrayList<CartaDiCreditoBean>) request.getAttribute("listaCarte"); %>
 		
+		 <table>
+			<tr>
+				<th>Numero carta</th>
+			    <th>Nome sulla carta</th>
+			    <th>Data di scadenza</th>
+			</tr>
+		<% for(CartaDiCreditoBean cdc : listaCarte) { %>
+			<tr>
+				<th> <%= cdc.getNumeroCarta() %> </th>
+				<th> <%= cdc.getNomeSullaCarta() %> </th>
+				<th> <%= cdc.getDataScadenza() %> </th>
+			</tr>
+		<% } %>
+		
+		</table> 
+		
 		<form action="CarteDiCreditoController" method="post">
 			Numero Carta <input type="text" name="numeroCarta">
 			Nome sulla Carta <input type="text" name="nomeSullaCarta">

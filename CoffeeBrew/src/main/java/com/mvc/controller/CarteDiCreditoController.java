@@ -37,10 +37,6 @@ public class CarteDiCreditoController extends HttpServlet {
 		UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 		ArrayList<CartaDiCreditoBean> listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
 		
-		for(CartaDiCreditoBean cdc : listaCarte) {
-			System.out.println(cdc.getNumeroCarta());
-		}
-		
 		request.setAttribute("listaCarte", listaCarte);
 		
 		request.getRequestDispatcher("/gestioneCarteDiCredito.jsp").forward(request,response);

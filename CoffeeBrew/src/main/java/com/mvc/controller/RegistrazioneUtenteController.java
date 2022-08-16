@@ -53,12 +53,11 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			registrazioneUtente.setEmail(email);
 			registrazioneUtente.setPassword(password);
 			
-			//TODO UtenteDAO
 			boolean result;
 			result = UtenteDAO.registraUtente(registrazioneUtente);
 			
 			if(result) request.getSession(true).setAttribute("utente", registrazioneUtente);
-			//response.getWriter().print("Utente "+email+" registrato: "+result);
+			//TODO else ERROR PAGE
 			
 			request.getRequestDispatcher("/index.jsp").forward(request,response);
 		}

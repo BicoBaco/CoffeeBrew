@@ -40,4 +40,14 @@
     <servlet-name>LogoutUtenteController</servlet-name>
     <url-pattern>/LogoutUtenteController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CarteDiCreditoController</display-name>
+    <servlet-name>CarteDiCreditoController</servlet-name>
+    <servlet-class>com.mvc.controller.CarteDiCreditoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarteDiCreditoController</servlet-name>
+    <url-pattern>/CarteDiCreditoController</url-pattern>
+  </servlet-mapping>
 </web-app>

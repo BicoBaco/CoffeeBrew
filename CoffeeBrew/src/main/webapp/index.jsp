@@ -17,7 +17,8 @@ body {
 <body>
 	<h1>Ciao ${utente.getNome()}</h1>
 	<a href="registrazione.jsp">Registrazione Utenti</a> <br>
-	<a href="accesso.jsp">Accesso Utenti</a>
+	<a href="accesso.jsp">Accesso Utenti</a> <br>
+	<a href="CarteDiCreditoController">Gestione Carte di Credito</a> <br>
 	<form action="LogoutUtenteController" method="post">
    		<input type="submit" value="Logout" />
 	</form>

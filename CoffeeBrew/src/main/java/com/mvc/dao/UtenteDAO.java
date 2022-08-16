@@ -1,6 +1,7 @@
 package com.mvc.dao;
 
 import com.mvc.bean.UtenteBean;
+import com.helper.DBHelper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,15 +17,8 @@ public class UtenteDAO {
 		String email = registrazioneUtente.getEmail();
 		String password = registrazioneUtente.getPassword();
 		
-		String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11512766";
-		String DBusername = "sql11512766";
-		String DBpassword = "z9114hAzpB";
-		
 		try {
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-				
-			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
+			Connection connection = DBHelper.connectToDB();
 			
 			PreparedStatement pstmt = null;
 			pstmt = connection.prepareStatement("INSERT INTO Utente (nome, cognome, email, password) values (?, ?, ?, ?)");
@@ -49,18 +43,13 @@ public class UtenteDAO {
 	public static boolean accediUtente(UtenteBean accessoUtente) {
 		String email = accessoUtente.getEmail();
 		String password = accessoUtente.getPassword();
-				
-		String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11512766";
-		String DBusername = "sql11512766";
-		String DBpassword = "z9114hAzpB";
+
 		
 		ResultSet result = null;
 		boolean check = false;
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-				
-			Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);
+			Connection connection = DBHelper.connectToDB();
 			
 			PreparedStatement pstmt = null;
 			pstmt = connection.prepareStatement("SELECT * FROM Utente WHERE email = ? AND password = ?");
@@ -68,7 +57,6 @@ public class UtenteDAO {
 			pstmt.setString(2, password);
 			result = pstmt.executeQuery();
 
-			
 			try {
 				if(result.next()) {
 					accessoUtente.setIdUtente(result.getInt("idUtente"));

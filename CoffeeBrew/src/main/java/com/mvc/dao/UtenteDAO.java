@@ -71,8 +71,10 @@ public class UtenteDAO {
 			
 			try {
 				if(result.next()) {
+					accessoUtente.setIdUtente(result.getInt("idUtente"));
 					accessoUtente.setNome(result.getString("nome"));
 					accessoUtente.setCognome(result.getString("cognome"));
+					accessoUtente.setCentesimiCredito(result.getInt("centesimiCredito"));
 					check = true;
 				}
 			} catch (SQLException e) {

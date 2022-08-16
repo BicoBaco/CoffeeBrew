@@ -51,8 +51,8 @@ public class AccessoUtenteController extends HttpServlet {
 			boolean result;
 			result = UtenteDAO.accediUtente(accessoUtente);
 
-			/* meglio farlo qua passando una struttura da UtenteDAO? la struttura non può essere il resultset
-			 * non si può passare il resultset senza tenere la connessione al db aperta
+			/* meglio completare il bean qua passando una struttura da UtenteDAO? 
+			 * la struttura non può essere il resultset, non si può passare senza tenere la connessione al db aperta
 			try {
 				if(result.next()) {
 					accessoUtente.setNome(result.getString("nome"));
@@ -64,14 +64,39 @@ public class AccessoUtenteController extends HttpServlet {
 			}*/
 			
 			response.getWriter().println("Utente "+email+" dati corretti: "+result);
-			response.getWriter().println(accessoUtente.getNome() + " " +accessoUtente.getCognome());
+			if(result) {
+				response.getWriter().println(accessoUtente.getNome() + " " +accessoUtente.getCognome() + " " 
+												+ accessoUtente.getIdUtente() + " " + accessoUtente.getCentesimiCredito());
+				//request.getSession(true).setAttribute("idUtente", accessoUtente.getIdUtente());
+				request.getSession(true).setAttribute("utente", accessoUtente);
+				
+				
+				/* login del prof con request.login ma vuole settate robe di contesto idk da capire
+				response.getWriter().println("IsUserInRole?.."
+	                        + request.isUserInRole("pr"));
+				response.getWriter().println("getRemoteUser?.." + request.getRemoteUser());
+				response.getWriter().println("getUserPrincipal?.."
+	                        + request.getUserPrincipal());
+				response.getWriter().println("getAuthType?.." + request.getAuthType());		
+				
+				try {
+					request.login(email, password);
+				} catch(ServletException ex) {
+					response.getWriter().println("Login Failed with a ServletException.. " + ex.getMessage());
+		                return;
+		        }
+				
+				response.getWriter().println("after");
+				response.getWriter().println("IsUserInRole?.."
+                        + request.isUserInRole("pr"));
+				response.getWriter().println("getRemoteUser?.." + request.getRemoteUser());
+				response.getWriter().println("getUserPrincipal?.."
+                        + request.getUserPrincipal());
+				response.getWriter().println("getAuthType?.." + request.getAuthType());
+				*/
+			}
 			
-			
-			//sessione salvata
-			
-			//address = "index.jsp" ?
-			//RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-			//dispatcher.forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request,response);
 		}
 	}
 

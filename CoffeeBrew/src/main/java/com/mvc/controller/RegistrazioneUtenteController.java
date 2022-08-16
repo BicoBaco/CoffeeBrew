@@ -56,7 +56,11 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			//TODO UtenteDAO
 			boolean result;
 			result = UtenteDAO.registraUtente(registrazioneUtente);
-			response.getWriter().print("Utente "+email+" registrato: "+result);
+			
+			if(result) request.getSession(true).setAttribute("utente", registrazioneUtente);
+			//response.getWriter().print("Utente "+email+" registrato: "+result);
+			
+			request.getRequestDispatcher("/index.jsp").forward(request,response);
 		}
 	}
 

@@ -22,5 +22,8 @@ body {
 	<form action="LogoutUtenteController" method="post">
    		<input type="submit" value="Logout" />
 	</form>
+	<form>
+	
+	</form>
 </body>
 </html>

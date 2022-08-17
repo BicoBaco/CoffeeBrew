@@ -60,4 +60,14 @@
     <servlet-name>DistributoreAutomaticoController</servlet-name>
     <url-pattern>/DistributoreAutomaticoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConnessioneDistributoreAutomaticoController</display-name>
+    <servlet-name>ConnessioneDistributoreAutomaticoController</servlet-name>
+    <servlet-class>com.mvc.controller.ConnessioneDistributoreAutomaticoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConnessioneDistributoreAutomaticoController</servlet-name>
+    <url-pattern>/ConnessioneDistributoreAutomaticoController</url-pattern>
+  </servlet-mapping>
 </web-app>

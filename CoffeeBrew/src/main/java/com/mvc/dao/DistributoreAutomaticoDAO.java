@@ -24,6 +24,6 @@ public class DistributoreAutomaticoDAO {
 	//TODO insert distributore
 	
 	public String getStato(int idDistributore) {
-		
+		return null;
 	}
 }

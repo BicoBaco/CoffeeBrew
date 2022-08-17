@@ -6,20 +6,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.mvc.bean.UtenteBean;
-import com.mvc.dao.UtenteDAO;
+import com.mvc.bean.TecnicoBean;
+import com.mvc.dao.TecnicoDAO;
 
 /**
- * Servlet implementation class AccessoUtenteController
+ * Servlet implementation class RegistrazioneTecnicoController
  */
-
-public class AccessoUtenteController extends HttpServlet {
+public class RegistrazioneTecnicoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccessoUtenteController() {
+    public RegistrazioneTecnicoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,25 +36,29 @@ public class AccessoUtenteController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if(request.getParameter("email") != null && request.getParameter("email") != "" &&
+		if(request.getParameter("nome") != null && request.getParameter("nome") != "" &&
+		   request.getParameter("cognome") != null && request.getParameter("cognome") != "" &&
+		   request.getParameter("email") != null && request.getParameter("email") != "" &&
 		   request.getParameter("password") != null && request.getParameter("password") != "") {
 			
+			String nome = request.getParameter("nome");
+			String cognome = request.getParameter("cognome");
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
-			UtenteBean accessoUtente = new UtenteBean();
-			accessoUtente.setEmail(email);
-			accessoUtente.setPassword(password);
+			TecnicoBean registrazioneTecnico = new TecnicoBean();
+			registrazioneTecnico.setNome(nome);
+			registrazioneTecnico.setCognome(cognome);
+			registrazioneTecnico.setEmail(email);
+			registrazioneTecnico.setPassword(password);
 			
 			boolean result;
-			result = UtenteDAO.accediUtente(accessoUtente);
+			result = TecnicoDAO.registraTecnico(registrazioneTecnico);
 			
-			if(result) {
-				request.getSession(true).setAttribute("utente", accessoUtente);
-				response.sendRedirect("/index.jsp");
-			} else {
-				throw new ServletException("L'utente inserito non esiste");
-			}
+			if(result) request.getSession(true).setAttribute("tecnico", registrazioneTecnico);
+			//TODO else ERROR PAGE
+			
+			request.getRequestDispatcher("/index.jsp").forward(request,response);
 		}
 	}
 

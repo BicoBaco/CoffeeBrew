@@ -6,20 +6,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.mvc.bean.UtenteBean;
-import com.mvc.dao.UtenteDAO;
+import com.mvc.bean.TecnicoBean;
+import com.mvc.dao.TecnicoDAO;
 
 /**
- * Servlet implementation class AccessoUtenteController
+ * Servlet implementation class AccessoTecnicoController
  */
-
-public class AccessoUtenteController extends HttpServlet {
+public class AccessoTecnicoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccessoUtenteController() {
+    public AccessoTecnicoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,18 +42,18 @@ public class AccessoUtenteController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
-			UtenteBean accessoUtente = new UtenteBean();
-			accessoUtente.setEmail(email);
-			accessoUtente.setPassword(password);
+			TecnicoBean accessoTecnico = new TecnicoBean();
+			accessoTecnico.setEmail(email);
+			accessoTecnico.setPassword(password);
 			
 			boolean result;
-			result = UtenteDAO.accediUtente(accessoUtente);
+			result = TecnicoDAO.accediTecnico(accessoTecnico);
 			
 			if(result) {
-				request.getSession(true).setAttribute("utente", accessoUtente);
-				response.sendRedirect("/index.jsp");
+				request.getSession(true).setAttribute("tecnico", accessoTecnico);
+				response.sendRedirect("pannelloDiControlloTecnico");
 			} else {
-				throw new ServletException("L'utente inserito non esiste");
+				throw new ServletException("Il tecnico inserito non esiste");
 			}
 		}
 	}

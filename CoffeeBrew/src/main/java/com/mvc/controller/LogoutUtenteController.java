@@ -1,8 +1,6 @@
 package com.mvc.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,7 +29,7 @@ public class LogoutUtenteController extends HttpServlet {
 		 
 		request.getSession(false).invalidate();
 		
-		request.getRequestDispatcher("/index.jsp").forward(request,response);
+		response.sendRedirect("/index.jsp");
 	}
 
 	/**

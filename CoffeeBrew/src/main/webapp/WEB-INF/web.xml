@@ -50,4 +50,14 @@
     <servlet-name>CarteDiCreditoController</servlet-name>
     <url-pattern>/CarteDiCreditoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DistributoreAutomaticoController</display-name>
+    <servlet-name>DistributoreAutomaticoController</servlet-name>
+    <servlet-class>com.mvc.controller.DistributoreAutomaticoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DistributoreAutomaticoController</servlet-name>
+    <url-pattern>/DistributoreAutomaticoController</url-pattern>
+  </servlet-mapping>
 </web-app>

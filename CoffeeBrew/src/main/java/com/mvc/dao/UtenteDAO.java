@@ -4,7 +4,6 @@ import com.mvc.bean.UtenteBean;
 import com.helper.DBHelper;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,7 @@ public class UtenteDAO {
 			pstmt.setString(1, nome);
 			pstmt.setString(2, cognome);
 			pstmt.setString(3, email);
-			pstmt.setString(4, password);
+			pstmt.setString(4, DBHelper.getSHA512(password));
 			int result = pstmt.executeUpdate();
 			
 			pstmt.close();
@@ -37,7 +36,7 @@ public class UtenteDAO {
 			e.printStackTrace();
 		}
 		
-		return false;
+		return false; 
 	}
 	
 	public static boolean accediUtente(UtenteBean accessoUtente) {
@@ -54,7 +53,7 @@ public class UtenteDAO {
 			PreparedStatement pstmt = null;
 			pstmt = connection.prepareStatement("SELECT * FROM Utente WHERE email = ? AND password = ?");
 			pstmt.setString(1, email);
-			pstmt.setString(2, password);
+			pstmt.setString(2, DBHelper.getSHA512(password));
 			result = pstmt.executeQuery();
 
 			try {

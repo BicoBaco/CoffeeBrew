@@ -8,7 +8,14 @@
 	</head>
 	<body>
 		<button id="poll" type="button">Polling</button>
+		<input type="number" id="idDistributore" name="idDistributore">
 		<div id="demo"></div>
-		<script src="polling.js"></script> 
+		
+		<div id="interfaccia" hidden>
+			<input type="hidden" value="20">
+			<input id="acquistaButton" type="submit" value="Acquista">
+		</div>
+		
+		<script src="polling.js"></script>
 	</body>
 </html>

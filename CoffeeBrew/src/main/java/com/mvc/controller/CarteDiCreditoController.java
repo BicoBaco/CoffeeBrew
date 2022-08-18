@@ -40,9 +40,9 @@ public class CarteDiCreditoController extends HttpServlet {
 			System.out.println(" -> lista carte");
 			System.out.println(listaCarte.toString());
 			
-			request.getRequestDispatcher("/gestioneCarteDiCredito.jsp").forward(request,response);
+			request.getRequestDispatcher("/WEB-INF/gestioneCarteDiCredito.jsp").forward(request,response);
 		} else {
-			response.sendRedirect("accessoUtente.jsp?error=Accesso non consentito");
+			response.sendRedirect("/WEB-INF/accessoUtente.jsp?error=Accesso non consentito");
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class CarteDiCreditoController extends HttpServlet {
 			//TODO else ERROR PAGE
 			*/
 			
-			response.sendRedirect("gestioneCarteDiCredito.jsp");	
+			response.sendRedirect("/WEB-INF/gestioneCarteDiCredito.jsp");	
 		}
 	}
 

@@ -45,7 +45,7 @@ public class RegistrazioneDistributoreAutomaticoController extends HttpServlet {
 			result = DistributoreAutomaticoDAO.registraDistributoreAutomatico(registrazioneDistributoreAutomatico);
 			
 			if(result) {
-				response.sendRedirect("pannelloDiControlloAmministratore.jsp");
+				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp");
 			} else {
 				//TODO Errore
 			}

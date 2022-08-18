@@ -48,7 +48,7 @@ public class AccessoAmministratoreController extends HttpServlet {
 			
 			if(result) {
 				request.getSession(true).setAttribute("amministratore", accessoAmministratore);
-				response.sendRedirect("pannelloDiControlloAmministratore.jsp");
+				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp");
 			} else {
 				throw new ServletException("L'amministratore inserito non esiste");
 			}

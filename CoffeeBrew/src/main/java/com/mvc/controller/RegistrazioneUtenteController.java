@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.UtenteDAO;
@@ -50,8 +51,13 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			registrazioneUtente.setEmail(email);
 			registrazioneUtente.setPassword(password);
 			
-			boolean result;
-			result = UtenteDAO.registraUtente(registrazioneUtente);
+			boolean result = false;
+			try {
+				result = UtenteDAO.registraUtente(registrazioneUtente);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			if(result) {
 				request.getSession(true).setAttribute("utente", registrazioneUtente);

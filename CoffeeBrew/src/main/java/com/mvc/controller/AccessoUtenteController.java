@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.UtenteDAO;
@@ -45,12 +46,17 @@ public class AccessoUtenteController extends HttpServlet {
 			accessoUtente.setEmail(email);
 			accessoUtente.setPassword(password);
 			
-			boolean result;
-			result = UtenteDAO.accediUtente(accessoUtente);
+			boolean result = false;
+			try {
+				result = UtenteDAO.accediUtente(accessoUtente);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			if(result) {
 				request.getSession(true).setAttribute("utente", accessoUtente);
-				response.sendRedirect("/index.jsp");
+				response.sendRedirect("index.jsp");
 			} else {
 				throw new ServletException("L'utente inserito non esiste");
 			}

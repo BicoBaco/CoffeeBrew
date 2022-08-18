@@ -10,16 +10,17 @@ import java.sql.SQLException;
 
 public class UtenteDAO {
 	
-	public static boolean registraUtente(UtenteBean registrazioneUtente) {
+	public static boolean registraUtente(UtenteBean registrazioneUtente) throws SQLException {
 		String nome = registrazioneUtente.getNome();
 		String cognome = registrazioneUtente.getCognome();
 		String email = registrazioneUtente.getEmail();
 		String password = registrazioneUtente.getPassword();
 		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
 		try {
-			Connection connection = DBHelper.connectToDB();
-			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
 			pstmt = connection.prepareStatement("INSERT INTO Utente (nome, cognome, email, password) values (?, ?, ?, ?)");
 			pstmt.setString(1, nome);
 			pstmt.setString(2, cognome);
@@ -27,30 +28,29 @@ public class UtenteDAO {
 			pstmt.setString(4, DBHelper.getSHA512(password));
 			int result = pstmt.executeUpdate();
 			
-			pstmt.close();
-			connection.close();
-			
-			return result > 0;
-			
+			return result > 0;		
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return false; 
 	}
 	
-	public static boolean accediUtente(UtenteBean accessoUtente) {
+	public static boolean accediUtente(UtenteBean accessoUtente) throws SQLException {
 		String email = accessoUtente.getEmail();
 		String password = accessoUtente.getPassword();
-
 		
 		ResultSet result = null;
 		boolean check = false;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
 		
 		try {
-			Connection connection = DBHelper.connectToDB();
 			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
 			pstmt = connection.prepareStatement("SELECT * FROM Utente WHERE email = ? AND password = ?");
 			pstmt.setString(1, email);
 			pstmt.setString(2, DBHelper.getSHA512(password));
@@ -68,11 +68,11 @@ public class UtenteDAO {
 				e.printStackTrace();
 			}
 			
-			pstmt.close();
-			connection.close();
-			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return check;

@@ -95,4 +95,6 @@ public class DistributoreAutomaticoDAO {
 		
 		return false;
 	}
+	
+	//ziopera
 }

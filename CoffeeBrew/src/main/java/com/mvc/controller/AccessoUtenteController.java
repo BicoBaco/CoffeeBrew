@@ -50,7 +50,6 @@ public class AccessoUtenteController extends HttpServlet {
 			try {
 				result = UtenteDAO.accediUtente(accessoUtente);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

@@ -42,9 +42,7 @@ public class ErrorHandler extends HttpServlet {
 	    PrintWriter out = response.getWriter();
 	    out.write("<html><head><title>Exception/Error Details</title></head><body>");
 	    
-	    if (throwable == null && statusCode == null) {
-	         out.println("<h2>Error information is missing</h2>");
-	    } else if(statusCode == null) {
+	    if(statusCode == null) {
 	    	out.write("<h3>" + throwable.getMessage() + "</h3>");
 	    } else if(statusCode != 500){
 	    	out.write("<h3>Error Details</h3>");

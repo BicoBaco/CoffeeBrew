@@ -71,7 +71,10 @@ public class CarteDiCreditoController extends HttpServlet {
 			//TODO else ERROR PAGE
 			*/
 			
-			response.sendRedirect("/WEB-INF/gestioneCarteDiCredito.jsp");	
+			response.sendRedirect("CarteDiCreditoController");	
+		} else {
+			System.out.println("beccato senza dati");
+			response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi");
 		}
 	}
 

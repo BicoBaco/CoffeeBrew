@@ -29,6 +29,10 @@
 		
 		</table> 
 		
+		<br>
+		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+			<%= request.getParameter("error") %>
+		<% } %>
 		<form action="CarteDiCreditoController" method="post">
 			Numero Carta <input type="text" name="numeroCarta">
 			Nome sulla Carta <input type="text" name="nomeSullaCarta">

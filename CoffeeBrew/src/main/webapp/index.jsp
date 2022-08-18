@@ -16,14 +16,12 @@ body {
 </head>
 <body>
 	<h1>Ciao ${utente.getNome()}${tecnico.getNome()}${amministratore.getNome()}</h1>
-	<a href="registrazioneUtente.jsp">Registrazione Utenti</a> <br>
-	<a href="accessoUtente.jsp">Accesso Utenti</a> <br>
-	<a href="accessoTecnico.jsp">Accesso Tecnici</a> <br>
-	<a href="accessoAmministratore.jsp">Accesso Amministratore</a> <br>
+	<a href="RegistrazioneUtenteController">Registrazione Utenti</a> <br>
+	<a href="AccessoUtenteController">Accesso Utenti</a> <br>
+	<a href="AccessoTecnicoController">Accesso Tecnici</a> <br>
+	<a href="AccessoAmministratoreController">Accesso Amministratore</a> <br>
 	<a href="CarteDiCreditoController">Gestione Carte di Credito</a> <br>
-	<form action="LogoutUtenteController" method="post">
-   		<input type="submit" value="Logout" />
-	</form>
+	<a href="LogoutUtenteController">Logout</a> <br>
 	<form action="ConnessioneDistributoreAutomaticoController" method="get">
 		Connetti al distributore: <input type="number" name="idDistributore">
 		<input type="submit">

@@ -29,8 +29,6 @@ public class CarteDiCreditoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("get gestione carte");
-		
 		if(request.getSession().getAttribute("utente") != null) {
 			System.out.println(" -> e sei loggato");
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
@@ -42,7 +40,7 @@ public class CarteDiCreditoController extends HttpServlet {
 			
 			request.getRequestDispatcher("/WEB-INF/gestioneCarteDiCredito.jsp").forward(request,response);
 		} else {
-			response.sendRedirect("/WEB-INF/accessoUtente.jsp?error=Accesso non consentito");
+			response.sendRedirect("AccessoUtenteController");
 		}
 	}
 	

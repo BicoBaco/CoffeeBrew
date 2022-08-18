@@ -38,8 +38,10 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 				UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
 				distributoreDAO.impostaOccupato(idDistributore, utente.getIdUtente());
 				
+				//TODO pagina che mostra macchina libera
 				response.getWriter().print("macchina libera, connessione in corso...");
 			} else {
+				//TODO pagina che mostra macchina non disponibile
 				response.getWriter().print("macchina non disponibile");
 			}
 		}

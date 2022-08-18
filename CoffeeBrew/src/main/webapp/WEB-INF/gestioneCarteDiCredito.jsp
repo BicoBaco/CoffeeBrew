@@ -35,5 +35,7 @@
 			Data di scadenza <input type="date" name="dataScadenza">
 			<input type="submit" value="Inserisci">
 		</form>
+		
+		<a href="index.jsp">Home</a>
 	</body>
 </html>

@@ -12,6 +12,6 @@
 			 Password <input type="password" name="password"> <br>
 			 <input type="submit"/> <br> 
 		</form>
-		<a href="registrazioneUtente.jsp">Registrazione Utenti</a>
+		<a href="RegistrazioneUtenteController">Registrazione Utenti</a>
 	</body>
 </html>

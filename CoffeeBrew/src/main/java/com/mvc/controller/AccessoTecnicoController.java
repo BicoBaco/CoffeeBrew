@@ -54,7 +54,7 @@ public class AccessoTecnicoController extends HttpServlet {
 			
 			if(result) {
 				request.getSession(true).setAttribute("tecnico", accessoTecnico);
-				response.sendRedirect("/WEB-INF/pannelloDiControlloTecnico.jsp");
+				request.getRequestDispatcher("/WEB-INF/pannelloDiControlloTecnico.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("AccessoTecnicoController?error=Email o password errata");
 			}

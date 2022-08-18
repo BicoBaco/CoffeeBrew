@@ -24,6 +24,51 @@ public class DistributoreAutomaticoDAO {
 	//TODO insert distributore
 	
 	public String getStato(int idDistributore) {
-		return null;
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("SELECT * FROM DistributoreAutomatico WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			ResultSet rs = pstmt.executeQuery();
+			String stato;
+			
+			if(rs.next()) {
+				stato = rs.getString("stato");
+			} else {
+				stato = "error";
+			}
+			pstmt.close();
+			
+			return stato;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	public void impostaOccupato(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET stato = 'occupato' WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void impostaLibero(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET stato = 'libero' WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -22,8 +22,9 @@ body {
 	<form action="LogoutUtenteController" method="post">
    		<input type="submit" value="Logout" />
 	</form>
-	<form>
-	
+	<form action="ConnessioneDistributoreAutomaticoController" method="get">
+		Connetti al distributore: <input type="number" name="idDistributore">
+		<input type="submit">
 	</form>
 </body>
 </html>

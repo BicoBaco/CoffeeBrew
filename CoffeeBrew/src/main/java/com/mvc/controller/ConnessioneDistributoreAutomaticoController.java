@@ -7,12 +7,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.mvc.dao.DistributoreAutomaticoDAO;
+
 /**
  * Servlet implementation class ConnessioneDistributoreAutomaticoController
  */
 public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
+	private DistributoreAutomaticoDAO distributoreDAO = new DistributoreAutomaticoDAO();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,7 +30,20 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
+			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
+			
+			String stato = distributoreDAO.getStato(idDistributore);
+			if(stato.equals("libero")) {
+				distributoreDAO.impostaOccupato(idDistributore);
+				
+				response.getWriter().print("macchina libera, connessione in corso...");
+			} else if (stato.equals("occupato")) {
+				response.getWriter().print("macchina occupata");
+			} else {
+				response.getWriter().print("errore");
+			}
+		}
 	}
 
 	/**

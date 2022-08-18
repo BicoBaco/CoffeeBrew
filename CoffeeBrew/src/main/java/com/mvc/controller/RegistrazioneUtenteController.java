@@ -21,14 +21,12 @@ public class RegistrazioneUtenteController extends HttpServlet {
      */
     public RegistrazioneUtenteController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -36,7 +34,6 @@ public class RegistrazioneUtenteController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if(request.getParameter("nome") != null && request.getParameter("nome") != "" &&
 		   request.getParameter("cognome") != null && request.getParameter("cognome") != "" &&
 		   request.getParameter("email") != null && request.getParameter("email") != "" &&
@@ -56,10 +53,13 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			boolean result;
 			result = UtenteDAO.registraUtente(registrazioneUtente);
 			
-			if(result) request.getSession(true).setAttribute("utente", registrazioneUtente);
+			if(result) {
+				request.getSession(true).setAttribute("utente", registrazioneUtente);
+				response.sendRedirect("index.jsp");
+			} else {
 			//TODO else ERROR PAGE
-			
-			request.getRequestDispatcher("/index.jsp").forward(request,response);
+
+			}
 		}
 	}
 

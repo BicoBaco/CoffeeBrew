@@ -65,7 +65,6 @@ public class UtenteDAO {
 					check = true;
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

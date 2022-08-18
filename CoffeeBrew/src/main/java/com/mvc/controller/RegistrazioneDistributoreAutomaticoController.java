@@ -6,19 +6,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.mvc.bean.DistributoreAutomaticoBean;
 import com.mvc.bean.TecnicoBean;
+import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.TecnicoDAO;
 
 /**
- * Servlet implementation class AccessoTecnicoController
+ * Servlet implementation class RegistrazioneDistributoreAutomaticoController
  */
-public class AccessoTecnicoController extends HttpServlet {
+public class RegistrazioneDistributoreAutomaticoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccessoTecnicoController() {
+    public RegistrazioneDistributoreAutomaticoController() {
         super();
     }
 
@@ -33,26 +35,20 @@ public class AccessoTecnicoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("email") != null && request.getParameter("email") != "" &&
-		   request.getParameter("password") != null && request.getParameter("password") != "") {
+		if(request.getParameter("locazione") != null && request.getParameter("locazione") != "") {
+			String locazione = request.getParameter("locazione");
 			
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			
-			TecnicoBean accessoTecnico = new TecnicoBean();
-			accessoTecnico.setEmail(email);
-			accessoTecnico.setPassword(password);
+			DistributoreAutomaticoBean registrazioneDistributoreAutomatico = new DistributoreAutomaticoBean();
+			registrazioneDistributoreAutomatico.setLocazione(locazione);
 			
 			boolean result;
-			result = TecnicoDAO.accediTecnico(accessoTecnico);
+			result = DistributoreAutomaticoDAO.registraDistributoreAutomatico(registrazioneDistributoreAutomatico);
 			
 			if(result) {
-				request.getSession(true).setAttribute("tecnico", accessoTecnico);
-				response.sendRedirect("pannelloDiControlloTecnico");
+				response.sendRedirect("pannelloDiControlloAmministratore.jsp");
 			} else {
-				throw new ServletException("Il tecnico inserito non esiste");
+				//TODO Errore
 			}
 		}
 	}
-
 }

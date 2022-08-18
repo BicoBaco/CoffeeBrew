@@ -1,7 +1,6 @@
 package com.mvc.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ public class DistributoreAutomaticoController extends HttpServlet {
      */
     public DistributoreAutomaticoController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

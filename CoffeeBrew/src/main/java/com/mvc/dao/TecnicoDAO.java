@@ -64,7 +64,6 @@ public class TecnicoDAO {
 					check = true;
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

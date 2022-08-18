@@ -15,5 +15,11 @@
 			 Password <input type="password" name="password"> <br>
 			 <input type="submit"/> <br>	 
 		</form>
+		
+		Inserisci Distributore Automatico
+		<form action="RegistrazioneDistributoreAutomaticoController" method="POST">
+			 Locazione <input type="text" name="locazione"> <br>
+			 <input type="submit"/> <br>	 
+		</form>
 	</body>
 </html>

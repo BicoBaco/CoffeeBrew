@@ -71,8 +71,6 @@ public class DistributoreAutomaticoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	public String getStato(int idDistributore) {
-		return null;
 	}
 
 	public static boolean registraDistributoreAutomatico(DistributoreAutomaticoBean registrazioneDistributoreAutomatico) {

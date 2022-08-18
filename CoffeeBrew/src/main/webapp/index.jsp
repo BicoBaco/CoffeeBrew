@@ -15,9 +15,11 @@ body {
 <title>CoffeeBrew</title>
 </head>
 <body>
-	<h1>Ciao ${utente.getNome()}</h1>
-	<a href="registrazione.jsp">Registrazione Utenti</a> <br>
-	<a href="accesso.jsp">Accesso Utenti</a> <br>
+	<h1>Ciao ${utente.getNome()}${tecnico.getNome()}${amministratore.getNome()}</h1>
+	<a href="registrazioneUtente.jsp">Registrazione Utenti</a> <br>
+	<a href="accessoUtente.jsp">Accesso Utenti</a> <br>
+	<a href="accessoTecnico.jsp">Accesso Tecnici</a> <br>
+	<a href="accessoAmministratore.jsp">Accesso Amministratore</a> <br>
 	<a href="CarteDiCreditoController">Gestione Carte di Credito</a> <br>
 	<form action="LogoutUtenteController" method="post">
    		<input type="submit" value="Logout" />

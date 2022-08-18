@@ -14,6 +14,6 @@
 			 Password <input type="password" name="password"> <br>
 			 <input type="submit"/> <br>	 
 		</form>
-		<a href="accesso.jsp">Accesso Utenti</a>
+		<a href="accessoUtente.jsp">Accesso Utenti</a>
 	</body>
 </html>

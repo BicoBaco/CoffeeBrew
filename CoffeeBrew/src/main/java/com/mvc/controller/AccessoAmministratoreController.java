@@ -6,20 +6,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.mvc.bean.UtenteBean;
-import com.mvc.dao.UtenteDAO;
+import com.mvc.bean.AmministratoreBean;
+import com.mvc.dao.AmministratoreDAO;
 
 /**
- * Servlet implementation class AccessoUtenteController
+ * Servlet implementation class AccessoAmministratoreController
  */
-
-public class AccessoUtenteController extends HttpServlet {
+public class AccessoAmministratoreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccessoUtenteController() {
+    public AccessoAmministratoreController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,18 +42,18 @@ public class AccessoUtenteController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
-			UtenteBean accessoUtente = new UtenteBean();
-			accessoUtente.setEmail(email);
-			accessoUtente.setPassword(password);
+			AmministratoreBean accessoAmministratore = new AmministratoreBean();
+			accessoAmministratore.setEmail(email);
+			accessoAmministratore.setPassword(password);
 			
 			boolean result;
-			result = UtenteDAO.accediUtente(accessoUtente);
+			result = AmministratoreDAO.accediAmministratore(accessoAmministratore);
 			
 			if(result) {
-				request.getSession(true).setAttribute("utente", accessoUtente);
-				response.sendRedirect("/index.jsp");
+				request.getSession(true).setAttribute("amministratore", accessoAmministratore);
+				response.sendRedirect("pannelloDiControlloAmministratore.jsp");
 			} else {
-				throw new ServletException("L'utente inserito non esiste");
+				throw new ServletException("L'amministratore inserito non esiste");
 			}
 		}
 	}

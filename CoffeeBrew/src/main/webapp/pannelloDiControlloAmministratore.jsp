@@ -4,14 +4,16 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Accesso Utenti</title>
+		<title>Pannello di Controllo Amministratore</title>
 	</head>
 	<body>
-		<form action="AccessoUtenteController" method="POST">
+		Registrazione Tecnico
+		<form action="RegistrazioneTecnicoController" method="POST">
+			 Nome <input type="text" name="nome"> <br>
+			 Cognome <input type="text" name="cognome"> <br>
 			 Email <input type="email" name="email"> <br>
 			 Password <input type="password" name="password"> <br>
-			 <input type="submit"/> <br> 
+			 <input type="submit"/> <br>	 
 		</form>
-		<a href="registrazione.jsp">Registrazione Utenti</a>
 	</body>
 </html>

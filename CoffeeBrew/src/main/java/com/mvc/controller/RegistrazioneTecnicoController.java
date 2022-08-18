@@ -20,14 +20,12 @@ public class RegistrazioneTecnicoController extends HttpServlet {
      */
     public RegistrazioneTecnicoController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -35,7 +33,6 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if(request.getParameter("nome") != null && request.getParameter("nome") != "" &&
 		   request.getParameter("cognome") != null && request.getParameter("cognome") != "" &&
 		   request.getParameter("email") != null && request.getParameter("email") != "" &&
@@ -55,10 +52,13 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 			boolean result;
 			result = TecnicoDAO.registraTecnico(registrazioneTecnico);
 			
-			if(result) request.getSession(true).setAttribute("tecnico", registrazioneTecnico);
+			if(result) {
+				request.getSession(true).setAttribute("tecnico", registrazioneTecnico);
+				response.sendRedirect("index.jsp");
+			} else {
 			//TODO else ERROR PAGE
-			
-			request.getRequestDispatcher("/index.jsp").forward(request,response);
+
+			}
 		}
 	}
 

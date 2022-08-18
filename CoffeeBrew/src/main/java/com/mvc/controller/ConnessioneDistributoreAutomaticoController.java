@@ -1,7 +1,6 @@
 package com.mvc.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,13 +22,13 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
      */
     public ConnessioneDistributoreAutomaticoController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		// TODO check login
 		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
@@ -45,13 +44,15 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 				response.getWriter().print("macchina non disponibile");
 			}
 		}
+=======
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+>>>>>>> branch 'master' of https://github.com/Atovange/CoffeeBrew.git
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

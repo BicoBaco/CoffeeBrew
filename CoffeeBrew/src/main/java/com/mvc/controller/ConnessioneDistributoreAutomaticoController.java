@@ -43,7 +43,6 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 				response.getWriter().print("macchina non disponibile");
 			}
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

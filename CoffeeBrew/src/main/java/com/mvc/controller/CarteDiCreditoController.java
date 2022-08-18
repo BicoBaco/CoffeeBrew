@@ -29,14 +29,23 @@ public class CarteDiCreditoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
-		ArrayList<CartaDiCreditoBean> listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
+		System.out.println("get gestione carte");
 		
-		request.setAttribute("listaCarte", listaCarte);
-		
-		request.getRequestDispatcher("/gestioneCarteDiCredito.jsp").forward(request,response);
+		if(request.getSession().getAttribute("utente") != null) {
+			System.out.println(" -> e sei loggato");
+			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
+			ArrayList<CartaDiCreditoBean> listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
+			
+			request.setAttribute("listaCarte", listaCarte);
+			System.out.println(" -> lista carte");
+			System.out.println(listaCarte.toString());
+			
+			request.getRequestDispatcher("/gestioneCarteDiCredito.jsp").forward(request,response);
+		} else {
+			response.sendRedirect("accessoUtente.jsp?error=Accesso non consentito");
+		}
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -64,8 +73,7 @@ public class CarteDiCreditoController extends HttpServlet {
 			//TODO else ERROR PAGE
 			*/
 			
-			request.getRequestDispatcher("/index.jsp").forward(request,response);
-			
+			response.sendRedirect("gestioneCarteDiCredito.jsp");	
 		}
 	}
 

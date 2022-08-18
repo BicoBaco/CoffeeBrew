@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mvc.bean.CartaDiCreditoBean;
@@ -32,7 +33,14 @@ public class CarteDiCreditoController extends HttpServlet {
 		if(request.getSession().getAttribute("utente") != null) {
 			System.out.println(" -> e sei loggato");
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
-			ArrayList<CartaDiCreditoBean> listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
+			ArrayList<CartaDiCreditoBean> listaCarte = null;
+			
+			try {
+				listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
+			} catch (SQLException e) {
+				//TODO redirect alla schermata dell'utente
+				//response.sendRedirect("CarteDiCreditoController?error=Errore del database");
+			}
 			
 			request.setAttribute("listaCarte", listaCarte);
 			System.out.println(" -> lista carte");
@@ -64,12 +72,12 @@ public class CarteDiCreditoController extends HttpServlet {
 			cartaDiCredito.setIdUtente(u.getIdUtente());
 			
 			boolean result;
-			result = CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
-			
-			/*
-			if(result) request.getSession(true).setAttribute("utente", registrazioneUtente);
-			//TODO else ERROR PAGE
-			*/
+			try {
+				result = CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
+			} catch (SQLException e) {
+				//TODO va bene così?
+				response.sendRedirect("CarteDiCreditoController?error=Errore nell'inserimento");
+			}
 			
 			response.sendRedirect("CarteDiCreditoController");	
 		} else {

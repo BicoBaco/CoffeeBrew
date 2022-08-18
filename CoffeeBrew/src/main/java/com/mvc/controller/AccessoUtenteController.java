@@ -50,14 +50,14 @@ public class AccessoUtenteController extends HttpServlet {
 			try {
 				result = UtenteDAO.accediUtente(accessoUtente);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				response.sendRedirect("AccessoUtenteController?error=Errore del database");
 			}
 			
 			if(result) {
 				request.getSession(true).setAttribute("utente", accessoUtente);
 				response.sendRedirect("index.jsp");
 			} else {
-				throw new ServletException("L'utente inserito non esiste");
+				response.sendRedirect("AccessoUtenteController?error=Email o password errata");
 			}
 		}
 	}

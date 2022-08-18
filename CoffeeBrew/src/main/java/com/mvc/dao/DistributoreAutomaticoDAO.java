@@ -20,7 +20,6 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	//TODO insert distributore
 	
 	public UtenteBean getOccupante(int idDistributore) {
 		try {
@@ -73,28 +72,25 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 
-	public static boolean registraDistributoreAutomatico(DistributoreAutomaticoBean registrazioneDistributoreAutomatico) {
+	public static boolean registraDistributoreAutomatico(DistributoreAutomaticoBean registrazioneDistributoreAutomatico) throws SQLException {
 		String locazione = registrazioneDistributoreAutomatico.getLocazione();
+		Connection connection = null; 
+		PreparedStatement pstmt = null;
 		
 		try {
-			Connection connection = DBHelper.connectToDB();
-			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
 			pstmt = connection.prepareStatement("INSERT INTO DistributoreAutomatico (locazione) VALUES (?)");
 			pstmt.setString(1, locazione);
 			int result = pstmt.executeUpdate();
-			
-			pstmt.close();
-			connection.close();
 			
 			return result > 0;
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
-		
 		return false;
 	}
-	
-	//ziopera
 }

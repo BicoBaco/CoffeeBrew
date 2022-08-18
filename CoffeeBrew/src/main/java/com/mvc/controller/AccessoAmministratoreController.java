@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.AmministratoreBean;
 import com.mvc.dao.AmministratoreDAO;
@@ -43,14 +44,19 @@ public class AccessoAmministratoreController extends HttpServlet {
 			accessoAmministratore.setEmail(email);
 			accessoAmministratore.setPassword(password);
 			
-			boolean result;
-			result = AmministratoreDAO.accediAmministratore(accessoAmministratore);
+			boolean result = false;
+			
+			try {
+				result = AmministratoreDAO.accediAmministratore(accessoAmministratore);
+			} catch (SQLException e) {
+				response.sendRedirect("AccessoAmministratoreController?error=Errore del database");
+			}
 			
 			if(result) {
 				request.getSession(true).setAttribute("amministratore", accessoAmministratore);
-				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp");
+				request.getRequestDispatcher("/WEB-INF/pannelloDiControlloAmministratore.jsp").forward(request, response);
 			} else {
-				throw new ServletException("L'amministratore inserito non esiste");
+				response.sendRedirect("AccessoAmministratoreController?error=Email o password errata");
 			}
 		}
 	}

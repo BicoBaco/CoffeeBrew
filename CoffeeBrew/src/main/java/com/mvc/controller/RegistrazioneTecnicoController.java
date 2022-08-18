@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.TecnicoDAO;
@@ -49,16 +50,15 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 			registrazioneTecnico.setEmail(email);
 			registrazioneTecnico.setPassword(password);
 			
-			boolean result;
-			result = TecnicoDAO.registraTecnico(registrazioneTecnico);
-			
-			if(result) {
-				request.getSession(true).setAttribute("tecnico", registrazioneTecnico);
-				response.sendRedirect("index.jsp");
-			} else {
-			//TODO else ERROR PAGE
-
+			try {
+				TecnicoDAO.registraTecnico(registrazioneTecnico);
+			} catch (SQLException e) {
+				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp?error=Errore del database");
 			}
+			
+			request.getSession(true).setAttribute("tecnico", registrazioneTecnico);
+			//TODO 
+			response.sendRedirect("index.jsp");
 		}
 	}
 

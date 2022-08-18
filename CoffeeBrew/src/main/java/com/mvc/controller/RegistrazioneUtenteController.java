@@ -51,21 +51,17 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			registrazioneUtente.setEmail(email);
 			registrazioneUtente.setPassword(password);
 			
-			boolean result = false;
 			try {
-				result = UtenteDAO.registraUtente(registrazioneUtente);
+				UtenteDAO.registraUtente(registrazioneUtente);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// TODO gestire registrazione con stessa email con errore adeguato
+				// TODO mettere email unique nel database
+				response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
 			}
 			
-			if(result) {
-				request.getSession(true).setAttribute("utente", registrazioneUtente);
-				response.sendRedirect("index.jsp");
-			} else {
-			//TODO else ERROR PAGE
-
-			}
+			request.getSession(true).setAttribute("utente", registrazioneUtente);
+			//TODO same indice roba
+			response.sendRedirect("index.jsp");
 		}
 	}
 

@@ -38,22 +38,30 @@ public class ErrorHandler extends HttpServlet {
 		if (requestUri == null)	requestUri = "Unknown";
 		
 		response.setContentType("text/html");
-	 
+
+		System.out.println(request.getAttribute("javax.servlet.error.exception"));
+		System.out.println(request.getAttribute("javax.servlet.error.status_code"));
+		System.out.println(request.getAttribute("javax.servlet.error.servlet_name"));
+		System.out.println(request.getAttribute("javax.servlet.error.request_uri"));
+		
+		
 	    PrintWriter out = response.getWriter();
-	    out.write("<html><head><title>Exception/Error Details</title></head><body>");
+	    out.write("<html><head><title>Errore - Details</title></head><body>");
 	    
-	    if(statusCode == null) {
+	    if(throwable == null && statusCode == null) {
+	    	out.write("<h3>Errore sconosciuto</h3>");
+	    } else if(statusCode == null) {
 	    	out.write("<h3>" + throwable.getMessage() + "</h3>");
 	    } else if(statusCode != 500){
-	    	out.write("<h3>Error Details</h3>");
-	    	out.write("<strong>Status Code</strong>:"+statusCode+"<br>");
-	    	out.write("<strong>Requested URI</strong>:"+requestUri);
+	    	out.write("<h3>Error - Dettagli</h3>");
+	    	out.write("<strong>Stato</strong>:"+statusCode+"<br>");
+	    	out.write("<strong>URI richiesta</strong>:"+requestUri);
 	    } else {
-	    	out.write("<h3>Exception Details</h3>");
-	    	out.write("<ul><li>Servlet Name:"+servletName+"</li>");
-	    	out.write("<li>Exception Name:"+throwable.getClass().getName()+"</li>");
-	    	out.write("<li>Requested URI:"+requestUri+"</li>");
-	    	out.write("<li>Exception Message:"+throwable.getMessage()+"</li>");
+	    	out.write("<h3>Eccezione - Details</h3>");
+	    	out.write("<ul><li>Servlet:"+servletName+"</li>");
+	    	out.write("<li>Exception:"+throwable.getClass().getName()+"</li>");
+	    	out.write("<li>URI richiesta:"+requestUri+"</li>");
+	    	out.write("<li>Messaggio dell'eccezione:"+throwable.getMessage()+"</li>");
 	    	out.write("</ul>");
 	    }
 	    

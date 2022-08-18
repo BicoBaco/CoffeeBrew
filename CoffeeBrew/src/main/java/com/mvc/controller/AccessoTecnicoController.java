@@ -48,7 +48,7 @@ public class AccessoTecnicoController extends HttpServlet {
 			
 			if(result) {
 				request.getSession(true).setAttribute("tecnico", accessoTecnico);
-				response.sendRedirect("pannelloDiControlloTecnico");
+				response.sendRedirect("pannelloDiControlloTecnico.jsp");
 			} else {
 				throw new ServletException("Il tecnico inserito non esiste");
 			}

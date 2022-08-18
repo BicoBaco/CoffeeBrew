@@ -28,7 +28,6 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
 		// TODO check login
 		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
@@ -44,9 +43,7 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 				response.getWriter().print("macchina non disponibile");
 			}
 		}
-=======
 		response.getWriter().append("Served at: ").append(request.getContextPath());
->>>>>>> branch 'master' of https://github.com/Atovange/CoffeeBrew.git
 	}
 
 	/**

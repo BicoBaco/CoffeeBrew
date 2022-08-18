@@ -2,6 +2,7 @@ package com.mvc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.helper.DBHelper;
@@ -19,7 +20,6 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-<<<<<<< HEAD
 	//TODO insert distributore
 	
 	public UtenteBean getOccupante(int idDistributore) {
@@ -71,10 +71,8 @@ public class DistributoreAutomaticoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-=======
 	public String getStato(int idDistributore) {
 		return null;
->>>>>>> branch 'master' of https://github.com/Atovange/CoffeeBrew.git
 	}
 
 	public static boolean registraDistributoreAutomatico(DistributoreAutomaticoBean registrazioneDistributoreAutomatico) {

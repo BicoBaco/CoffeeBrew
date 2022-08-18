@@ -12,10 +12,8 @@
 		<div id="demo"></div>
 		
 		<div id="interfaccia" hidden>
-			<form action="DistributoreAutomaticoController" method="post">
-				<input type="hidden" value="20">
-				<input id="acquistaButton" type="submit" value="Acquista">
-			</form>
+			<input type="hidden" value="20">
+			<input id="acquistaButton" type="submit" value="Acquista">
 		</div>
 		
 		<script src="polling.js"></script>

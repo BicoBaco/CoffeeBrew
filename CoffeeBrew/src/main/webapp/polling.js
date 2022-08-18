@@ -1,8 +1,12 @@
 function isConnected() {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
-		if(this.responseText === "occupato") {
+		utente = JSON.parse(this.responseText);
+		if(utente.nome != null && utente.centesimiCredito != null) {
 			divInterfaccia.hidden = false;
+			console.log(utente);
+		} else {
+			console.log("nessun utente collegato");
 		}
 	}
 	xhttp.open("GET", "DistributoreAutomaticoController?idDistributore=" + idTextbox.value, true);
@@ -10,12 +14,13 @@ function isConnected() {
 }
 
 function sendPurchase() {
-	divInterfaccia.hide = true;
+	divInterfaccia.hidden = true;
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		console.log("inviata POST");
 	}
 	xhttp.open("POST", "DistributoreAutomaticoController", true);
+	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("cost=20&idDistributore=" + idTextbox.value);
 }
 

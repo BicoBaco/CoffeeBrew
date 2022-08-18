@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import com.helper.DBHelper;
 import com.mvc.bean.DistributoreAutomaticoBean;
+import com.mvc.bean.UtenteBean;
 
 public class DistributoreAutomaticoDAO {
 	private Connection conn;
@@ -23,34 +24,36 @@ public class DistributoreAutomaticoDAO {
 	
 	//TODO insert distributore
 	
-	public String getStato(int idDistributore) {
+	public UtenteBean getOccupante(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("SELECT * FROM DistributoreAutomatico WHERE idDistributore = ?");
+			pstmt = conn.prepareStatement("SELECT nome, centesimiCredito FROM DistributoreAutomatico, Utente WHERE idUtente = occupante AND idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
-			String stato;
+			UtenteBean occupante = new UtenteBean();
 			
 			if(rs.next()) {
-				stato = rs.getString("stato");
+				occupante.setNome(rs.getString("nome"));
+				occupante.setCentesimiCredito(rs.getInt("centesimiCredito"));
 			} else {
-				stato = "error";
+				occupante = null;
 			}
 			pstmt.close();
 			
-			return stato;
+			return occupante;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "error";
+			return null;
 		}
 	}
 	
-	public void impostaOccupato(int idDistributore) {
+	public void impostaOccupato(int idDistributore, int idUtente) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET stato = 'occupato' WHERE idDistributore = ?");
-			pstmt.setInt(1, idDistributore);
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupante = ? WHERE idDistributore = ?");
+			pstmt.setInt(1, idUtente);
+			pstmt.setInt(2, idDistributore);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
@@ -62,7 +65,7 @@ public class DistributoreAutomaticoDAO {
 	public void impostaLibero(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET stato = 'libero' WHERE idDistributore = ?");
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupante = NULL WHERE idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			pstmt.executeUpdate();
 			

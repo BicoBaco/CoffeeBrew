@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.TecnicoDAO;
@@ -43,17 +44,19 @@ public class AccessoTecnicoController extends HttpServlet {
 			accessoTecnico.setEmail(email);
 			accessoTecnico.setPassword(password);
 			
-			boolean result;
-			result = TecnicoDAO.accediTecnico(accessoTecnico);
+			boolean result = false;
+			
+			try {
+				result = TecnicoDAO.accediTecnico(accessoTecnico);
+			} catch (SQLException e) {
+				response.sendRedirect("AccessoTecnicoController?error=Errore del database");
+			}
 			
 			if(result) {
 				request.getSession(true).setAttribute("tecnico", accessoTecnico);
-				response.sendRedirect("/WEB-INF/pannelloDiControlloTecnico.jsp");
+				request.getRequestDispatcher("/WEB-INF/pannelloDiControlloTecnico.jsp").forward(request, response);
 			} else {
-				throw new ServletException("Il tecnico inserito non esiste");
-				//response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Il tecnico inserito non esiste");
-				//response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				//response.send
+				response.sendRedirect("AccessoTecnicoController?error=Email o password errata");
 			}
 		}
 	}

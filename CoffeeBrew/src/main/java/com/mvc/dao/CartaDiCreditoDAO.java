@@ -4,22 +4,25 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.helper.DBHelper;
 import com.mvc.bean.CartaDiCreditoBean;
 
 public class CartaDiCreditoDAO {
-	public static boolean inserisciCarta(CartaDiCreditoBean cartaDiCredito) {
+	public static boolean inserisciCarta(CartaDiCreditoBean cartaDiCredito) throws SQLException {
 		String numeroCarta = cartaDiCredito.getNumeroCarta();
 		String nomeSullaCarta = cartaDiCredito.getNomeSullaCarta();
 		Date dataScadenza = cartaDiCredito.getDataScadenza();
 		int idUtente = cartaDiCredito.getIdUtente();
 		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
 		try {
-			Connection connection = DBHelper.connectToDB();
-			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
+			pstmt = null;
 			pstmt = connection.prepareStatement("INSERT INTO CartaDiCredito (numeroCarta, nomeSullaCarta, dataScadenza, idUtente) values (?, ?, ?, ?)");
 			pstmt.setString(1, numeroCarta);
 			pstmt.setString(2, nomeSullaCarta);
@@ -27,25 +30,26 @@ public class CartaDiCreditoDAO {
 			pstmt.setInt(4, idUtente);
 			int result = pstmt.executeUpdate();
 			
-			pstmt.close();
-			connection.close();
-			
 			return result > 0;
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return false;
 	}
 	
-	public static ArrayList<CartaDiCreditoBean> getCarte(int idUtente) {
+	public static ArrayList<CartaDiCreditoBean> getCarte(int idUtente) throws SQLException {
 		ArrayList<CartaDiCreditoBean> listaCarte = new ArrayList<CartaDiCreditoBean>();
 		
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		
 		try {
-			Connection connection = DBHelper.connectToDB();
-			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
 			pstmt = connection.prepareStatement("SELECT * FROM CartaDiCredito WHERE idUtente = ?");
 			pstmt.setInt(1, idUtente);
 			ResultSet rs = pstmt.executeQuery();
@@ -60,13 +64,12 @@ public class CartaDiCreditoDAO {
 				listaCarte.add(cdc);
 			}
 			
-			pstmt.close();
-			connection.close();
-			
-			return listaCarte;
-			
+			return listaCarte;			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return null;

@@ -10,68 +10,67 @@ import com.mvc.bean.TecnicoBean;
 
 public class TecnicoDAO {
 	
-	public static boolean registraTecnico(TecnicoBean registrazioneTecnico) {
+	public static boolean registraTecnico(TecnicoBean registrazioneTecnico) throws SQLException {
 		String nome = registrazioneTecnico.getNome();
 		String cognome = registrazioneTecnico.getCognome();
 		String email = registrazioneTecnico.getEmail();
 		String password = registrazioneTecnico.getPassword();
 		
+		Connection connection = null; 
+		PreparedStatement pstmt = null;
+		
 		try {
-			Connection connection = DBHelper.connectToDB();
 			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();		
 			pstmt = connection.prepareStatement("INSERT INTO Tecnico (nome, cognome, email, password) values (?, ?, ?, ?)");
 			pstmt.setString(1, nome);
 			pstmt.setString(2, cognome);
 			pstmt.setString(3, email);
 			pstmt.setString(4, DBHelper.getSHA512(password));
 			int result = pstmt.executeUpdate();
-			
-			pstmt.close();
-			connection.close();
-			
+					
 			return result > 0;
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return false; 
 	}
 	
-	public static boolean accediTecnico(TecnicoBean accessoTecnico) {
+	public static boolean accediTecnico(TecnicoBean accessoTecnico) throws SQLException {
 		String email = accessoTecnico.getEmail();
 		String password = accessoTecnico.getPassword();
 
 		
 		ResultSet result = null;
 		boolean check = false;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
 		
 		try {
-			Connection connection = DBHelper.connectToDB();
-			
-			PreparedStatement pstmt = null;
+			connection = DBHelper.connectToDB();
 			pstmt = connection.prepareStatement("SELECT * FROM Tecnico WHERE email = ? AND password = ?");
 			pstmt.setString(1, email);
 			pstmt.setString(2, DBHelper.getSHA512(password));
 			result = pstmt.executeQuery();
 
-			try {
-				if(result.next()) {
-					accessoTecnico.setIdTecnico(result.getInt("idTecnico"));
-					accessoTecnico.setNome(result.getString("nome"));
-					accessoTecnico.setCognome(result.getString("cognome"));
-					check = true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+
+			if(result.next()) {
+				accessoTecnico.setIdTecnico(result.getInt("idTecnico"));
+				accessoTecnico.setNome(result.getString("nome"));
+				accessoTecnico.setCognome(result.getString("cognome"));
+				check = true;
 			}
-			
-			pstmt.close();
-			connection.close();
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
 		}
 		
 		return check;

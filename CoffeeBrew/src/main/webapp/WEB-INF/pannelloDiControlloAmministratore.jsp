@@ -7,19 +7,20 @@
 		<title>Pannello di Controllo Amministratore</title>
 	</head>
 	<body>
-		Registrazione Tecnico
-		<form action="RegistrazioneTecnicoController" method="POST">
-			 Nome <input type="text" name="nome"> <br>
-			 Cognome <input type="text" name="cognome"> <br>
-			 Email <input type="email" name="email"> <br>
-			 Password <input type="password" name="password"> <br>
-			 <input type="submit"/> <br>	 
-		</form>
-		
-		Inserisci Distributore Automatico
-		<form action="RegistrazioneDistributoreAutomaticoController" method="POST">
-			 Locazione <input type="text" name="locazione"> <br>
-			 <input type="submit"/> <br>	 
-		</form>
+		<div style="center;">
+			Registrazione Tecnico
+			<form action="RegistrazioneTecnicoController" method="POST">
+				 Nome <input type="text" name="nome"> <br>
+				 Cognome <input type="text" name="cognome"> <br>
+				 Email <input type="email" name="email"> <br>
+				 Password <input type="password" name="password"> <br>
+				 <input type="submit"/> <br>	 
+			</form>
+			Inserisci Distributore Automatico
+			<form action="RegistrazioneDistributoreAutomaticoController" method="POST">
+				 Locazione <input type="text" name="locazione"> <br>
+				 <input type="submit"/> <br>	 
+			</form>
+		</div>
 	</body>
 </html>

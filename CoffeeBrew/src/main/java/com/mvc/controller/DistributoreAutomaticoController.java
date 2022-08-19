@@ -5,9 +5,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
+import com.mvc.dao.UtenteDAO;
 
 /**
  * Servlet implementation class DistributoreAutomaticoController
@@ -40,8 +42,12 @@ public class DistributoreAutomaticoController extends HttpServlet {
 				
 				response.getWriter().print("{}");
 			} else {
-				response.getWriter().print("{\"nome\": \"" + occupante.getNome() + "\", \"centesimiCredito\": " + occupante.getCentesimiCredito() + "}");
-				System.out.println("{\"nome\": \"" + occupante.getNome() + "\", \"centesimiCredito\": " + occupante.getCentesimiCredito() + "}");
+				response.getWriter().print("{\"nome\": \"" + occupante.getNome() +
+										"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
+										", \"idUtente\": " + occupante.getIdUtente() +"}");
+				System.out.println("{\"nome\": \"" + occupante.getNome() +
+								"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
+								", \"idUtente\": " + occupante.getIdUtente() +"}");
 			}
 		}
 	}
@@ -54,12 +60,22 @@ public class DistributoreAutomaticoController extends HttpServlet {
 		System.out.println("arrivata la post con: " + request.getParameter("idDistributore"));
 		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "" &&
+		   request.getParameter("idUtente") != null && request.getParameter("idUtente") != "" &&
 		   request.getParameter("importo") != null && request.getParameter("importo") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
+			int idUtente = Integer.parseInt(request.getParameter("idUtente"));
 			int importo = Integer.parseInt(request.getParameter("importo"));
 			
-			System.out.println("liberato " + idDistributore);
-			distributoreDAO.impostaLibero(idDistributore);
+			UtenteBean utente = new UtenteBean();
+			utente.setIdUtente(idUtente);
+			
+			try {
+				distributoreDAO.impostaLibero(idDistributore);
+				UtenteDAO.rimuoviCredito(utente, importo);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			System.out.println("liberato distributore " + idDistributore);
 			

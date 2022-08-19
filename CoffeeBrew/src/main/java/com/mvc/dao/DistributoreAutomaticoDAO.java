@@ -24,12 +24,13 @@ public class DistributoreAutomaticoDAO {
 	public UtenteBean getOccupante(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("SELECT nome, centesimiCredito FROM DistributoreAutomatico, Utente WHERE idUtente = occupante AND idDistributore = ?");
+			pstmt = conn.prepareStatement("SELECT idUtente, nome, centesimiCredito FROM DistributoreAutomatico, Utente WHERE idUtente = occupante AND idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
 			UtenteBean occupante = new UtenteBean();
 			
 			if(rs.next()) {
+				occupante.setIdUtente(rs.getInt("idUtente"));
 				occupante.setNome(rs.getString("nome"));
 				occupante.setCentesimiCredito(rs.getInt("centesimiCredito"));
 			} else {

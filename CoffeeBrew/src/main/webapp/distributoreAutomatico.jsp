@@ -20,6 +20,7 @@
 			Tè verde		 [&euro;0,50] <button name="prodotto" id="te verde"		value="50"> Seleziona</button><br>
 			<p id="scelta"></p>
 			<input type="hidden" id="importo" name="importo" value="">
+			<input type="hidden" id="utente" name="idUtente" value="">
 			<input id="acquistaButton" type="submit" value="Acquista">
 		</div>
 		

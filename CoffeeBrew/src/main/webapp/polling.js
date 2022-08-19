@@ -6,7 +6,8 @@ function isConnected() {
 			if(utente.nome != null && utente.centesimiCredito != null) {
 				divInterfaccia.hidden = false;
 				nomeLabel.innerHTML = utente.nome;
-				creditoLabel.innerHTML = utente.centesimiCredito;
+				creditoLabel.innerHTML = utente.centesimiCredito / 100;
+				inputIdUtente.value = utente.idUtente;
 				found = true;
 				console.log(utente);
 			} else {
@@ -27,7 +28,7 @@ function sendPurchase() {
 	}
 	xhttp.open("POST", "DistributoreAutomaticoController", true);
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value);
+	xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value);
 }
 
 let found = false;
@@ -42,6 +43,7 @@ creditoLabel = document.getElementById("credito");
 pulsantiProdotto = document.getElementsByName("prodotto");
 sceltaLabel = document.getElementById("scelta");
 inputImporto = document.getElementById("importo");
+inputIdUtente = document.getElementById("utente");
 
 function startPolling() {
 	console.log("starting polling...")

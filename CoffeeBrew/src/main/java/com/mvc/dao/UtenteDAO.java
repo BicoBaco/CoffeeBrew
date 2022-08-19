@@ -77,4 +77,26 @@ public class UtenteDAO {
 		
 		return check;
 	}
+
+	public static boolean ricaricaCredito(UtenteBean utente, int centesimiRicarica) throws SQLException {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("UPDATE Utente SET centesimiCredito = ? WHERE idUtente = ?");
+			pstmt.setInt(1, utente.getCentesimiCredito() + centesimiRicarica);
+			pstmt.setInt(2, utente.getIdUtente());
+			int result = pstmt.executeUpdate();
+			
+			return result > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false;
+	}
 }

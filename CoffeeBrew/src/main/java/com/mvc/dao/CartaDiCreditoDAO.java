@@ -52,6 +52,7 @@ public class CartaDiCreditoDAO {
 			
 			while(rs.next()) {
 				CartaDiCreditoBean cdc = new CartaDiCreditoBean();
+				cdc.setIdCarta(rs.getInt("idCarta"));
 				cdc.setNumeroCarta(rs.getString("numeroCarta"));
 				cdc.setNomeSullaCarta(rs.getString("nomeSullaCarta"));
 				cdc.setDataScadenza(rs.getDate("dataScadenza"));

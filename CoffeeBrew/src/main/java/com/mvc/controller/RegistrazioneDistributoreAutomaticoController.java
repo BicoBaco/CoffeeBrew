@@ -27,8 +27,7 @@ public class RegistrazioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		//TODO pannello di controllo controller
+		response.sendRedirect("PannelloDiControlloAmministratoreController");
 	}
 
 	/**
@@ -42,12 +41,12 @@ public class RegistrazioneDistributoreAutomaticoController extends HttpServlet {
 			registrazioneDistributoreAutomatico.setLocazione(locazione);
 			
 			try {
-				DistributoreAutomaticoDAO.registraDistributoreAutomatico(registrazioneDistributoreAutomatico);
+				DistributoreAutomaticoDAO.registraDistributoreAutomatico(registrazioneDistributoreAutomatico);		
 			} catch (SQLException e) {
-				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp?error=Errore del database");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella registrazione del distributore");
 			}
 			
-			response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp");
+			response.sendRedirect("PannelloDiControlloAmministratoreController");
 		}
 	}
 }

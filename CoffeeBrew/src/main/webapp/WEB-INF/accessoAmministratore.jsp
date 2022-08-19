@@ -7,6 +7,9 @@
 		<title>Accesso Amministratore</title>
 	</head>
 	<body>
+		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+				<%= request.getParameter("error") %>
+		<% } %>
 		<form action="AccessoAmministratoreController" method="POST">
 			 Email <input type="email" name="email"> <br>
 			 Password <input type="password" name="password"> <br>

@@ -54,7 +54,7 @@ public class AccessoAmministratoreController extends HttpServlet {
 			
 			if(result) {
 				request.getSession(true).setAttribute("amministratore", accessoAmministratore);
-				request.getRequestDispatcher("/WEB-INF/pannelloDiControlloAmministratore.jsp").forward(request, response);
+				response.sendRedirect("PannelloDiControlloAmministratoreController");
 			} else {
 				response.sendRedirect("AccessoAmministratoreController?error=Email o password errata");
 			}

@@ -147,6 +147,16 @@
   </error-page>
   <servlet>
     <description></description>
+    <display-name>PannelloDiControlloAmministratoreController</display-name>
+    <servlet-name>PannelloDiControlloAmministratoreController</servlet-name>
+    <servlet-class>com.mvc.controller.PannelloDiControlloAmministratoreController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PannelloDiControlloAmministratoreController</servlet-name>
+    <url-pattern>/PannelloDiControlloAmministratoreController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>RicaricaCreditoController</display-name>
     <servlet-name>RicaricaCreditoController</servlet-name>
     <servlet-class>com.mvc.controller.RicaricaCreditoController</servlet-class>
@@ -154,5 +164,15 @@
   <servlet-mapping>
     <servlet-name>RicaricaCreditoController</servlet-name>
     <url-pattern>/RicaricaCreditoController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneDistributoreAutomaticoController</display-name>
+    <servlet-name>RimozioneDistributoreAutomaticoController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneDistributoreAutomaticoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneDistributoreAutomaticoController</servlet-name>
+    <url-pattern>/RimozioneDistributoreAutomaticoController</url-pattern>
   </servlet-mapping>
 </web-app>

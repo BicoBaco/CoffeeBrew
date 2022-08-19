@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.helper.DBHelper;
 import com.mvc.bean.DistributoreAutomaticoBean;
@@ -19,7 +20,6 @@ public class DistributoreAutomaticoDAO {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	public UtenteBean getOccupante(int idDistributore) {
 		try {
@@ -92,6 +92,58 @@ public class DistributoreAutomaticoDAO {
 			pstmt.close();
 			connection.close();
 		}
+		return false;
+	}
+	
+	public static ArrayList<DistributoreAutomaticoBean> getDistributori() throws SQLException {
+		ArrayList<DistributoreAutomaticoBean> listaDistributori = new ArrayList<DistributoreAutomaticoBean>();
+		
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT * FROM DistributoreAutomatico");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				DistributoreAutomaticoBean distr = new DistributoreAutomaticoBean();
+				distr.setIdDistributore(rs.getInt("idDistributore"));
+				distr.setLocazione(rs.getString("locazione"));
+				distr.setOccupante(rs.getInt("occupante"));
+				listaDistributori.add(distr);
+			}
+
+			return listaDistributori;			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return null;
+	}
+	
+	public static boolean rimuoviDistributoreAutomatico(int idDistributore) throws SQLException {
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		int result;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("DELETE FROM DistributoreAutomatico WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			result = pstmt.executeUpdate();
+			
+			return result > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
 		return false;
 	}
 }

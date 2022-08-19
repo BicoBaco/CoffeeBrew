@@ -7,6 +7,9 @@
 		<title>Accesso Tecnici</title>
 	</head>
 	<body>
+		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+				<%= request.getParameter("error") %>
+		<% } %>
 		<form action="AccessoTecnicoController" method="POST">
 			 Email <input type="email" name="email"> <br>
 			 Password <input type="password" name="password"> <br>

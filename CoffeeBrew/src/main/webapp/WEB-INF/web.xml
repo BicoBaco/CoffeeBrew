@@ -110,7 +110,8 @@
     <servlet-name>ErrorHandler</servlet-name>
     <url-pattern>/ErrorHandler</url-pattern>
     <url-pattern>/error</url-pattern>
-  </servlet-mapping><servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>RegistrazioneDistributoreAutomaticoController</display-name>
     <servlet-name>RegistrazioneDistributoreAutomaticoController</servlet-name>
@@ -119,7 +120,8 @@
   <servlet-mapping>
     <servlet-name>RegistrazioneDistributoreAutomaticoController</servlet-name>
     <url-pattern>/RegistrazioneDistributoreAutomaticoController</url-pattern>
-  </servlet-mapping><error-page>
+  </servlet-mapping>
+  <error-page>
     <error-code>404</error-code>
     <location>/error</location>
   </error-page>
@@ -139,10 +141,18 @@
     <error-code>500</error-code>
     <location>/error</location>
   </error-page>
-  
-  
   <error-page>
-  	<error-code>401</error-code>
-  	<location>/error</location>
+    <error-code>401</error-code>
+    <location>/error</location>
   </error-page>
+  <servlet>
+    <description></description>
+    <display-name>PannelloDiControlloAmministratoreController</display-name>
+    <servlet-name>PannelloDiControlloAmministratoreController</servlet-name>
+    <servlet-class>com.mvc.controller.PannelloDiControlloAmministratoreController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PannelloDiControlloAmministratoreController</servlet-name>
+    <url-pattern>/PannelloDiControlloAmministratoreController</url-pattern>
+  </servlet-mapping>
 </web-app>

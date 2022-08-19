@@ -165,4 +165,14 @@
     <servlet-name>RicaricaCreditoController</servlet-name>
     <url-pattern>/RicaricaCreditoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneDistributoreAutomaticoController</display-name>
+    <servlet-name>RimozioneDistributoreAutomaticoController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneDistributoreAutomaticoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneDistributoreAutomaticoController</servlet-name>
+    <url-pattern>/RimozioneDistributoreAutomaticoController</url-pattern>
+  </servlet-mapping>
 </web-app>

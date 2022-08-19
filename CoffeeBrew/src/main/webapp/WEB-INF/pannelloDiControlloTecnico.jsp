@@ -7,6 +7,8 @@
 <title>Pannello di controllo Tecnico</title>
 </head>
 <body>
-
+	<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+			<%= request.getParameter("error") %>
+	<% } %>
 </body>
 </html>

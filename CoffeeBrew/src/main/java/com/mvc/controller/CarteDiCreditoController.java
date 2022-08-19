@@ -71,6 +71,11 @@ public class CarteDiCreditoController extends HttpServlet {
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 			cartaDiCredito.setIdUtente(u.getIdUtente());
 			
+			System.out.println(numeroCarta);
+			System.out.println(nomeSullaCarta);
+			System.out.println(dataScadenza);
+			System.out.println(u.getIdUtente());
+			
 			boolean result;
 			try {
 				result = CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);

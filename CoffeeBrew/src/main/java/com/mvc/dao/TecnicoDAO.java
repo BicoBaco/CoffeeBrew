@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.helper.DBHelper;
 import com.mvc.bean.TecnicoBean;
@@ -74,5 +75,37 @@ public class TecnicoDAO {
 		}
 		
 		return check;
+	}
+	
+	public static ArrayList<TecnicoBean> getTecnici() throws SQLException {
+		ArrayList<TecnicoBean> listaTecnici = new ArrayList<TecnicoBean>();
+		
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT * FROM Tecnico");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				TecnicoBean tecnico = new TecnicoBean();
+				//TODO è sicuro mandare l'id o evitiamo?
+				tecnico.setIdTecnico(rs.getInt("idTecnico"));
+				tecnico.setNome(rs.getString("nome"));
+				tecnico.setCognome(rs.getString("cognome"));
+				tecnico.setEmail(rs.getString("email"));
+				listaTecnici.add(tecnico);
+			}
+
+			return listaTecnici;			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return null;
 	}
 }

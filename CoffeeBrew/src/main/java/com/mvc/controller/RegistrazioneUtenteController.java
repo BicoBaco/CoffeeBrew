@@ -55,7 +55,6 @@ public class RegistrazioneUtenteController extends HttpServlet {
 				UtenteDAO.registraUtente(registrazioneUtente);
 			} catch (SQLException e) {
 				// TODO gestire registrazione con stessa email con errore adeguato
-				// TODO mettere email unique nel database
 				response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
 			}
 			

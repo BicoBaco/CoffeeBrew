@@ -7,6 +7,9 @@
 		<title>Registrazione</title>
 	</head>
 	<body>
+		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+				<%= request.getParameter("error") %>
+		<% } %>
 		<form action="RegistrazioneUtenteController" method="POST">
 			 Nome <input type="text" name="nome"> <br>
 			 Cognome <input type="text" name="cognome"> <br>

@@ -155,4 +155,14 @@
     <servlet-name>PannelloDiControlloAmministratoreController</servlet-name>
     <url-pattern>/PannelloDiControlloAmministratoreController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RicaricaCreditoController</display-name>
+    <servlet-name>RicaricaCreditoController</servlet-name>
+    <servlet-class>com.mvc.controller.RicaricaCreditoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RicaricaCreditoController</servlet-name>
+    <url-pattern>/RicaricaCreditoController</url-pattern>
+  </servlet-mapping>
 </web-app>

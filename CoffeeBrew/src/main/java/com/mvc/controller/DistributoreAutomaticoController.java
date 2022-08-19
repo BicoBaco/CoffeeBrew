@@ -53,8 +53,12 @@ public class DistributoreAutomaticoController extends HttpServlet {
 		// TODO distributore che manda il idUtente e Credito usato
 		System.out.println("arrivata la post con: " + request.getParameter("idDistributore"));
 		
-		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
+		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "" &&
+		   request.getParameter("importo") != null && request.getParameter("importo") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
+			int importo = Integer.parseInt(request.getParameter("importo"));
+			
+			System.out.println("liberato " + idDistributore);
 			distributoreDAO.impostaLibero(idDistributore);
 			
 			System.out.println("liberato distributore " + idDistributore);

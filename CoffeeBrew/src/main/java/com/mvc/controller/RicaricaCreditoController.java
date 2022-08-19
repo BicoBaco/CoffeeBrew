@@ -56,6 +56,7 @@ public class RicaricaCreditoController extends HttpServlet {
 					response.sendRedirect("CarteDiCreditoController?error=Errore del database");
 				}
 				
+				response.sendRedirect("CarteDiCreditoController?message=Credito aggiunto con successo");
 			} else {
 				response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi");
 			}

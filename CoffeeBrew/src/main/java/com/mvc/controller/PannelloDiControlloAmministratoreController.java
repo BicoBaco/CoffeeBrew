@@ -45,7 +45,7 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 			request.setAttribute("listaTecnici", listaTecnici);
 			request.getRequestDispatcher("/WEB-INF/pannelloDiControlloAmministratore.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("AccessoAmministratoreController").forward(request, response);
+			response.sendRedirect("AccessoAmministratoreController");
 		}
 	}
 

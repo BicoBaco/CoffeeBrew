@@ -1,25 +1,27 @@
 package com.mvc.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.mvc.dao.DistributoreAutomaticoDAO;
+import com.mvc.dao.TecnicoDAO;
 
 /**
- * Servlet implementation class RimozioneDistributoreAutomaticoController
+ * Servlet implementation class RimozioneTecnicoController
  */
-public class RimozioneDistributoreAutomaticoController extends HttpServlet {
+public class RimozioneTecnicoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RimozioneDistributoreAutomaticoController() {
+    public RimozioneTecnicoController() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -33,17 +35,16 @@ public class RimozioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(request.getSession().getAttribute("amministratore") == null)
 			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
 		
-		if(request.getParameter("idDistributore") == null)
-			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del distributore");
+		if(request.getParameter("idTecnico") == null)
+			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico");
 		
-		int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
+		int idTecnico = Integer.parseInt(request.getParameter("idTecnico"));
 		
 		try {
-			DistributoreAutomaticoDAO.rimuoviDistributoreAutomatico(idDistributore);
+			TecnicoDAO.rimuoviTecnico(idTecnico);
 		} catch (SQLException e) {
 			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
 		}

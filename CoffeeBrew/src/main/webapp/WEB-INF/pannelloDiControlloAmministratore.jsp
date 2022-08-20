@@ -47,8 +47,12 @@
 				<tr>
 					<th> <%= distr.getLocazione() %> </th>
 					<th> <%= distr.getOccupante() %> </th>
-					<th> <input type="hidden" id="idDistributore" name="idDistributore" value=<%= distr.getIdDistributore() %>>
-						<button name="rimuoviDistributore" type="button">Rimuovi</button> </th>
+					<th><!-- <input type="hidden" id="idDistributore<=i %>" name="idDistributore" value=<=listaDistributori.get(i).getIdDistributore() %>>
+						<button name="rimuoviDistributore" type="button">Rimuovi</button> </th>-->
+						  <form action="RimozioneDistributoreAutomaticoController" method="POST">
+							<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
+							<input type="submit" value="Rimuovi"/> 
+						</form> </th> 
 				</tr>
 			<% } %>			
 			</table> 
@@ -72,7 +76,9 @@
 					<th> <%= tecnico.getNome() %> </th>
 					<th> <%= tecnico.getCognome() %> </th>
 					<th> <%= tecnico.getEmail() %> </th>
-					<th> <button id="rimuoviTecnico" type="button">Rimuovi</button> </th>
+					<th> <form action="RimozioneTecnicoController?idTecnico=<%= tecnico.getIdTecnico() %>" method="POST">
+							<input type="submit" value="Rimuovi"/> 
+						</form> </th>
 				</tr>
 			<% } %>			
 			</table> 
@@ -82,27 +88,10 @@
 				 Nome <input type="text" name="nome"> <br>
 				 Cognome <input type="text" name="cognome"> <br>
 				 Email <input type="email" name="email"> <br>
-				 Password <input type="password" name="password"> <br>
+				 Password <input type="password" id="newPassword" name="password"> <br>
 				 <input type="submit"/> <br>	 
 			</form>
 		</div>
-		<script>
-			idDistributore = document.getElementsByName("idDistributore");
-			rimuoviDistrButton = document.getElementsByName("rimuoviDistributore");
-			
-			for (let i = 0; i < rimuoviDistrButton.length; i++) {
-			 	rimuoviDistrButton[i].addEventListener("click", function(){ rimuoviDistributore(i);	});
-			}
-			
-			function rimuoviDistributore(i) {
-				const xhttp = new XMLHttpRequest();
-				xhttp.open("POST", "RimozioneDistributoreAutomaticoController", true);
-				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhttp.send("idDistributore=" + idDistributore[i].value);
-				location.reload(true);
-			}
-			
-			//TODO cancellare html delle cose rimosse dopo aver controllato l'esito
-		</script>
+		<script src="js/formCheck.js"></script>
 	</body>
 </html>

@@ -38,12 +38,6 @@ public class ErrorHandler extends HttpServlet {
 		if (requestUri == null)	requestUri = "Unknown";
 		
 		response.setContentType("text/html");
-
-		System.out.println(request.getAttribute("javax.servlet.error.exception"));
-		System.out.println(request.getAttribute("javax.servlet.error.status_code"));
-		System.out.println(request.getAttribute("javax.servlet.error.servlet_name"));
-		System.out.println(request.getAttribute("javax.servlet.error.request_uri"));
-		
 		
 	    PrintWriter out = response.getWriter();
 	    out.write("<html><head><title>Errore - Details</title></head><body>");

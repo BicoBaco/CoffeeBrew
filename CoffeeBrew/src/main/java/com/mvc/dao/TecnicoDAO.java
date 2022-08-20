@@ -108,4 +108,28 @@ public class TecnicoDAO {
 		
 		return null;
 	}
+	
+	//TODO boolean o void?
+	
+	public static boolean rimuoviTecnico(int idTecnico) throws SQLException {
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		int result;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("DELETE FROM Tecnico WHERE idTecnico = ?");
+			pstmt.setInt(1, idTecnico);
+			result = pstmt.executeUpdate();
+			
+			return result > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false;
+	}
 }

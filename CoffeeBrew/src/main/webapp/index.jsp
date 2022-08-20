@@ -4,21 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<style>
-body {
-  background-image: url('https://i.ytimg.com/vi/kkBgqTXLgTw/maxresdefault.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
-div {
-	text-align: center;
-	background-color: white;
-	margin-left: 30%;
-	margin-top: 20%;
-	margin-right: 30%;
-}
-</style>
+<style> @import url("css/style.css"); </style>
 <title>CoffeeBrew</title>
 </head>
 <body>
@@ -30,6 +16,7 @@ div {
 		<a href="AccessoTecnicoController">Accesso Tecnici</a> <br>
 		<a href="AccessoAmministratoreController">Accesso Amministratore</a> <br>
 		<a href="PannelloDiControlloAmministratoreController">Pannello di controllo Amministratore</a> <br>
+		<a href="PannelloDiControlloTecnicoController">Pannello di controllo Tecnico</a> <br>
 		<a href="CarteDiCreditoController">Gestione Carte di Credito</a> <br>
 		<a href="LogoutUtenteController">Logout</a> <br>
 		<form action="ConnessioneDistributoreAutomaticoController" method="get">

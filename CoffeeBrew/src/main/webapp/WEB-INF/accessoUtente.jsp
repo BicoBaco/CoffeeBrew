@@ -12,9 +12,11 @@
 		<% } %>
 		<form action="AccessoUtenteController" method="POST">
 			 Email <input type="email" name="email"> <br>
-			 Password <input type="password" name="password"> <br>
+			 Password <input type="password" id="password" name="password"> 
+			  <input type="button" id="passButton" value="Visualizza"><br>
 			 <input type="submit"/> <br> 
 		</form>
 		<a href="RegistrazioneUtenteController">Registrazione Utenti</a>
 	</body>
+	<script src="js/formCheck.js"></script>
 </html>

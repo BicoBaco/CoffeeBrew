@@ -175,4 +175,24 @@
     <servlet-name>RimozioneDistributoreAutomaticoController</servlet-name>
     <url-pattern>/RimozioneDistributoreAutomaticoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneTecnicoController</display-name>
+    <servlet-name>RimozioneTecnicoController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneTecnicoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneTecnicoController</servlet-name>
+    <url-pattern>/RimozioneTecnicoController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PannelloDiControlloTecnicoController</display-name>
+    <servlet-name>PannelloDiControlloTecnicoController</servlet-name>
+    <servlet-class>com.mvc.controller.PannelloDiControlloTecnicoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PannelloDiControlloTecnicoController</servlet-name>
+    <url-pattern>/PannelloDiControlloTecnicoController</url-pattern>
+  </servlet-mapping>
 </web-app>

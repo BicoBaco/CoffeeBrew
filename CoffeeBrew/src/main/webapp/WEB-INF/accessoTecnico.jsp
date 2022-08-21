@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<div>
+			<h1>Accesso tecnico</h1>
 			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
 					<%= request.getParameter("error") %>
 			<% } %>

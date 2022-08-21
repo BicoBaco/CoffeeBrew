@@ -47,9 +47,7 @@
 				<tr>
 					<th> <%= distr.getLocazione() %> </th>
 					<th> <%= distr.getOccupante() %> </th>
-					<th><!-- <input type="hidden" id="idDistributore<=i %>" name="idDistributore" value=<=listaDistributori.get(i).getIdDistributore() %>>
-						<button name="rimuoviDistributore" type="button">Rimuovi</button> </th>-->
-						  <form action="RimozioneDistributoreAutomaticoController" method="POST">
+					<th> <form action="RimozioneDistributoreAutomaticoController" method="POST">
 							<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
 							<input type="submit" value="Rimuovi"/> 
 						</form> </th> 

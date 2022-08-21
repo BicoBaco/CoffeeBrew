@@ -21,7 +21,6 @@ public class RimozioneTecnicoController extends HttpServlet {
      */
     public RimozioneTecnicoController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

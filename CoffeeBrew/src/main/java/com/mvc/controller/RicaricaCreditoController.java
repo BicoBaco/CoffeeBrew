@@ -22,14 +22,12 @@ public class RicaricaCreditoController extends HttpServlet {
      */
     public RicaricaCreditoController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -38,7 +36,6 @@ public class RicaricaCreditoController extends HttpServlet {
 	 */
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if(request.getSession().getAttribute("utente") != null) {
 			if(request.getParameter("idCarta") != null && request.getParameter("idCarta") != "" &&
 			   request.getParameter("euroRicarica") != null && request.getParameter("euroRicarica") != "") {

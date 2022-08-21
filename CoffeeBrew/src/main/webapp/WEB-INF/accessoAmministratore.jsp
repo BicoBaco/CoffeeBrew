@@ -7,16 +7,19 @@
 		<title>Accesso Amministratore</title>
 	</head>
 	<body>
-		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-				<%= request.getParameter("error") %>
-		<% } %>
-		<form action="AccessoAmministratoreController" method="POST">
-			 Email <input type="email" name="email"> <br>
-			 Password <input type="password" name="password"> 
-			  <input type="button" id="passButton" value="Visualizza"><br>
-			 <input type="submit"/> <br> 
-		</form>
-		<a href="index.jsp">Home</a>
+		<div>
+			<h1>Accesso amministratore</h1>
+			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+					<%= request.getParameter("error") %>
+			<% } %>
+			<form action="AccessoAmministratoreController" method="POST">
+				 Email <input type="email" name="email"> <br>
+				 Password <input type="password" name="password"> 
+				 <input type="button" id="passButton" value="Visualizza"><br>
+				 <input type="submit"/> <br> 
+			</form>
+			<a href="index.jsp">Home</a>
+		</div>
 	</body>
 	<script src="js/formCheck.js"></script>
 </html>

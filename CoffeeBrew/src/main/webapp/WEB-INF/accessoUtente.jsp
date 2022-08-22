@@ -8,7 +8,7 @@
 		<style> @import url("css/style.css");</style>
 	</head>
 	<body>
-		<div>
+		<div class="container bg-white">
 			<h1>Accesso utente</h1>
 			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
 					<%= request.getParameter("error") %>

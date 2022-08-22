@@ -10,11 +10,13 @@
 <body>
 	<%@ page import="java.util.ArrayList" %>
 	<%@ page import="com.mvc.bean.DistributoreAutomaticoBean" %>
-	<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-			<%= request.getParameter("error") %>
-	<% } %>
+	<div class="container bg-white">
+		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+				<%= request.getParameter("error") %>
+		<% } %>
+	</div>
 	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = (ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
-	<div>
+	<div class="container bg-white">
 		<h2>Gestione Distributori Automatici</h2>			
 		<table>
 			<tr>

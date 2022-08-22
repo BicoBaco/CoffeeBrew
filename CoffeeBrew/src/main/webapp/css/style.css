@@ -8,14 +8,6 @@ body {
   background-size: 100% 100%;
 }
 
-div#idk {
-	text-align: center;
-	background-color: white;
-	margin-left: 30%;
-	margin-top: 20%;
-	margin-right: 30%;
-}
-
 .debole {
 	border: solid red;
 }

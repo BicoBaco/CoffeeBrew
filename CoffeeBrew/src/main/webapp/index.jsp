@@ -8,8 +8,7 @@
 <title>CoffeeBrew</title>
 </head>
 <body>
-	<div></div>
-	<div>
+	<div class="container bg-white">
 		<h1>Ciao ${utente.getNome()}${tecnico.getNome()}${amministratore.getNome()}</h1>
 		<a href="RegistrazioneUtenteController">Registrazione Utenti</a> <br>
 		<a href="AccessoUtenteController">Accesso Utenti</a> <br>
@@ -24,6 +23,5 @@
 			<input type="submit">
 		</form>
 	</div>
-	<div></div>
 </body>
 </html>

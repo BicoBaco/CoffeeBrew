@@ -69,7 +69,6 @@ public class DistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO distributore che manda il idUtente e Credito usato
 		System.out.println("arrivata la post con: " + request.getParameter("idDistributore"));
 		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
@@ -95,7 +94,6 @@ public class DistributoreAutomaticoController extends HttpServlet {
 					distributoreDAO.impostaLiberoUtente(idDistributore);
 					UtenteDAO.rimuoviCredito(utente, importo);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

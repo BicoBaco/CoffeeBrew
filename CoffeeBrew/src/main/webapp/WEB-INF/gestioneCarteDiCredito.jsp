@@ -56,6 +56,6 @@
 		<input type="submit" value="ricarica">
 	</form>
 
-	<a href="index.jsp">Home</a>
+	<a href="landing.jsp">Home</a>
 </body>
 </html>

@@ -19,7 +19,7 @@
 				 <input type="button" id="passButton" value="Visualizza"><br>
 				 <input type="submit"/> <br> 
 			</form>
-			<a href="index.jsp">Home</a>
+			<a href="landing.jsp">Home</a>
 		</div>
 	</body>
 	<script src="js/formCheck.js"></script>

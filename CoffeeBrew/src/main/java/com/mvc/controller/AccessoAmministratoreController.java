@@ -53,6 +53,7 @@ public class AccessoAmministratoreController extends HttpServlet {
 			}
 			
 			if(result) {
+				request.getSession().invalidate();
 				request.getSession(true).setAttribute("amministratore", accessoAmministratore);
 				response.sendRedirect("PannelloDiControlloAmministratoreController");
 			} else {

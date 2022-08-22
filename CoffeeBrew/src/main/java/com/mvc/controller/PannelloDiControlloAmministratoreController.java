@@ -42,7 +42,7 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 				listaTecnici = TecnicoDAO.getTecnici();
 				listaUtenti = UtenteDAO.getUtenti();
 			} catch (SQLException e) {
-				//TODO redirect a qualcosa
+				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
 			
 			request.setAttribute("listaDistributori", listaDistributori);

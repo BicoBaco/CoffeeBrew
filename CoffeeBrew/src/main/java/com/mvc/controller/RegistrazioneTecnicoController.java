@@ -44,6 +44,8 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
+			if(password.length() < 8) response.sendRedirect("PannelloDiControlloAmministratoreController?error=Password minimo 8 caratteri");
+			
 			TecnicoBean registrazioneTecnico = new TecnicoBean();
 			registrazioneTecnico.setNome(nome);
 			registrazioneTecnico.setCognome(cognome);

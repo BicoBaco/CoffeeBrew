@@ -45,6 +45,8 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
+			if(password.length() < 8) response.sendRedirect("RegistrazioneUtenteController?error=Password minimo 8 caratteri");
+			
 			UtenteBean registrazioneUtente = new UtenteBean();
 			registrazioneUtente.setNome(nome);
 			registrazioneUtente.setCognome(cognome);
@@ -59,8 +61,7 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			}
 			
 			request.getSession(true).setAttribute("utente", registrazioneUtente);
-			//TODO same indice roba
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("home.jsp");
 		}
 	}
 

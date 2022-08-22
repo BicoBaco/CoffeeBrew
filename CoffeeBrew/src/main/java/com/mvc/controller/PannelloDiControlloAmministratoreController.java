@@ -10,8 +10,10 @@ import java.util.ArrayList;
 
 import com.mvc.bean.DistributoreAutomaticoBean;
 import com.mvc.bean.TecnicoBean;
+import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.TecnicoDAO;
+import com.mvc.dao.UtenteDAO;
 
 /**
  * Servlet implementation class PannelloDiControlloAmministratoreController
@@ -33,16 +35,19 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 		if(request.getSession().getAttribute("amministratore") != null) {
 			ArrayList<DistributoreAutomaticoBean> listaDistributori = null;
 			ArrayList<TecnicoBean> listaTecnici = null;
+			ArrayList<UtenteBean> listaUtenti = null;
 			
 			try {
 				listaDistributori = DistributoreAutomaticoDAO.getDistributori();
 				listaTecnici = TecnicoDAO.getTecnici();
+				listaUtenti = UtenteDAO.getUtenti();
 			} catch (SQLException e) {
 				//TODO redirect a qualcosa
 			}
 			
 			request.setAttribute("listaDistributori", listaDistributori);
 			request.setAttribute("listaTecnici", listaTecnici);
+			request.setAttribute("listaUtenti", listaUtenti);
 			request.getRequestDispatcher("/WEB-INF/pannelloDiControlloAmministratore.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("AccessoAmministratoreController");

@@ -22,12 +22,14 @@
 		<table class="table">
 			<tr>
 				<th>Locazione</th>
-			    <th>Occupante</th>
+			    <th>Utente connesso</th>
+			    <th>Tecnico connesso</th>
 			</tr>
 			<% for(DistributoreAutomaticoBean distr : listaDistributori) { %>
 			<tr>
 				<th> <%= distr.getLocazione() %> </th>
-				<th> <%= distr.getOccupante() %> </th>
+				<th> <%= distr.getOccupanteUtente() %> </th>
+				<th> <%= distr.getOccupanteTecnico() %> </th>
 				<th> <form action="" method="POST">
 						<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
 						<input type="submit" value="Idk, refilla"/> 

@@ -195,4 +195,14 @@
     <servlet-name>PannelloDiControlloTecnicoController</servlet-name>
     <url-pattern>/PannelloDiControlloTecnicoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneUtenteController</display-name>
+    <servlet-name>RimozioneUtenteController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneUtenteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneUtenteController</servlet-name>
+    <url-pattern>/RimozioneUtenteController</url-pattern>
+  </servlet-mapping>
 </web-app>

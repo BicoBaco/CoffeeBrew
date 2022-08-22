@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Accesso Amministratore</title>
+		<style> @import url("css/style.css"); </style>
 	</head>
 	<body>
 		<div class="container bg-white">

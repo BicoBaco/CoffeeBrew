@@ -3,7 +3,8 @@ package com.mvc.bean;
 public class DistributoreAutomaticoBean {
 	private int idDistributore;
 	private String locazione;
-	private int occupante;
+	private int occupanteUtente;
+	private int occupanteTecnico;
 	
 	public int getIdDistributore() {
 		return idDistributore;
@@ -17,10 +18,17 @@ public class DistributoreAutomaticoBean {
 	public void setLocazione(String locazione) {
 		this.locazione = locazione;
 	}
-	public int getOccupante() {
-		return occupante;
+	public int getOccupanteUtente() {
+		return occupanteUtente;
 	}
-	public void setOccupante(int occupante) {
-		this.occupante = occupante;
+	public void setOccupanteUtente(int occupanteUtente) {
+		this.occupanteUtente = occupanteUtente;
 	}
+	public int getOccupanteTecnico() {
+		return occupanteTecnico;
+	}
+	public void setOccupanteTecnico(int occupanteTecnico) {
+		this.occupanteTecnico = occupanteTecnico;
+	}
+
 }

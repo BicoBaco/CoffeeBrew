@@ -1,7 +1,6 @@
 package com.mvc.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,10 +36,12 @@ public class RimozioneTecnicoController extends HttpServlet {
 		if(request.getSession().getAttribute("amministratore") == null)
 			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
 		
-		if(request.getParameter("idTecnico") == null)
+		String temp = request.getParameter("idTecnico");
+		
+		if(temp == null)
 			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico");
 		
-		int idTecnico = Integer.parseInt(request.getParameter("idTecnico"));
+		int idTecnico = Integer.parseInt(temp);
 		
 		try {
 			TecnicoDAO.rimuoviTecnico(idTecnico);

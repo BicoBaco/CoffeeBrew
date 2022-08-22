@@ -15,10 +15,11 @@
 				<%= request.getParameter("error") %>
 		<% } %>
 	</div>
-	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = (ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
+	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = 
+		(ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
 	<div class="container bg-white">
 		<h2>Gestione Distributori Automatici</h2>			
-		<table>
+		<table class="table">
 			<tr>
 				<th>Locazione</th>
 			    <th>Occupante</th>
@@ -39,7 +40,7 @@
 		<form action="ConnessioneDistributoreAutomaticoController" method="get">
 			Connetti al distributore: <input type="number" name="idDistributore">
 			<input type="submit">
-		</form>
+		</form> <br>
 	</div>
 </body>
 </html>

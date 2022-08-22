@@ -26,6 +26,12 @@
 		
 		<div id="interfacciaTecnico" hidden>
 			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
+			<div id="listaProdotti">
+				<span>Cappuccino:		<span id="qtyCappuccino">	</span><button onclick="ricaricaProdotto('cappuccino')">	Ricarica</button></span><br>
+				<span>Espresso:			<span id="qtyEspresso">		</span><button onclick="ricaricaProdotto('espresso')">		Ricarica</button></span><br>
+				<span>Cioccolata calda: <span id="qtyCioccolata">	</span><button onclick="ricaricaProdotto('cioccolata')">	Ricarica</button></span><br>
+				<span>Tè verde:			<span id="qtyTe">			</span><button onclick="ricaricaProdotto('te verde')">		Ricarica</button></span><br>
+			</div>
 			<input id="exitButton" onclick="exit()" type="submit" value="Esci">
 		</div>
 		

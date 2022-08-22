@@ -136,8 +136,6 @@ public class DistributoreAutomaticoDAO {
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
 			
-			boolean occupata = false;
-			
 			if(rs.next()) {
 				if(rs.getInt("occupanteTecnico") != 0) {
 					return true;

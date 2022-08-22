@@ -30,13 +30,13 @@
 			ArrayList<TecnicoBean> listaTecnici = 
 				(ArrayList<TecnicoBean>) request.getAttribute("listaTecnici");
 		%>
-		<div>
+		<div class="container bg-white">
 			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
 				<%= request.getParameter("error") %>
 			<% } %>
 			
 		</div>
-		<div>
+		<div class="container bg-white">
 			<h2>Gestione Distributori Automatici</h2>			
 			<table>
 				<tr>
@@ -61,7 +61,7 @@
 				 <input type="submit"/> <br>	 
 			</form>
 		</div>
-		<div>
+		<div class="container bg-white">
 			<h2>Gestione Tecnici</h2>			
 			<table>
 				<tr>

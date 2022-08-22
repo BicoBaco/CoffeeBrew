@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.mvc.bean.UtenteBean;
+import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 
 /**
@@ -29,21 +30,29 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO check login
-		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
 			
-			UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
-			if(occupante == null) {
-				UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-				distributoreDAO.impostaOccupato(idDistributore, utente.getIdUtente());
-				
-				//TODO pagina che mostra macchina libera
-				response.getWriter().print("macchina libera, connessione in corso...");
+			if(!distributoreDAO.isOccupato(idDistributore)) {
+				if(request.getSession().getAttribute("tecnico") != null) {
+					TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");
+					distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
+					
+					//TODO pagina che mostra macchina libera
+					response.getWriter().print("macchina libera, connessione in corso...");
+					
+				} else if (request.getSession().getAttribute("utente") != null) {
+					UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+					distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
+					
+					//TODO pagina che mostra macchina libera
+					response.getWriter().print("macchina libera, connessione in corso...");
+				}
 			} else {
-				//TODO pagina che mostra macchina non disponibile
 				response.getWriter().print("macchina non disponibile");
 			}
+		} else {
+			response.getWriter().print("inserire idDistributore");
 		}
 	}
 

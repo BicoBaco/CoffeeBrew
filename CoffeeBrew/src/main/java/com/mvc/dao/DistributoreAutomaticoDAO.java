@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.helper.DBHelper;
 import com.mvc.bean.DistributoreAutomaticoBean;
+import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 
 public class DistributoreAutomaticoDAO {
@@ -21,10 +22,11 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	public UtenteBean getOccupante(int idDistributore) {
+	// DEPRECATED
+	public UtenteBean getOccupanteUtente(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("SELECT idUtente, nome, centesimiCredito FROM DistributoreAutomatico, Utente WHERE idUtente = occupante AND idDistributore = ?");
+			pstmt = conn.prepareStatement("SELECT idUtente, nome, centesimiCredito FROM DistributoreAutomatico, Utente WHERE idUtente = occupanteUtente AND idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
 			UtenteBean occupante = new UtenteBean();
@@ -46,10 +48,10 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	public void impostaOccupato(int idDistributore, int idUtente) {
+	public void impostaOccupatoUtente(int idDistributore, int idUtente) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupante = ? WHERE idDistributore = ?");
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteUtente = ? WHERE idDistributore = ?");
 			pstmt.setInt(1, idUtente);
 			pstmt.setInt(2, idDistributore);
 			pstmt.executeUpdate();
@@ -60,10 +62,10 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	public void impostaLibero(int idDistributore) {
+	public void impostaLiberoUtente(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupante = NULL WHERE idDistributore = ?");
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteUtente = NULL WHERE idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			pstmt.executeUpdate();
 			
@@ -73,6 +75,87 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 
+	// DEPRECATED
+	public TecnicoBean getOccupanteTecnico(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("SELECT idTecnico, nome FROM DistributoreAutomatico, Utente WHERE idTecnico = occupanteTecnico AND idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			ResultSet rs = pstmt.executeQuery();
+			TecnicoBean occupante = new TecnicoBean();
+			
+			if(rs.next()) {
+				occupante.setIdTecnico(rs.getInt("idTecnico"));
+				occupante.setNome(rs.getString("nome"));
+			} else {
+				occupante = null;
+			}
+			pstmt.close();
+			
+			return occupante;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void impostaOccupatoTecnico(int idDistributore, int idTecnico) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = ? WHERE idDistributore = ?");
+			pstmt.setInt(1, idTecnico);
+			pstmt.setInt(2, idDistributore);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void impostaLiberoTecnico(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = NULL WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean isOccupato(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("SELECT occupanteTecnico, occupanteUtente FROM DistributoreAutomatico WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			ResultSet rs = pstmt.executeQuery();
+			
+			boolean occupata = false;
+			
+			if(rs.next()) {
+				if(rs.getInt("occupanteTecnico") != 0) {
+					return true;
+				}
+				if(rs.getInt("occupanteUtente") != 0) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+			pstmt.close();
+			
+			return false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
+	}
+	
 	public static boolean registraDistributoreAutomatico(DistributoreAutomaticoBean registrazioneDistributoreAutomatico) throws SQLException {
 		String locazione = registrazioneDistributoreAutomatico.getLocazione();
 		Connection connection = null; 

@@ -33,6 +33,7 @@ public class PannelloDiControlloTecnicoController extends HttpServlet {
 			
 			try {
 				listaDistributori = DistributoreAutomaticoDAO.getDistributori();
+				
 			} catch (SQLException e) {
 				//TODO redirect a qualcosa
 			}

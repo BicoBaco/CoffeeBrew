@@ -36,7 +36,6 @@
 			<% } %>			
 		</table>
 		<br>
-		
 		<form action="ConnessioneDistributoreAutomaticoController" method="get">
 			Connetti al distributore: <input type="number" name="idDistributore">
 			<input type="submit">

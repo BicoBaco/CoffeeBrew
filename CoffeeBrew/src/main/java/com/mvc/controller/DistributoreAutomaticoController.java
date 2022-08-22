@@ -37,9 +37,10 @@ public class DistributoreAutomaticoController extends HttpServlet {
 		    response.setCharacterEncoding("UTF-8");
 			
 			UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
+			
+			System.out.println(occupante);
+			
 			if(occupante == null) {
-				UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-				
 				response.getWriter().print("{}");
 			} else {
 				response.getWriter().print("{\"nome\": \"" + occupante.getNome() +

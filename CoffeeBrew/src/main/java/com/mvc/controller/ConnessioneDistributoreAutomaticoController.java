@@ -29,20 +29,34 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO check login
-		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
-			
-			UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
-			if(occupante == null) {
-				UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-				distributoreDAO.impostaOccupato(idDistributore, utente.getIdUtente());
+
+			if(request.getSession().getAttribute("utente") != null) {
+								
+				UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
+				if(occupante == null) {
+					UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+					distributoreDAO.impostaOccupato(idDistributore, utente.getIdUtente());
+					
+					//TODO pagina che mostra macchina libera
+					response.getWriter().print("macchina libera, connessione in corso...");
+				} else {
+					//TODO pagina che mostra macchina non disponibile
+					response.getWriter().print("macchina non disponibile");
+				}
+			} else if (request.getSession().getAttribute("tecnico") != null) {
+				UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
 				
-				//TODO pagina che mostra macchina libera
-				response.getWriter().print("macchina libera, connessione in corso...");
-			} else {
-				//TODO pagina che mostra macchina non disponibile
-				response.getWriter().print("macchina non disponibile");
+				if(occupante == null) {
+					distributoreDAO.impostaOccupato(idDistributore, -1);
+					
+					//TODO pagina che mostra macchina libera
+					response.getWriter().print("macchina libera, connessione in corso...");
+				} else {
+					//TODO pagina che mostra macchina non disponibile
+					response.getWriter().print("macchina non disponibile");
+				}
 			}
 		}
 	}

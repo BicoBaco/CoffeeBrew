@@ -3,13 +3,17 @@ function isConnected() {
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
 			utente = JSON.parse(this.responseText);
-			if(utente.nome != null && utente.centesimiCredito != null) {
-				divInterfaccia.hidden = false;
-				nomeLabel.innerHTML = utente.nome;
-				creditoLabel.innerHTML = utente.centesimiCredito / 100;
-				inputIdUtente.value = utente.idUtente;
-				found = true;
-				console.log(utente);
+			if(utente.nome != null && utente.centesimiCredito != null && utente.idUtente != null) {
+				if(utente.idUtente === "-1") {
+					console.log("tecnico");
+				} else {
+					divInterfaccia.hidden = false;
+					nomeLabel.innerHTML = utente.nome;
+					creditoLabel.innerHTML = utente.centesimiCredito / 100;
+					inputIdUtente.value = utente.idUtente;
+					found = true;
+					console.log(utente);
+				}
 			} else {
 				console.log("nessun utente collegato");
 			}

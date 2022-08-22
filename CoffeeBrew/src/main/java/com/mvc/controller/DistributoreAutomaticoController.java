@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.UtenteDAO;
@@ -36,20 +37,31 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 			
-			UtenteBean occupante = distributoreDAO.getOccupante(idDistributore);
-			
-			System.out.println(occupante);
-			
-			if(occupante == null) {
-				response.getWriter().print("{}");
-			} else {
-				response.getWriter().print("{\"nome\": \"" + occupante.getNome() +
-										"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
-										", \"idUtente\": " + occupante.getIdUtente() +"}");
-				System.out.println("{\"nome\": \"" + occupante.getNome() +
-								"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
-								", \"idUtente\": " + occupante.getIdUtente() +"}");
-			}
+		    TecnicoBean tecnico = distributoreDAO.getOccupanteTecnico(idDistributore);
+		    
+		    if(tecnico == null) {
+		    	UtenteBean occupante = distributoreDAO.getOccupanteUtente(idDistributore);
+				
+				if(occupante == null) {
+					response.getWriter().print("{}");
+				} else {
+					response.getWriter().print("{\"nome\": \"" + occupante.getNome() +
+											"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
+											  ", \"idUtente\": " + occupante.getIdUtente() + 
+											  ", \"isTecnico\": false}");
+					System.out.println("{\"nome\": \"" + occupante.getNome() +
+									"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
+									  ", \"idUtente\": " + occupante.getIdUtente() + 
+									  ", \"isTecnico\": false}");
+				}
+		    } else {
+		    	response.getWriter().print("{\"nome\": \"" + tecnico.getNome() +
+										"\", \"idTecnico\": " + tecnico.getIdTecnico() +
+		    							  ", \"isTecnico\": true}");
+		    	System.out.println("{\"nome\": \"" + tecnico.getNome() +
+								"\", \"idTecnico\": " + tecnico.getIdTecnico() +
+		    					  ", \"isTecnico\": true}");
+		    }
 		}
 	}
 
@@ -71,7 +83,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			utente.setIdUtente(idUtente);
 			
 			try {
-				distributoreDAO.impostaLibero(idDistributore);
+				distributoreDAO.impostaLiberoUtente(idDistributore);
 				UtenteDAO.rimuoviCredito(utente, importo);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -11,8 +11,8 @@
 		<input type="number" id="idDistributore" name="idDistributore">
 		<div id="demo"></div>
 		
-		<div id="interfaccia" hidden>
-			<h3>Benvenuto <span id="nome"></span></h3>
+		<div id="interfacciaUtente" hidden>
+			<h3>Benvenuto <span id="nomeUtente"></span></h3>
 			<p>Credito Residuo: &euro;<span id="credito"></span></p>
 			Cappuccino		 [&euro;1,50] <button name="prodotto" id="cappuccino"	value="150">Seleziona</button><br>
 			Espresso		 [&euro;1,00] <button name="prodotto" id="espresso"		value="100">Seleziona</button><br>
@@ -22,6 +22,11 @@
 			<input type="hidden" id="importo" name="importo" value="">
 			<input type="hidden" id="utente" name="idUtente" value="">
 			<input id="acquistaButton" type="submit" value="Acquista">
+		</div>
+		
+		<div id="interfacciaTecnico" hidden>
+			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
+			
 		</div>
 		
 		<script src="polling.js"></script>

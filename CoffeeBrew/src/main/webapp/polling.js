@@ -2,17 +2,32 @@ function isConnected() {
 	if(!found) {
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
-			utente = JSON.parse(this.responseText);
-			if(utente.nome != null && utente.centesimiCredito != null && utente.idUtente != null) {
-				if(utente.idUtente === "-1") {
-					console.log("tecnico");
+			occupante = JSON.parse(this.responseText);
+			
+			if(occupante.isTecnico != null) {
+				if(occupante.isTecnico) {
+					if(occupante.nome != null && occupante.centesimiCredito != null && occupante.idUtente != null) {
+						found = true;
+						
+						divInterfacciaTecnico.hidden = false;
+						nomeTecnicoLabel.innerHTML = occupante.nome;
+						
+						console.log(occupante);
+					} else {
+						console.log("errore dati tecnico")
+					}
 				} else {
-					divInterfaccia.hidden = false;
-					nomeLabel.innerHTML = utente.nome;
-					creditoLabel.innerHTML = utente.centesimiCredito / 100;
-					inputIdUtente.value = utente.idUtente;
-					found = true;
-					console.log(utente);
+					if(occupante.nome != null && occupante.centesimiCredito != null && occupante.idUtente != null) {
+						found = true;
+						
+						divInterfacciaUtente.hidden = false;
+						nomeUtenteLabel.innerHTML = occupante.nome;
+						creditoLabel.innerHTML = occupante.centesimiCredito / 100;
+						inputIdUtente.value = occupante.idUtente;
+						console.log(occupante);
+					} else {
+						console.log("errore dati utente")
+					}
 				}
 			} else {
 				console.log("nessun utente collegato");
@@ -39,10 +54,11 @@ let found = false;
 
 document.getElementById("poll").addEventListener("click", startPolling, false);
 idTextbox = document.getElementById("idDistributore");
-divInterfaccia = document.getElementById("interfaccia");
+divInterfacciaUtente = document.getElementById("interfacciaUtente");
+divInterfacciaTecnico = document.getElementById("interfacciaTecnico");
 acquistaButton = document.getElementById("acquistaButton");
 acquistaButton.addEventListener("click", sendPurchase, false);
-nomeLabel = document.getElementById("nome");
+nomeUtenteLabel = document.getElementById("nomeUtente");
 creditoLabel = document.getElementById("credito");
 pulsantiProdotto = document.getElementsByName("prodotto");
 sceltaLabel = document.getElementById("scelta");

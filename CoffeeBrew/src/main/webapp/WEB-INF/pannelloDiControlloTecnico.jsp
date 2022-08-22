@@ -15,18 +15,21 @@
 				<%= request.getParameter("error") %>
 		<% } %>
 	</div>
-	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = (ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
+	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = 
+		(ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
 	<div class="container bg-white">
 		<h2>Gestione Distributori Automatici</h2>			
-		<table>
+		<table class="table">
 			<tr>
 				<th>Locazione</th>
-			    <th>Occupante</th>
+			    <th>Utente connesso</th>
+			    <th>Tecnico connesso</th>
 			</tr>
 			<% for(DistributoreAutomaticoBean distr : listaDistributori) { %>
 			<tr>
 				<th> <%= distr.getLocazione() %> </th>
-				<th> <%= distr.getOccupante() %> </th>
+				<th> <%= distr.getOccupanteUtente() %> </th>
+				<th> <%= distr.getOccupanteTecnico() %> </th>
 				<th> <form action="" method="POST">
 						<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
 						<input type="submit" value="Idk, refilla"/> 
@@ -38,7 +41,7 @@
 		<form action="ConnessioneDistributoreAutomaticoController" method="get">
 			Connetti al distributore: <input type="number" name="idDistributore">
 			<input type="submit">
-		</form>
+		</form> <br>
 	</div>
 </body>
 </html>

@@ -208,7 +208,8 @@ public class DistributoreAutomaticoDAO {
 				DistributoreAutomaticoBean distr = new DistributoreAutomaticoBean();
 				distr.setIdDistributore(rs.getInt("idDistributore"));
 				distr.setLocazione(rs.getString("locazione"));
-				distr.setOccupante(rs.getInt("occupante"));
+				distr.setOccupanteUtente(rs.getInt("occupanteUtente"));
+				distr.setOccupanteTecnico(rs.getInt("occupanteTecnico"));
 				listaDistributori.add(distr);
 			}
 

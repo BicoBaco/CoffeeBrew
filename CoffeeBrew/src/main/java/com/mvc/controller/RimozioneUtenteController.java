@@ -7,18 +7,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.mvc.dao.DistributoreAutomaticoDAO;
+import com.mvc.dao.UtenteDAO;
 
 /**
- * Servlet implementation class RimozioneDistributoreAutomaticoController
+ * Servlet implementation class RimozioneUtenteController
  */
-public class RimozioneDistributoreAutomaticoController extends HttpServlet {
+public class RimozioneUtenteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RimozioneDistributoreAutomaticoController() {
+    public RimozioneUtenteController() {
         super();
     }
 
@@ -33,19 +33,18 @@ public class RimozioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(request.getSession().getAttribute("amministratore") == null)
 			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
 		
-		String temp = request.getParameter("idDistributore");
+		String temp = request.getParameter("idUtente");
 		
 		if(temp == null)
-			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del distributore");
+			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione dell'utente");
 		
-		int idDistributore = Integer.parseInt(temp);
+		int idUtente = Integer.parseInt(temp);
 		
 		try {
-			DistributoreAutomaticoDAO.rimuoviDistributoreAutomatico(idDistributore);
+			UtenteDAO.rimuoviUtente(idUtente);
 		} catch (SQLException e) {
 			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
 		}

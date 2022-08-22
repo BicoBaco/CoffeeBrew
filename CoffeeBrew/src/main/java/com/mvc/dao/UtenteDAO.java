@@ -1,5 +1,6 @@
 package com.mvc.dao;
 
+import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.helper.DBHelper;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UtenteDAO {
 	
@@ -112,6 +114,59 @@ public class UtenteDAO {
 			boolean result = pstmt.execute();
 			
 			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false;
+	}
+	
+	public static ArrayList<UtenteBean> getUtenti() throws SQLException {
+		ArrayList<UtenteBean> listaUtenti = new ArrayList<UtenteBean>();
+		
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT * FROM Utente");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				UtenteBean tecnico = new UtenteBean();
+				tecnico.setIdUtente(rs.getInt("idUtente"));
+				tecnico.setNome(rs.getString("nome"));
+				tecnico.setCognome(rs.getString("cognome"));
+				tecnico.setEmail(rs.getString("email"));
+				listaUtenti.add(tecnico);
+			}
+
+			return listaUtenti;			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return null;
+	}
+	
+	public static boolean rimuoviUtente(int idUtente) throws SQLException {
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		int result;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("DELETE FROM Utente WHERE idUtente = ?");
+			pstmt.setInt(1, idUtente);
+			result = pstmt.executeUpdate();
+			
+			return result > 0;
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -72,30 +72,39 @@ public class DistributoreAutomaticoController extends HttpServlet {
 		// TODO distributore che manda il idUtente e Credito usato
 		System.out.println("arrivata la post con: " + request.getParameter("idDistributore"));
 		
-		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "" &&
-		   request.getParameter("idUtente") != null && request.getParameter("idUtente") != "" &&
-		   request.getParameter("importo") != null && request.getParameter("importo") != "") {
+		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
-			int idUtente = Integer.parseInt(request.getParameter("idUtente"));
-			int importo = Integer.parseInt(request.getParameter("importo"));
 			
-			UtenteBean utente = new UtenteBean();
-			utente.setIdUtente(idUtente);
-			
-			try {
-				distributoreDAO.impostaLiberoUtente(idDistributore);
-				UtenteDAO.rimuoviCredito(utente, importo);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(request.getParameter("exit") != null) {
+				distributoreDAO.liberaDistributore(idDistributore);
+				response.setContentType("text/plain");
+			    response.setCharacterEncoding("UTF-8");
+				response.getWriter().write("liberato");
 			}
 			
-			System.out.println("liberato distributore " + idDistributore);
-			
-			response.setContentType("text/plain");
-		    response.setCharacterEncoding("UTF-8");
-			response.getWriter().write("acquisto fatto");
+			if(request.getParameter("idUtente") != null && request.getParameter("idUtente") != "" &&
+			   request.getParameter("importo") != null && request.getParameter("importo") != "") {
+				
+				int idUtente = Integer.parseInt(request.getParameter("idUtente"));
+				int importo = Integer.parseInt(request.getParameter("importo"));
+				
+				UtenteBean utente = new UtenteBean();
+				utente.setIdUtente(idUtente);
+				
+				try {
+					distributoreDAO.impostaLiberoUtente(idDistributore);
+					UtenteDAO.rimuoviCredito(utente, importo);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				System.out.println("liberato distributore " + idDistributore);
+				
+				response.setContentType("text/plain");
+			    response.setCharacterEncoding("UTF-8");
+				response.getWriter().write("acquisto fatto");
+			}
 		}
 	}
-
 }

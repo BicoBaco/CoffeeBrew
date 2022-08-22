@@ -62,6 +62,7 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
+	// DEPRECATED
 	public void impostaLiberoUtente(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
@@ -79,7 +80,7 @@ public class DistributoreAutomaticoDAO {
 	public TecnicoBean getOccupanteTecnico(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
-			pstmt = conn.prepareStatement("SELECT idTecnico, nome FROM DistributoreAutomatico, Utente WHERE idTecnico = occupanteTecnico AND idDistributore = ?");
+			pstmt = conn.prepareStatement("SELECT idTecnico, nome FROM DistributoreAutomatico, Tecnico WHERE idTecnico = occupanteTecnico AND idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
 			TecnicoBean occupante = new TecnicoBean();
@@ -114,6 +115,7 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
+	// DEPRECATED
 	public void impostaLiberoTecnico(int idDistributore) {
 		try {
 			PreparedStatement pstmt = null;
@@ -153,6 +155,19 @@ public class DistributoreAutomaticoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return true;
+		}
+	}
+	
+	public void liberaDistributore(int idDistributore) {
+		try {
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = NULL, occupanteTecnico = NULL WHERE idDistributore = ?");
+			pstmt.setInt(1, idDistributore);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

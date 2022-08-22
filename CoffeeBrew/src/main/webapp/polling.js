@@ -39,7 +39,7 @@ function isConnected() {
 }
 
 function sendPurchase() {
-	divInterfaccia.hidden = true;
+	divInterfacciaUtente.hidden = true;
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		console.log("inviata POST");
@@ -48,6 +48,19 @@ function sendPurchase() {
 	xhttp.open("POST", "DistributoreAutomaticoController", true);
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value);
+}
+
+function exit() {
+	divInterfacciaUtente.hidden = true;
+	divInterfacciaCliente.hidden = true;
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+		console.log("inviata POST");
+		found = false;
+	}
+	xhttp.open("POST", "DistributoreAutomaticoController", true);
+	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhttp.send("exit=true&idDistributore=" + idTextbox.value);
 }
 
 let found = false;

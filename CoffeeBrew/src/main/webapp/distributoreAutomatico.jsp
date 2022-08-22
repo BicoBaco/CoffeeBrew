@@ -26,7 +26,7 @@
 		
 		<div id="interfacciaTecnico" hidden>
 			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
-			
+			<input id="exitButton" onclick="exit()" type="submit" value="Esci">
 		</div>
 		
 		<script src="polling.js"></script>

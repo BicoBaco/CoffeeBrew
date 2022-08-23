@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<style> @import url("css/style.css"); </style>
-		<title>Pannello di Controllo Amministratore</title>	
+		<title>CoffeeBrew - Pannello di Controllo Amministratore</title>	
 	</head>
 	<body>
 		<%@ page import="java.util.ArrayList" %>
@@ -26,7 +26,7 @@
 			
 		</div> <br>
 		<div class="container bg-white">
-			<h2>Gestione Distributori Automatici</h2>			
+			<h2>Gestione Distributori Automatici</h2><hr>		
 			<table class="table">
 				<tr>
 					<th>Locazione</th>
@@ -51,7 +51,7 @@
 			</form> <br>
 		</div> <br>
 		<div class="container bg-white">
-			<h2>Gestione Tecnici</h2>			
+			<h2>Gestione Tecnici</h2><hr>		
 			<table class="table">
 				<tr>
 					<th>Nome</th>
@@ -74,15 +74,21 @@
 		<br>
 			Registrazione Tecnico
 			<form action="RegistrazioneTecnicoController" method="POST">
-				 Nome <input type="text" name="nome"> <br>
-				 Cognome <input type="text" name="cognome"> <br>
-				 Email <input type="email" name="email"> <br>
-				 Password <input type="password" id="newPassword" name="password"> <br>
-				 <input type="submit"/> <br>	 
+				<table>
+					<tr>
+						<th>Nome <input type="text" name="nome"></th>
+						<th>Cognome <input type="text" name="cognome"></th>
+					</tr>
+					<tr>
+						<th>Email <input type="email" name="email"></th>
+						<th>Password <input type="password" id="newPassword" name="password"></th>
+						<th><input type="submit"/></th>
+					</tr>				
+				</table>			 	 
 			</form> <br>
 		</div> <br>
 		<div class="container bg-white">
-			<h2>Gestione Utenti</h2>			
+			<h2>Gestione Utenti</h2><hr>			
 			<table class="table">
 				<tr>
 					<th>Nome</th>
@@ -102,7 +108,8 @@
 				</tr>
 			<% } %>			
 			</table>
-			<br> 
+			<br>
+			<a href="LogoutController">Logout</a>
 		</div>
 		<script src="js/formCheck.js"></script>
 	</body>

@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Accesso Amministratore</title>
+		<title>CoffeeBrew - Accesso Amministratori</title>
 		<style> @import url("css/style.css"); </style>
 	</head>
 	<body>

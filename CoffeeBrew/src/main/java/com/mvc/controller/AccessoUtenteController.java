@@ -56,7 +56,7 @@ public class AccessoUtenteController extends HttpServlet {
 			if(result) {
 				request.getSession().invalidate();
 				request.getSession(true).setAttribute("utente", accessoUtente);
-				response.sendRedirect("home.jsp");
+				request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("AccessoUtenteController?error=Email o password errata");
 			}

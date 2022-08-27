@@ -1,3 +1,46 @@
+class Prodotto {
+	nome;
+	costo;
+	quantita;
+	nodeSelezionaProdotto;
+	
+	constructor(nome, costo, quantita) {
+		this.nome = nome;
+		this.costo = costo;
+		this.quantita = quantita;
+		this.nodeSelezionaProdotto = templateSelezionaProdotto.cloneNode(true);
+		this.nodeSelezionaProdotto.id = this.nome + "SelezionaProdotto";
+		this.nodeSelezionaProdotto.children[0].id = "";
+		this.nodeSelezionaProdotto.children[0].innerHTML = this.nome;
+		this.nodeSelezionaProdotto.children[1].id = this.nome + "CostoProdotto";
+		this.nodeSelezionaProdotto.children[1].innerHTML = parseFloat(this.costo / 100).toFixed(2);
+		this.nodeSelezionaProdotto.children[2].id = this.nome + "ButtonProdotto"
+		this.nodeSelezionaProdotto.children[2].name = "prodotto";
+		this.nodeSelezionaProdotto.children[2].value = this.costo;
+	}
+} 
+
+divPulsantiProdotti = document.getElementById("pulsantiProdotti");
+templateSelezionaProdotto = document.getElementById("templateSelezionaProdotto");
+
+let cappuccino = new Prodotto("cappuccino", 150, 80);
+let espresso = new Prodotto("espresso", 100, 90);
+
+let arrayProdotti = [];
+arrayProdotti.push(cappuccino);
+arrayProdotti.push(espresso);
+
+arrayProdotti.forEach(prodotto => {
+	divPulsantiProdotti.appendChild(prodotto.nodeSelezionaProdotto);
+})
+
+pulsantiProdotto = document.getElementsByName("prodotto");
+
+for (let i = 0; i < pulsantiProdotto.length; i++) {
+ 	pulsantiProdotto[i].addEventListener("click", setCost, false);
+	console.log("aggiunto");
+}
+
 function isConnected() {
 	if(!found) {
 		const xhttp = new XMLHttpRequest();
@@ -39,7 +82,6 @@ function isConnected() {
 }
 
 function sendPurchase(prodotto) {
-	divInterfacciaUtente.hidden = true;
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		console.log("inviata POST");
@@ -48,6 +90,13 @@ function sendPurchase(prodotto) {
 	xhttp.open("POST", "DistributoreAutomaticoController", true);
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value);
+	clearInterfacciaUtente();
+}
+
+function clearInterfacciaUtente() {
+	divInterfacciaUtente.hidden = true;
+	inputImporto.value = "";
+	labelScelta.innerHTML = "Seleziona un prodotto";
 }
 
 function exit() {
@@ -81,11 +130,13 @@ acquistaButton.addEventListener("click", sendPurchase, false);
 nomeUtenteLabel = document.getElementById("nomeUtente");
 nomeTecnicoLabel = document.getElementById("nomeTecnico");
 creditoLabel = document.getElementById("credito");
-pulsantiProdotto = document.getElementsByName("prodotto");
+
 sceltaLabel = document.getElementById("scelta");
 inputImporto = document.getElementById("importo");
 inputIdUtente = document.getElementById("utente");
 divListaProdotti = document.getElementById("listaProdotti");
+labelScelta = document.getElementById("scelta");
+
 /*
 qtyCappuccino = document.getElementById("qtyCappuccino");
 qtyEspresso = document.getElementById("qtyEspresso");
@@ -109,17 +160,17 @@ for(var nomeProdotto in quantitaProdotti) {
 }
 */
 
+clearInterfacciaUtente();
+
 function startPolling() {
 	console.log("starting polling...")
 	const interval = setInterval(isConnected, 2000);
 }
 
-for (let i = 0; i < pulsantiProdotto.length; i++) {
- 	pulsantiProdotto[i].addEventListener("click", setCost, false);
-	console.log("aggiunto");
-}
+
 
 function setCost() {
 	inputImporto.value = this.value;
+	labelScelta.innerHTML = "Importo da pagare: &euro;" + parseFloat(this.value / 100).toFixed(2);
 	console.log("premuto " + this);
 }

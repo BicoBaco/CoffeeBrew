@@ -53,6 +53,7 @@ public class AccessoTecnicoController extends HttpServlet {
 			}
 			
 			if(result) {
+				request.getSession().invalidate();
 				request.getSession(true).setAttribute("tecnico", accessoTecnico);
 				request.getRequestDispatcher("PannelloDiControlloTecnicoController").forward(request, response);
 			} else {

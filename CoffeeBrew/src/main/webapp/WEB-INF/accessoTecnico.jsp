@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Accesso Tecnici</title>
+		<title>CoffeeBrew - Accesso Tecnici</title>
 		<style> @import url("css/style.css");</style>
 	</head>
 	<body>
@@ -19,7 +19,7 @@
 				 <input type="button" id="passButton" value="Visualizza"><br>
 				 <input type="submit"/> <br> 
 			</form>
-			<a href="index.jsp">Home</a>
+			<a href="landing.jsp">Home</a>
 		</div>
 		<script src="js/formCheck.js"></script>
 	</body>

@@ -7,15 +7,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class LogoutUtenteController
+ * Servlet implementation class LogoutController
  */
-public class LogoutUtenteController extends HttpServlet {
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutUtenteController() {
+    public LogoutController() {
         super();
     }
 
@@ -23,9 +23,8 @@ public class LogoutUtenteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
 		request.getSession(false).invalidate();
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("landing.jsp");
 	}
 
 	/**

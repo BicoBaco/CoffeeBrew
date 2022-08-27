@@ -38,8 +38,7 @@ public class CarteDiCreditoController extends HttpServlet {
 			try {
 				listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
 			} catch (SQLException e) {
-				//TODO redirect alla schermata dell'utente
-				//response.sendRedirect("CarteDiCreditoController?error=Errore del database");
+				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
 			
 			request.setAttribute("listaCarte", listaCarte);

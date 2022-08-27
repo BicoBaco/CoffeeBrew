@@ -45,22 +45,26 @@ public class RegistrazioneUtenteController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
-			UtenteBean registrazioneUtente = new UtenteBean();
-			registrazioneUtente.setNome(nome);
-			registrazioneUtente.setCognome(cognome);
-			registrazioneUtente.setEmail(email);
-			registrazioneUtente.setPassword(password);
-			
-			try {
-				UtenteDAO.registraUtente(registrazioneUtente);
-			} catch (SQLException e) {
-				// TODO gestire registrazione con stessa email con errore adeguato
-				response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
+			if(password.length() < 8) {
+				response.sendRedirect("RegistrazioneUtenteController?error=Password minimo 8 caratteri");
+			} else {
+				
+				UtenteBean registrazioneUtente = new UtenteBean();
+				registrazioneUtente.setNome(nome);
+				registrazioneUtente.setCognome(cognome);
+				registrazioneUtente.setEmail(email);
+				registrazioneUtente.setPassword(password);
+				
+				try {
+					UtenteDAO.registraUtente(registrazioneUtente);
+				} catch (SQLException e) {
+					// TODO gestire registrazione con stessa email con errore adeguato
+					response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
+				}
+				
+				request.getSession(true).setAttribute("utente", registrazioneUtente);
+				request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 			}
-			
-			request.getSession(true).setAttribute("utente", registrazioneUtente);
-			//TODO same indice roba
-			response.sendRedirect("index.jsp");
 		}
 	}
 

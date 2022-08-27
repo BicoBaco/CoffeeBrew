@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Pannello di controllo Tecnico</title>
+	<title>CoffeeBrew - Pannello di Controllo Tecnico</title>
 	<style> @import url("css/style.css"); </style>
 </head>
 <body>
@@ -42,6 +42,7 @@
 			Connetti al distributore: <input type="number" name="idDistributore">
 			<input type="submit">
 		</form> <br>
+		<a href="LogoutController">Logout</a> <br>
 	</div>
 </body>
 </html>

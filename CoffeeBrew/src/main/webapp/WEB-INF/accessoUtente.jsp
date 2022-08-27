@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>CoffeeBrew - Accesso Utenti</title>
-		<style> @import url("css/style.css");</style>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 		<div class="container bg-white">

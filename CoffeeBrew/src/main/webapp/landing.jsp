@@ -39,6 +39,5 @@
 			</div>
 		</div>
 	</main>
-	<script src="js/landing.js"></script>
 </body>
 </html>

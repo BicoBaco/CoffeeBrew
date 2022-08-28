@@ -48,7 +48,7 @@ public class RimozioneTecnicoController extends HttpServlet {
 		} catch (SQLException e) {
 			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
 		}
-		response.sendRedirect("PannelloDiControlloAmministratoreController");
+		response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 	}
 
 }

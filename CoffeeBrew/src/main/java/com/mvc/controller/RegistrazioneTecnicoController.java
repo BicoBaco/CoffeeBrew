@@ -58,7 +58,7 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp?error=Errore del database");
 			}
 
-			response.sendRedirect("PannelloDiControlloAmministratoreController");
+			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}
 	}
 

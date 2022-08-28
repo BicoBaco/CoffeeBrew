@@ -37,13 +37,12 @@
 								<input type="button" id="passButton" value="Visualizza" class="w-50 btn btn-success text-center">
 							</div>
 							<div class="text-center w-100">
-								<button type="submit" class="w-50 btn btn-success text-center">Accedi</button>
+								<button type="submit" class="w-50 btn btn-success text-center">Registrati</button>
 							</div>
 						</form>
 						</p>
 					</div>
 					<div class="card-body border-top border-3">
-						<a class="btn btn-primary w-100 mb-1" href="RegistrazioneUtenteController">Registrazione Utenti</a> <br>
 						<a class="btn btn-primary w-100 mb-1" href="AccessoUtenteController">Accesso Utenti</a>
 						<a class="btn btn-primary w-100 mb-1" href="AccessoTecnicoController">Accesso Tecnici</a>
 						<a class="btn btn-primary w-100 mb-1" href="AccessoAmministratoreController">Accesso Amministratore</a>

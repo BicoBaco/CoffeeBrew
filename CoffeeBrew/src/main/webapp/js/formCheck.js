@@ -1,8 +1,8 @@
 password = document.querySelector("[type='password']");
-passButton = document.getElementById("passButton");
+visualizzaBtn = document.getElementById("visualizzaBtn");
 
 if(password.id === "newPassword") password.addEventListener('input', strengthVal);
-passButton.addEventListener('click', toggleVisibility);
+visualizzaBtn.addEventListener('click', toggleVisibility);
 
 function strengthVal() {
 	//const weakPass = new RegExp("^((?=.*[a-z]).{8,}|(?=.*[a-z])(?=.*[A-Z]).{8,})$");
@@ -23,9 +23,9 @@ function strengthVal() {
 function toggleVisibility() {
     if (password.type === "password") {  
         password.type = "text";
-        passButton.value = "Nascondi";
+        visualizzaBtn.value = "Nascondi";
     } else {  
         password.type = "password";
-        passButton.value = "Visualizza";  
+        visualizzaBtn.value = "Visualizza";  
     }  
 }

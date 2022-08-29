@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import com.helper.DBHelper;
@@ -11,7 +12,7 @@ import com.mvc.bean.TecnicoBean;
 
 public class TecnicoDAO {
 	
-	public static boolean registraTecnico(TecnicoBean registrazioneTecnico) throws SQLException {
+	public static boolean registraTecnico(TecnicoBean registrazioneTecnico) throws SQLException, SQLIntegrityConstraintViolationException {
 		String nome = registrazioneTecnico.getNome();
 		String cognome = registrazioneTecnico.getCognome();
 		String email = registrazioneTecnico.getEmail();
@@ -33,6 +34,8 @@ public class TecnicoDAO {
 			return result > 0;
 			
 		} catch(Exception e) {
+			if(e instanceof SQLIntegrityConstraintViolationException) throw new SQLIntegrityConstraintViolationException();
+			if(e instanceof SQLException) throw new SQLException();
 			e.printStackTrace();
 		} finally {
 			pstmt.close();

@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBHelper {
@@ -17,12 +19,10 @@ public class DBHelper {
 		return DriverManager.getConnection(DBurl, DBusername, DBpassword);
 	}
 	
-	public static String getSHA512(String password) {
-		
+	public static String getSHA512(String password) {	
         String newPassword = null;
         
         try {
-        	
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] bytes = md.digest(password.getBytes());
             
@@ -32,11 +32,35 @@ public class DBHelper {
                         .substring(1));
             }
             newPassword = sb.toString();
-            
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         
         return newPassword;
-    }    
+    }  
+	
+	public static boolean checkEmail(String email, String table) throws SQLException {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT 1 FROM ? WHERE email = ?");
+			pstmt.setString(1, table);
+			pstmt.setString(2, email);
+			ResultSet result = pstmt.executeQuery();
+			
+			if(result.next())
+				return false;
+			
+			//return result > 0;		
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false; 
+	}
 }

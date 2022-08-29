@@ -36,6 +36,7 @@ public class PannelloDiControlloTecnicoController extends HttpServlet {
 			} catch (SQLException e) {
 				System.out.println("errore sql");
 				response.sendRedirect("landing.jsp?error=Errore del database");
+				//TODO fare il box dell'errore bello in ogni pagina
 			}
 			
 			request.setAttribute("listaDistributori", listaDistributori);

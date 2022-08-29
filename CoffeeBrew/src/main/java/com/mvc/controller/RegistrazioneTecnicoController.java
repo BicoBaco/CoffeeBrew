@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.TecnicoDAO;
@@ -54,10 +55,20 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 			
 			try {
 				TecnicoDAO.registraTecnico(registrazioneTecnico);
-			} catch (SQLException e) {
-				response.sendRedirect("/WEB-INF/pannelloDiControlloAmministratore.jsp?error=Errore del database");
-			}
+			} catch(Exception e) {
+				if(e instanceof SQLIntegrityConstraintViolationException) {
+					response.sendRedirect("PannelloDiControlloAmministratoreController?error=Email già in uso");
+					return;
+				}
+				
+				if(e instanceof SQLException) { 
+					response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+				} else {
+					e.printStackTrace();
+				}
 
+				return;
+		}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}
 	}

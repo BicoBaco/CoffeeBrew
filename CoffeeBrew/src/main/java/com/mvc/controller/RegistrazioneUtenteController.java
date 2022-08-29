@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.UtenteDAO;
@@ -57,9 +58,19 @@ public class RegistrazioneUtenteController extends HttpServlet {
 				
 				try {
 					UtenteDAO.registraUtente(registrazioneUtente);
-				} catch (SQLException e) {
-					// TODO gestire registrazione con stessa email con errore adeguato
-					response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
+				} catch(Exception e) {
+					if(e instanceof SQLIntegrityConstraintViolationException) {
+						response.sendRedirect("RegistrazioneUtenteController?error=Email gia' in uso");	
+						return;
+					}
+					
+					if(e instanceof SQLException) { 
+						response.sendRedirect("RegistrazioneUtenteController?error=Errore del database");
+					} else {
+						e.printStackTrace();
+					}
+	
+					return;
 				}
 				
 				request.getSession(true).setAttribute("utente", registrazioneUtente);

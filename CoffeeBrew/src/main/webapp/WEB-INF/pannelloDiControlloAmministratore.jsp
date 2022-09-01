@@ -23,16 +23,7 @@
 					(ArrayList<UtenteBean>) request.getAttribute("listaUtenti");
 		%>
 		<%@include file="/includes/navbar.jsp"%>
-		<div class="container-fluid position-absolute vh-30">
-		<div class="card mx-auto my-auto" style="width: 50rem;">
-			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-				<div class="alert alert-danger" role="alert">
-				  <%= request.getParameter("error") %>
-				</div>
-			<% } %>
-			</div>	
-		</div>
-		<div class="container-fluid row px-0 vh-100">		
+		<div class="container-fluid row px-0 vh-100">	
 			<div class="card mx-auto my-auto" style="width: 50rem;">
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
@@ -52,6 +43,11 @@
 				</div>
 				<div class="card-body">
 					<div class="tab-content">
+						<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+							<div class="alert alert-danger" role="alert">
+				  				<%= request.getParameter("error") %>
+							</div>
+						<% } %>	
 						<div class="tab-pane fade" id="distributori">
 							<h5 class="card-title fw-bold">Gestione Distributori Automatici</h5><hr>	
 							<table class="table">

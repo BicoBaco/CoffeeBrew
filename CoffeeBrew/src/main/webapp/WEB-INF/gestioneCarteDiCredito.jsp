@@ -5,14 +5,14 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>CoffeeBrew - Credito</title>
-		<style> @import url("css/style.css"); </style>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 		<%@ page import="java.util.ArrayList"%>
 		<%@ page import="com.mvc.bean.CartaDiCreditoBean"%>
 		<% 	ArrayList<CartaDiCreditoBean> listaCarte = 
 				(ArrayList<CartaDiCreditoBean>) request.getAttribute("listaCarte");	%>
-				
+		<%@include file="/includes/navbar.jsp"%>	
 		<div class="container-fluid row px-0 vh-100">		
 			<div class="card mx-auto my-auto" style="width: 50rem;">
 				<div class="card-body">
@@ -34,7 +34,9 @@
 					</table>
 				
 					<% if (request.getParameter("error") != null && request.getParameter("error") != "") { %>
-						<%=request.getParameter("error")%>
+						<div class="alert alert-danger" role="alert">
+						  <%= request.getParameter("error") %>
+						</div>
 					<% } %>
 					
 					<h6 class="card-title fw-bold">Inserisci Carta di credito</h6>	
@@ -59,7 +61,7 @@
 					<h6 class="card-title fw-bold">Ricarica il credito</h6>
 					<form action="RicaricaCreditoController" method="POST">
 						<div class="form-floating mb-3">
-							<select class="form-select" name="carte" id="carte">
+							<select class="form-select" name="idCarta" id="carte">
 								<% for (CartaDiCreditoBean cdc : listaCarte) { %>
 									<option value="<%= cdc.getIdCarta() %>"><%= cdc.getNumeroCarta() %></option>
 								<% } %>
@@ -67,8 +69,8 @@
 							<label for="carte">Seleziona la carta</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" type="number" id="importo" name="euroRicarica">
-							<label for="importo">Importo da ricaricare</label>
+							<input class="form-control" type="number" id="euroRicarica" name="euroRicarica">
+							<label for="euroRicarica">Importo da ricaricare</label>
 						</div>
 						<button type="submit" class="w-50 btn btn-success text-center">Ricarica</button>
 					</form>

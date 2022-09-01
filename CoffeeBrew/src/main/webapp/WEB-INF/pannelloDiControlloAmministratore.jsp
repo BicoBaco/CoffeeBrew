@@ -26,7 +26,9 @@
 		<div class="container-fluid position-absolute vh-30">
 		<div class="card mx-auto my-auto" style="width: 50rem;">
 			<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-				<%= request.getParameter("error") %>
+				<div class="alert alert-danger" role="alert">
+				  <%= request.getParameter("error") %>
+				</div>
 			<% } %>
 			</div>	
 		</div>

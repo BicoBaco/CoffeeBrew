@@ -22,7 +22,9 @@
 				<h5 class="card-title fw-bold">Gestione Distributori Automatici</h5><hr>
 				<p class="card-text">
 					<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-						<%= request.getParameter("error") %>
+						<div class="alert alert-danger" role="alert">
+						  <%= request.getParameter("error") %>
+						</div>
 					<% } %>
 				</p>		
 				<table class="table">

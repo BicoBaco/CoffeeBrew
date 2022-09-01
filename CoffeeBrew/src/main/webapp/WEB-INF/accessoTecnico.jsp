@@ -18,7 +18,9 @@
 					<h5 class="card-title fw-bold">Accesso Tecnici</h5>
 					<p class="card-text">
 					<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-						<%= request.getParameter("error") %>
+						<div class="alert alert-danger" role="alert">
+						  <%= request.getParameter("error") %>
+						</div>
 					<% } %>
 					<form action="AccessoTecnicoController" method="POST">
 						<div class="form-floating mb-3">

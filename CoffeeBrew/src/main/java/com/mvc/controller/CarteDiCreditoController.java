@@ -31,7 +31,7 @@ public class CarteDiCreditoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("utente") != null) {
-			System.out.println(" -> e sei loggato");
+			
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 			ArrayList<CartaDiCreditoBean> listaCarte = null;
 			
@@ -41,10 +41,7 @@ public class CarteDiCreditoController extends HttpServlet {
 				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
 			
-			request.setAttribute("listaCarte", listaCarte);
-			System.out.println(" -> lista carte");
-			System.out.println(listaCarte.toString());
-			
+			request.setAttribute("listaCarte", listaCarte);		
 			request.getRequestDispatcher("/WEB-INF/gestioneCarteDiCredito.jsp").forward(request,response);
 		} else {
 			response.sendRedirect("AccessoUtenteController");
@@ -69,15 +66,9 @@ public class CarteDiCreditoController extends HttpServlet {
 			cartaDiCredito.setDataScadenza(dataScadenza);
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 			cartaDiCredito.setIdUtente(u.getIdUtente());
-			
-			System.out.println(numeroCarta);
-			System.out.println(nomeSullaCarta);
-			System.out.println(dataScadenza);
-			System.out.println(u.getIdUtente());
-			
-			boolean result;
+						
 			try {
-				result = CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
+				CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
 			} catch (SQLException e) {
 				//TODO va bene così?
 				response.sendRedirect("CarteDiCreditoController?error=Errore nell'inserimento");
@@ -85,7 +76,6 @@ public class CarteDiCreditoController extends HttpServlet {
 			
 			response.sendRedirect("CarteDiCreditoController");	
 		} else {
-			System.out.println("beccato senza dati");
 			response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi");
 		}
 	}

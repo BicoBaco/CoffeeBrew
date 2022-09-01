@@ -12,7 +12,7 @@
 		<input type="number" id="idDistributore" name="idDistributore">
 		<div id="demo"></div>
 		
-		<div id="interfacciaUtente">
+		<div id="interfacciaUtente" hidden>
 			<h3>Benvenuto <span id="nomeUtente"></span></h3>
 			<p>Credito Residuo: &euro;<span id="credito"></span></p>
 			<div id="templateSelezionaProdotto"><span id="nomeProdotto"></span> [&euro;<span id="costoProdotto"></span>]<button id="buttonProdotto">Seleziona</button><br></div>
@@ -31,7 +31,7 @@
 			<input id="acquistaButton" type="submit" value="Acquista">
 		</div>
 		
-		<div id="interfacciaTecnico">
+		<div id="interfacciaTecnico" hidden>
 			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
 			<div id="templateRicaricaProdotto"><span id="nomeRicaricaProdotto"></span>[<span id="qtyProdotto"></span>%]<button id="pulsanteRicarica">Ricarica</button></div>
 			<div id="listaProdotti">

@@ -49,6 +49,7 @@ public class DistributoreAutomaticoDAO {
 	}
 	
 	public void impostaOccupatoUtente(int idDistributore, int idUtente) {
+		System.out.println("provo a collegare " + idUtente);
 		try {
 			PreparedStatement pstmt = null;
 			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteUtente = ? WHERE idDistributore = ?");

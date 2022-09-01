@@ -199,4 +199,14 @@
     <servlet-name>RimozioneUtenteController</servlet-name>
     <url-pattern>/RimozioneUtenteController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HomeUtenteController</display-name>
+    <servlet-name>HomeUtenteController</servlet-name>
+    <servlet-class>com.mvc.controller.HomeUtenteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeUtenteController</servlet-name>
+    <url-pattern>/HomeUtenteController</url-pattern>
+  </servlet-mapping>
 </web-app>

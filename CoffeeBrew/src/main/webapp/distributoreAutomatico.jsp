@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	</head>
 	<body>
 		<button id="poll" type="button">Polling</button>
@@ -30,13 +31,17 @@
 			<input id="acquistaButton" type="submit" value="Acquista">
 		</div>
 		
-		<div id="interfacciaTecnico" hidden>
+		<div id="interfacciaTecnico">
 			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
+			<div id="templateRicaricaProdotto"><span id="nomeRicaricaProdotto"></span>[<span id="qtyProdotto"></span>%]<button id="pulsanteRicarica">Ricarica</button></div>
 			<div id="listaProdotti">
+			
+			<!--
 				<span>Cappuccino:		<span id="qtyCappuccino">	</span><button onclick="ricaricaProdotto('cappuccino')">	Ricarica</button></span><br>
 				<span>Espresso:			<span id="qtyEspresso">		</span><button onclick="ricaricaProdotto('espresso')">		Ricarica</button></span><br>
 				<span>Cioccolata calda: <span id="qtyCioccolata">	</span><button onclick="ricaricaProdotto('cioccolata')">	Ricarica</button></span><br>
 				<span>Tè verde:			<span id="qtyTe">			</span><button onclick="ricaricaProdotto('te verde')">		Ricarica</button></span><br>
+			  -->
 			</div>
 			<input id="exitButton" onclick="exit()" type="submit" value="Esci">
 		</div>

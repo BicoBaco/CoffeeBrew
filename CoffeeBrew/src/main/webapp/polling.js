@@ -3,6 +3,7 @@ class Prodotto {
 	costo;
 	quantita;
 	nodeSelezionaProdotto;
+	nodeRicaricaProdotto;
 	
 	constructor(nome, costo, quantita) {
 		this.nome = nome;
@@ -17,11 +18,30 @@ class Prodotto {
 		this.nodeSelezionaProdotto.children[2].id = this.nome + "ButtonProdotto"
 		this.nodeSelezionaProdotto.children[2].name = "prodotto";
 		this.nodeSelezionaProdotto.children[2].value = this.costo;
+		
+		this.nodeRicaricaProdotto = templateRicaricaProdotto.cloneNode(true);
+		this.nodeRicaricaProdotto.id = this.node + "RicaricaProdotto";
+		this.nodeRicaricaProdotto.children[0].id = "";
+		this.nodeRicaricaProdotto.children[0].innerHTML = this.nome;
+		this.nodeRicaricaProdotto.children[1].id = this.nome + "QtyProdotto";
+		this.nodeRicaricaProdotto.children[1].innerHTML = this.quantita;
+		this.nodeRicaricaProdotto.children[2].id = this.nome + "ButtonRicaricaProdotto"
+		this.nodeRicaricaProdotto.children[2].name = "ricarica";
+		let prodottoReference = this;
+		this.nodeRicaricaProdotto.children[2].addEventListener("click", function() { ricaricaProdotto(prodottoReference) }, false);
+	}
+	
+	ricarica() {
+		this.quantita = 100;
+		this.nodeRicaricaProdotto.children[1].innerHTML = this.quantita;
 	}
 } 
 
 divPulsantiProdotti = document.getElementById("pulsantiProdotti");
 templateSelezionaProdotto = document.getElementById("templateSelezionaProdotto");
+
+divListaProdotti = document.getElementById("listaProdotti");
+templateRicaricaProdotto = document.getElementById("templateRicaricaProdotto");
 
 let cappuccino = new Prodotto("cappuccino", 150, 80);
 let espresso = new Prodotto("espresso", 100, 90);
@@ -32,6 +52,7 @@ arrayProdotti.push(espresso);
 
 arrayProdotti.forEach(prodotto => {
 	divPulsantiProdotti.appendChild(prodotto.nodeSelezionaProdotto);
+	divListaProdotti.appendChild(prodotto.nodeRicaricaProdotto);
 })
 
 pulsantiProdotto = document.getElementsByName("prodotto");
@@ -94,7 +115,7 @@ function sendPurchase(prodotto) {
 }
 
 function clearInterfacciaUtente() {
-	divInterfacciaUtente.hidden = true;
+	//divInterfacciaUtente.hidden = true;
 	inputImporto.value = "";
 	labelScelta.innerHTML = "Seleziona un prodotto";
 }
@@ -112,11 +133,8 @@ function exit() {
 	xhttp.send("exit=true&idDistributore=" + idTextbox.value);
 }
 
-quantitaProdotti = {"cappuccino": 80, "espresso": 100, "cioccolata": 50, "te verde": 95};
-
 function ricaricaProdotto(prodotto) {
-	quantitaProdotti[prodotto] = 100;
-	document.getElementById("qty" + prodotto.charAt(0).toUpperCase() + prodotto.slice(1)).innerHTML = 100;
+	prodotto.ricarica();
 }
 
 let found = false;
@@ -134,31 +152,8 @@ creditoLabel = document.getElementById("credito");
 sceltaLabel = document.getElementById("scelta");
 inputImporto = document.getElementById("importo");
 inputIdUtente = document.getElementById("utente");
-divListaProdotti = document.getElementById("listaProdotti");
+
 labelScelta = document.getElementById("scelta");
-
-/*
-qtyCappuccino = document.getElementById("qtyCappuccino");
-qtyEspresso = document.getElementById("qtyEspresso");
-qtyCioccolata = document.getElementById("qtyCioccolata");
-qtyTeVerde = document.getElementById("qtyTe");
-*/
-
-/*
-for(var nomeProdotto in quantitaProdotti) {
-	nameLabel = document.createElement("span");
-	nameLabel.innerHTML = nomeProdotto.charAt(0).toUpperCase() + nomeProdotto.slice(1) + ": " + quantitaProdotti[nomeProdotto];
-	divListaProdotti.appendChild(nameLabel);
-	
-	refillButton = document.createElement("button");
-	refillButton.addEventListener("click", function() {ricaricaProdotto(nomeProdotto)}, false);
-	refillButton.innerHTML = "Ricarica";
-	divListaProdotti.appendChild(refillButton);
-	
-	breakrow = document.createElement("br");
-	divListaProdotti.appendChild(breakrow);
-}
-*/
 
 clearInterfacciaUtente();
 
@@ -166,8 +161,6 @@ function startPolling() {
 	console.log("starting polling...")
 	const interval = setInterval(isConnected, 2000);
 }
-
-
 
 function setCost() {
 	inputImporto.value = this.value;

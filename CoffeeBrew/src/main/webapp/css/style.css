@@ -6,6 +6,16 @@ body {
 	background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
+#landing_background {
+	background: url("../images/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	color: white;
+  	text-shadow: 2px 2px 4px #000000;
+}
+
 .debole {
 	border: solid red;
 }

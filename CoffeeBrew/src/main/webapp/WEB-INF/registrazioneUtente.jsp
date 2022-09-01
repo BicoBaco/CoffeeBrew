@@ -15,7 +15,9 @@
 					<h5 class="card-title fw-bold">Registrazione</h5>
 					<p class="card-text">
 					<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-						<%= request.getParameter("error") %>
+						<div class="alert alert-danger" role="alert">
+						  <%= request.getParameter("error") %>
+						</div>
 					<% } %>
 					<form id="formRegistrazioneUtente" action="RegistrazioneUtenteController" method="POST">
 						<div class="form-floating formfloating-sm mb-3">
@@ -31,7 +33,8 @@
 							<label for="email" class="form-label">Indirizzo email</label> 
 						</div>
 						<div class="input-group form-floating mb-3">
-							<input type="password" class="form-control" id="newPassword" name="password" placeholder="Password" aria-describedby="visualizzaBtn">
+							<input type="password" class="form-control" id="newPassword" name="password" placeholder="Password" aria-describedby="visualizzaBtn"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="almeno un numero, una lettera maiuscola e minuscola, e almeno 8 caratteri" required>
 							<button id="visualizzaBtn" type="button" class="btn btn-outline-secondary">Visualizza</button>
 							<label for="newPassword" class="form-label">Password</label>
 						</div>

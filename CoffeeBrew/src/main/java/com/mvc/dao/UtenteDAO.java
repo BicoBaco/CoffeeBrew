@@ -1,6 +1,5 @@
 package com.mvc.dao;
 
-import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.helper.DBHelper;
 
@@ -8,11 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 public class UtenteDAO {
 	
-	public static boolean registraUtente(UtenteBean registrazioneUtente) throws SQLException {
+	public static boolean registraUtente(UtenteBean registrazioneUtente) throws SQLException, SQLIntegrityConstraintViolationException {
 		String nome = registrazioneUtente.getNome();
 		String cognome = registrazioneUtente.getCognome();
 		String email = registrazioneUtente.getEmail();
@@ -30,10 +30,13 @@ public class UtenteDAO {
 			pstmt.setString(4, DBHelper.getSHA512(password));
 			int result = pstmt.executeUpdate();
 			
-			return result > 0;		
+			return result > 0;	
+
 		} catch(Exception e) {
+			if(e instanceof SQLIntegrityConstraintViolationException) throw new SQLIntegrityConstraintViolationException();
+			if(e instanceof SQLException) throw new SQLException();
 			e.printStackTrace();
-		} finally {
+		}finally {
 			pstmt.close();
 			connection.close();
 		}

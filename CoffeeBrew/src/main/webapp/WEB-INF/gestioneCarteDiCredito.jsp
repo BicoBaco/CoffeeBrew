@@ -13,48 +13,69 @@
 		<% 	ArrayList<CartaDiCreditoBean> listaCarte = 
 				(ArrayList<CartaDiCreditoBean>) request.getAttribute("listaCarte");	%>
 				
-		<div class="container bg-white">
-			<table class="table">
-				<tr>
-					<th>Numero carta</th>
-					<th>Nome sulla carta</th>
-					<th>Data di scadenza</th>
-				</tr>
-				<% for (CartaDiCreditoBean cdc : listaCarte) { %>
-				<tr>
-					<th><%=cdc.getNumeroCarta()%></th>
-					<th><%=cdc.getNomeSullaCarta()%></th>
-					<th><%=cdc.getDataScadenza()%></th>
-				</tr>
-				<% } %>
-		
-			</table>
-		
-			<br>
-			<% if (request.getParameter("error") != null && request.getParameter("error") != "") { %>
-				<%=request.getParameter("error")%>
-			<% } %>
-			<form action="CarteDiCreditoController" method="post">
-				Numero Carta <input type="text" name="numeroCarta"> Nome sulla
-				Carta <input type="text" name="nomeSullaCarta"> Data di
-				scadenza <input type="date" name="dataScadenza"> <input
-					type="submit" value="Inserisci">
-			</form>
-			
-			<br>
-			
-			<form action="RicaricaCreditoController" method="post">
-				Carta
-				<select name="idCarta" id="cars">
-					<% for (CartaDiCreditoBean cdc : listaCarte) { %>
-						<option value="<%= cdc.getIdCarta() %>"><%= cdc.getNumeroCarta() %></option>
+		<div class="container-fluid row px-0 vh-100">		
+			<div class="card mx-auto my-auto" style="width: 50rem;">
+				<div class="card-body">
+					<h5 class="card-title fw-bold">Gestione Carte di credito</h5><hr>	
+					<table class="table">
+						<tr>
+							<th>Numero carta</th>
+							<th>Nome sulla carta</th>
+							<th>Data di scadenza</th>
+						</tr>
+						<% for (CartaDiCreditoBean cdc : listaCarte) { %>
+						<tr>
+							<td><%=cdc.getNumeroCarta()%></td>
+							<td><%=cdc.getNomeSullaCarta()%></td>
+							<td><%=cdc.getDataScadenza()%></td>
+						</tr>
+						<% } %>
+				
+					</table>
+				
+					<% if (request.getParameter("error") != null && request.getParameter("error") != "") { %>
+						<%=request.getParameter("error")%>
 					<% } %>
-				</select> <br>
-				Importo da ricaricare <input type="number" name="euroRicarica">
-				<input type="submit" value="ricarica">
-			</form>
-		
-			<a href="landing.jsp">Home</a>
+					
+					<h6 class="card-title fw-bold">Inserisci Carta di credito</h6>	
+					<form action="CarteDiCreditoController" method="POST">
+						<div class="form-floating formfloating-sm mb-3">
+							<input id="numeroCarta" type="text" class="form-control" name="numeroCarta" placeholder="Numero Carta">
+							<label for="numeroCarta" class="form-label">Numero Carta</label> 
+						</div>
+						<div class="form-floating mb-3">
+							<input id="nomeSullaCarta" type="text" class="form-control" name="nomeSullaCarta" placeholder="Nome sulla Carta">
+							<label for="nomeSullaCarta" class="form-label">Nome sulla Carta</label> 
+						</div>
+						<div class="form-floating mb-3">
+							<input id="dataScadenza" type="date" class="form-control" name="dataScadenza" placeholder="Data di scadenza">
+							<label for="dataScadenza" class="form-label">Data di scadenza</label> 
+						</div>
+						<button type="submit" class="w-50 btn btn-success text-center">Inserisci</button>
+					</form>
+					
+					<hr>
+					
+					<h6 class="card-title fw-bold">Ricarica il credito</h6>
+					<form action="RicaricaCreditoController" method="POST">
+						<div class="form-floating mb-3">
+							<select class="form-select" name="carte" id="carte">
+								<% for (CartaDiCreditoBean cdc : listaCarte) { %>
+									<option value="<%= cdc.getIdCarta() %>"><%= cdc.getNumeroCarta() %></option>
+								<% } %>
+							</select>
+							<label for="carte">Seleziona la carta</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control" type="number" id="importo" name="euroRicarica">
+							<label for="importo">Importo da ricaricare</label>
+						</div>
+						<button type="submit" class="w-50 btn btn-success text-center">Ricarica</button>
+					</form>
+				
+					<a class="btn btn-primary w-100 mb-1" href="landing.jsp">Home</a>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

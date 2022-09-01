@@ -14,18 +14,17 @@
 	<% ArrayList<DistributoreAutomaticoBean> listaDistributori = 
 		(ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); %>
 		
-	<div class="container-fluid position-absolute vh-30">
-	<div class="card mx-auto my-auto" style="width: 50rem;">
-		<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
-			<%= request.getParameter("error") %>
-		<% } %>
-		</div>	
-	</div>
+
 	
 	<div class="container-fluid row px-0 vh-100">		
 		<div class="card mx-auto my-auto" style="width: 50rem;">
 			<div class="card-body">
-				<h5 class="card-title fw-bold">Gestione Distributori Automatici</h5><hr>	
+				<h5 class="card-title fw-bold">Gestione Distributori Automatici</h5><hr>
+				<p class="card-text">
+					<% if(request.getParameter("error") != null && request.getParameter("error") != "") { %>
+						<%= request.getParameter("error") %>
+					<% } %>
+				</p>		
 				<table class="table">
 					<tr>
 						<th>Locazione</th>
@@ -35,14 +34,14 @@
 					</tr>
 					<% for(DistributoreAutomaticoBean distr : listaDistributori) { %>
 					<tr>
-						<th> <%= distr.getLocazione() %> </th>
-						<th> <%= distr.getIdDistributore() %> </th>
-						<th> <%= distr.getOccupanteUtente() %> </th>
-						<th> <%= distr.getOccupanteTecnico() %> </th>
-						<th> <form action="" method="POST">
+						<td> <%= distr.getLocazione() %> </td>
+						<td> <%= distr.getIdDistributore() %> </td>
+						<td> <%= distr.getOccupanteUtente() %> </td>
+						<td> <%= distr.getOccupanteTecnico() %> </td>
+						<td> <form action="" method="POST">
 								<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
 								<input type="submit" value="Idk, refilla"/> 
-							</form> </th> 
+							</form> </td> 
 					</tr>
 					<% } %>			
 				</table>

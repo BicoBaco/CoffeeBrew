@@ -9,6 +9,7 @@ class Prodotto {
 		this.nome = nome;
 		this.costo = costo;
 		this.quantita = quantita;
+		let prodottoReference = this;
 		this.nodeSelezionaProdotto = templateSelezionaProdotto.cloneNode(true);
 		this.nodeSelezionaProdotto.id = this.nome + "SelezionaProdotto";
 		this.nodeSelezionaProdotto.children[0].id = "";
@@ -18,6 +19,7 @@ class Prodotto {
 		this.nodeSelezionaProdotto.children[2].id = this.nome + "ButtonProdotto"
 		this.nodeSelezionaProdotto.children[2].name = "prodotto";
 		this.nodeSelezionaProdotto.children[2].value = this.costo;
+		this.nodeSelezionaProdotto.children[2].addEventListener("click", function() { setCost(prodottoReference) }, false);
 		
 		this.nodeRicaricaProdotto = templateRicaricaProdotto.cloneNode(true);
 		this.nodeRicaricaProdotto.id = this.node + "RicaricaProdotto";
@@ -27,13 +29,16 @@ class Prodotto {
 		this.nodeRicaricaProdotto.children[1].innerHTML = this.quantita;
 		this.nodeRicaricaProdotto.children[2].id = this.nome + "ButtonRicaricaProdotto"
 		this.nodeRicaricaProdotto.children[2].name = "ricarica";
-		let prodottoReference = this;
 		this.nodeRicaricaProdotto.children[2].addEventListener("click", function() { ricaricaProdotto(prodottoReference) }, false);
 	}
 	
 	ricarica() {
 		this.quantita = 100;
 		this.nodeRicaricaProdotto.children[1].innerHTML = this.quantita;
+	}
+	
+	consuma() {
+		this.quantita -= 5;
 	}
 } 
 
@@ -62,6 +67,8 @@ for (let i = 0; i < pulsantiProdotto.length; i++) {
 	console.log("aggiunto");
 }
 
+let datiOccupante;
+
 function isConnected() {
 	if(!found) {
 		const xhttp = new XMLHttpRequest();
@@ -83,7 +90,7 @@ function isConnected() {
 				} else {
 					if(occupante.nome != null && occupante.centesimiCredito != null && occupante.idUtente != null) {
 						found = true;
-						
+						datiOccupante = occupante;
 						divInterfacciaUtente.hidden = false;
 						nomeUtenteLabel.innerHTML = occupante.nome;
 						creditoLabel.innerHTML = occupante.centesimiCredito / 100;
@@ -103,19 +110,27 @@ function isConnected() {
 }
 
 function sendPurchase(prodotto) {
-	const xhttp = new XMLHttpRequest();
-	xhttp.onload = function() {
-		console.log("inviata POST");
-		found = false;
+	if(prodottoScelto != null) {
+		if(datiOccupante.credito >= prodottoScelto.costo) {
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				console.log("inviata POST");
+				found = false;
+				console.log("consumo " + prodottoScelto);
+				prodottoScelto.consuma();
+			}
+			xhttp.open("POST", "DistributoreAutomaticoController", true);
+			xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value);
+			clearInterfacciaUtente();
+		} else {
+			alert("Credito insufficente");
+		}
 	}
-	xhttp.open("POST", "DistributoreAutomaticoController", true);
-	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value);
-	clearInterfacciaUtente();
 }
 
 function clearInterfacciaUtente() {
-	//divInterfacciaUtente.hidden = true;
+	divInterfacciaUtente.hidden = true;
 	inputImporto.value = "";
 	labelScelta.innerHTML = "Seleziona un prodotto";
 }
@@ -162,7 +177,10 @@ function startPolling() {
 	const interval = setInterval(isConnected, 2000);
 }
 
-function setCost() {
+let prodottoScelto;
+
+function setCost(prodotto) {
+	prodottoScelto = prodotto;
 	inputImporto.value = this.value;
 	labelScelta.innerHTML = "Importo da pagare: &euro;" + parseFloat(this.value / 100).toFixed(2);
 	console.log("premuto " + this);

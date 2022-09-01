@@ -16,7 +16,17 @@
 		<div class="container-fluid row px-0 vh-100">		
 			<div class="card mx-auto my-auto" style="width: 50rem;">
 				<div class="card-body">
-					<h5 class="card-title fw-bold">Gestione Carte di credito</h5><hr>	
+					<h5 class="card-title fw-bold">Gestione Carte di credito</h5><hr>
+					<% if (request.getParameter("error") != null && request.getParameter("error") != "") { %>
+						<div class="alert alert-danger" role="alert">
+							<%=request.getParameter("error")%>
+						</div>
+					<% } %>
+					<% if (request.getParameter("message") != null && request.getParameter("message") != "") { %>
+						<div class="alert alert-success" role="alert">
+							<%=request.getParameter("message")%>
+						</div>
+					<% } %>
 					<table class="table">
 						<tr>
 							<th>Numero carta</th>
@@ -32,13 +42,7 @@
 						<% } %>
 				
 					</table>
-				
-					<% if (request.getParameter("error") != null && request.getParameter("error") != "") { %>
-						<div class="alert alert-danger" role="alert">
-						  <%= request.getParameter("error") %>
-						</div>
-					<% } %>
-					
+
 					<h6 class="card-title fw-bold">Inserisci Carta di credito</h6>	
 					<form action="CarteDiCreditoController" method="POST">
 						<div class="form-floating formfloating-sm mb-3">
@@ -57,7 +61,7 @@
 					</form>
 					
 					<hr>
-					
+					<h6 class="card-title fw-bold">Credito attuale: ${utente.getCentesimiCredito()/100} &euro;</h6>
 					<h6 class="card-title fw-bold">Ricarica il credito</h6>
 					<form action="RicaricaCreditoController" method="POST">
 						<div class="form-floating mb-3">
@@ -74,8 +78,7 @@
 						</div>
 						<button type="submit" class="w-50 btn btn-success text-center">Ricarica</button>
 					</form>
-				
-					<a class="btn btn-primary w-100 mb-1" href="landing.jsp">Home</a>
+					<a class="btn btn-primary w-100 mb-1" href="HomeUtenteController">Home</a>
 				</div>
 			</div>
 		</div>

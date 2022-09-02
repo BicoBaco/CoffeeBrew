@@ -4,20 +4,60 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Distributore Automatico</title>
 		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<div class="container-fluid row px-0 vh-100">
+			<div class="card mx-auto my-auto w-50 bg-dark text-white bg-opacity-50 p-3" id="interfacciaUtente">
+				<h3 class="display-2">Benvenuto <span id="nomeUtente"></span></h3>
+				<p>Credito Residuo: &euro;<span id="credito"></span></p>
+				<div class="w-100 text-center my-4">
+					<h1>Selezionare un prodotto:</h1>
+				</div>
+				<div class="row text-center my-auto" id="pulsantiProdotti">
+					<div class="col-md-4 themed-grid-col" id="templateSelezionaProdotto">
+						<span id="nomeProdotto">Espresso</span><br>
+						<span id="costoProdotto"></span>&euro;<br>
+						<button class="prodotto btn" id="buttonProdotto">
+							<img id="productImg" alt="" src="images/espresso.png" class="product-img">
+						</button>
+					</div>
+					<!--
+					<div class="col-md-4 themed-grid-col">
+						Espresso <br>
+						<button class="btn">
+							<img alt="" src="images/espresso.png" class="product-img">
+						</button>
+					</div>
+					<div class="col-md-4 themed-grid-col">
+						Macchiato <br>
+						<button class="btn">
+							<img alt="" src="images/macchiato.png" class="product-img">
+						</button>
+					</div>
+					<div class="col-md-4 themed-grid-col">
+						Cappuccino <br>
+						<button class="btn">
+							<img alt="" src="images/espresso.png" class="product-img">
+						</button>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+		
 		<button id="poll" type="button">Polling</button>
 		<input type="number" id="idDistributore" name="idDistributore">
 		<div id="demo"></div>
 		
-		<div id="interfacciaUtente" hidden>
-			<h3>Benvenuto <span id="nomeUtente"></span></h3>
-			<p>Credito Residuo: &euro;<span id="credito"></span></p>
-			<div id="templateSelezionaProdotto"><span id="nomeProdotto"></span> [&euro;<span id="costoProdotto"></span>]<button id="buttonProdotto">Seleziona</button><br></div>
-			<div id="pulsantiProdotti">
-			
+		<div id="_interfacciaUtente" hidden>
+			<h3>Benvenuto <span id="_nomeUtente"></span></h3>
+			<p>Credito Residuo: &euro;<span id="_credito"></span></p>
+			<div id="_templateSelezionaProdotto"><span id="_nomeProdotto"></span> [&euro;<span id="_costoProdotto"></span>]<button id="_buttonProdotto">Seleziona</button><br></div>
+			<div id="_pulsantiProdotti">
+				
 			</div>
 			<!-- 
 			Cappuccino		 [&euro;1,50] <button name="prodotto" id="cappuccino"	value="150">Seleziona</button><br>

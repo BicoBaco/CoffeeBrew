@@ -11,15 +11,27 @@ class Prodotto {
 		this.quantita = quantita;
 		let prodottoReference = this;
 		this.nodeSelezionaProdotto = templateSelezionaProdotto.cloneNode(true);
+		this.nodeSelezionaProdotto.querySelector("#nomeProdotto").innerText = this.nome;
+		this.nodeSelezionaProdotto.querySelector("#nomeProdotto").id = "";
+		this.nodeSelezionaProdotto.querySelector("#costoProdotto").innerText = parseFloat(this.costo / 100).toFixed(2);
+		this.nodeSelezionaProdotto.querySelector("#costoProdotto").id = "";
+		this.nodeSelezionaProdotto.querySelector("#buttonProdotto").value = this.costo;
+		this.nodeSelezionaProdotto.querySelector("#buttonProdotto").addEventListener("click", function() { setCost(prodottoReference) }, false);
+		this.nodeSelezionaProdotto.querySelector("#productImg").src = "images/" + nome + ".png";
+		
+		/**
 		this.nodeSelezionaProdotto.id = this.nome + "SelezionaProdotto";
 		this.nodeSelezionaProdotto.children[0].id = "";
 		this.nodeSelezionaProdotto.children[0].innerHTML = this.nome;
+		
 		this.nodeSelezionaProdotto.children[1].id = this.nome + "CostoProdotto";
 		this.nodeSelezionaProdotto.children[1].innerHTML = parseFloat(this.costo / 100).toFixed(2);
+		
 		this.nodeSelezionaProdotto.children[2].id = this.nome + "ButtonProdotto"
 		this.nodeSelezionaProdotto.children[2].name = "prodotto";
 		this.nodeSelezionaProdotto.children[2].value = this.costo;
 		this.nodeSelezionaProdotto.children[2].addEventListener("click", function() { setCost(prodottoReference) }, false);
+		**/
 		
 		this.nodeRicaricaProdotto = templateRicaricaProdotto.cloneNode(true);
 		this.nodeRicaricaProdotto.id = this.node + "RicaricaProdotto";
@@ -56,6 +68,7 @@ arrayProdotti.push(cappuccino);
 arrayProdotti.push(espresso);
 
 arrayProdotti.forEach(prodotto => {
+	console.log(prodotto);
 	divPulsantiProdotti.appendChild(prodotto.nodeSelezionaProdotto);
 	divListaProdotti.appendChild(prodotto.nodeRicaricaProdotto);
 })

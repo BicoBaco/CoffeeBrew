@@ -16,6 +16,10 @@ body {
   	text-shadow: 2px 2px 4px #000000;
 }
 
+.product-img {
+	width: 150px;
+}
+
 .debole {
 	border: solid red;
 }

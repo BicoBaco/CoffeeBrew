@@ -66,7 +66,7 @@ public class CarteDiCreditoController extends HttpServlet {
 			cartaDiCredito.setDataScadenza(dataScadenza);
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 			cartaDiCredito.setIdUtente(u.getIdUtente());
-						
+		
 			try {
 				CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
 			} catch (SQLException e) {

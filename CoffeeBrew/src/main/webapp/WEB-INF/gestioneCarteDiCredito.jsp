@@ -23,7 +23,7 @@
 					     	<a class="nav-link" href="#carte" data-bs-toggle="tab">Carte di Credito</a>
 					     </li>
 					     <li class="nav-item">
-					     	<a class="nav-link" href="ricarica" data-bs-toggle="tab">Ricarica</a>
+					     	<a class="nav-link" href="#ricarica" data-bs-toggle="tab">Ricarica</a>
 					     </li>
 						<li class="nav-item ms-auto">
 						     <a class="nav-link" href="HomeUtenteController">Home</a>

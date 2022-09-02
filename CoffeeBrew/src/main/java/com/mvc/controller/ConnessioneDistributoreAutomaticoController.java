@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mvc.bean.UtenteBean;
 import com.mvc.bean.TecnicoBean;
@@ -35,26 +36,32 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 			
 			System.out.print(idDistributore);
 			
-			if(!distributoreDAO.isOccupato(idDistributore)) {
-				if(request.getSession().getAttribute("tecnico") != null) {
-					TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");
-					distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
-					
-					//TODO pagina che mostra macchina libera
-					response.getWriter().print("Connection success");
-					
-				} else if (request.getSession().getAttribute("utente") != null) {
-					UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-					distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
-					
-					//TODO pagina che mostra macchina libera
-					response.getWriter().print("Connection success");
+			try {
+				if(!distributoreDAO.isOccupato(idDistributore)) {
+					if(request.getSession().getAttribute("tecnico") != null) {
+						TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");
+						distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
+						
+						response.getWriter().print("Connesso");
+					} else if (request.getSession().getAttribute("utente") != null) {
+						UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+						distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
+						
+						response.getWriter().print("Connesso");
+					}
+				} else {
+					response.getWriter().print("Occupato");
 				}
-			} else {
-				response.getWriter().print("Occupied");
+			} catch (SQLException e) {
+				if(e.getMessage() == "Distributore non esistente") {
+					response.getWriter().print("Il distributore "+idDistributore+" non esiste");
+				} else {
+					e.printStackTrace();
+					response.getWriter().print("Errore, contattare l'amministratore");
+				}
 			}
 		} else {
-			response.getWriter().print("Missing id");
+			response.getWriter().print("Id mancante");
 		}
 	}
 

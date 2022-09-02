@@ -75,7 +75,11 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
 			
 			if(request.getParameter("exit") != null) {
-				distributoreDAO.liberaDistributore(idDistributore);
+				try {
+					distributoreDAO.liberaDistributore(idDistributore);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				response.setContentType("text/plain");
 			    response.setCharacterEncoding("UTF-8");
 				response.getWriter().write("liberato");

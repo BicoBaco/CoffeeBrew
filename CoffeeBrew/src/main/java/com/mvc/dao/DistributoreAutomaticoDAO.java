@@ -48,18 +48,21 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	public void impostaOccupatoUtente(int idDistributore, int idUtente) {
+	public void impostaOccupatoUtente(int idDistributore, int idUtente) throws SQLException {
 		System.out.println("provo a collegare " + idUtente);
+		PreparedStatement pstmt = null;
+		
 		try {
-			PreparedStatement pstmt = null;
 			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteUtente = ? WHERE idDistributore = ?");
 			pstmt.setInt(1, idUtente);
 			pstmt.setInt(2, idDistributore);
 			pstmt.executeUpdate();
 			
-			pstmt.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
 		}
 	}
 	
@@ -102,17 +105,20 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 	
-	public void impostaOccupatoTecnico(int idDistributore, int idTecnico) {
+	public void impostaOccupatoTecnico(int idDistributore, int idTecnico) throws SQLException {
+		PreparedStatement pstmt = null;
+		
 		try {
-			PreparedStatement pstmt = null;
 			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = ? WHERE idDistributore = ?");
 			pstmt.setInt(1, idTecnico);
 			pstmt.setInt(2, idDistributore);
 			pstmt.executeUpdate();
 			
-			pstmt.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
 		}
 	}
 	
@@ -130,9 +136,10 @@ public class DistributoreAutomaticoDAO {
 		}
 	}
 
-	public boolean isOccupato(int idDistributore) {
+	public boolean isOccupato(int idDistributore) throws SQLException {
+		PreparedStatement pstmt = null;
+		
 		try {
-			PreparedStatement pstmt = null;
 			pstmt = conn.prepareStatement("SELECT occupanteTecnico, occupanteUtente FROM DistributoreAutomatico WHERE idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			ResultSet rs = pstmt.executeQuery();
@@ -145,29 +152,32 @@ public class DistributoreAutomaticoDAO {
 					return true;
 				}
 			} else {
-				return true;
+				throw new SQLException("Distributore non esistente");
 			}
-			pstmt.close();
-			
-			return false;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("ayyy");
-			return true;
+			System.out.println("ziopera");
+			throw e;
+		} finally {
+			pstmt.close();
 		}
+		
+		return false;
 	}
 	
-	public void liberaDistributore(int idDistributore) {
+	public void liberaDistributore(int idDistributore) throws SQLException {
+		PreparedStatement pstmt = null;
+		
 		try {
-			PreparedStatement pstmt = null;
 			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = NULL, occupanteTecnico = NULL WHERE idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			pstmt.executeUpdate();
 			
-			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			pstmt.close();
 		}
 	}
 	

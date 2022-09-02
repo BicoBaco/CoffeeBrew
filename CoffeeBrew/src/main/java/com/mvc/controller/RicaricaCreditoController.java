@@ -49,12 +49,12 @@ public class RicaricaCreditoController extends HttpServlet {
 					request.getSession().setAttribute("utente", utente);
 					
 				} catch (SQLException e) {
-					response.sendRedirect("CarteDiCreditoController?error=Errore del database");
+					response.sendRedirect("CarteDiCreditoController?error=Errore del database#ricarica");
 				}
 				
-				response.sendRedirect("CarteDiCreditoController?message=Credito aggiunto con successo");
+				response.sendRedirect("CarteDiCreditoController?message=Credito aggiunto con successo#ricarica");
 			} else {
-				response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi");
+				response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi#ricarica");
 			}
 		} else {
 			response.sendRedirect("AccessoUtenteController");

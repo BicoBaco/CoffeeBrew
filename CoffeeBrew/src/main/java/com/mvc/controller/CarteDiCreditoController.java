@@ -71,12 +71,12 @@ public class CarteDiCreditoController extends HttpServlet {
 				CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
 			} catch (SQLException e) {
 				//TODO va bene così?
-				response.sendRedirect("CarteDiCreditoController?error=Errore nell'inserimento");
+				response.sendRedirect("CarteDiCreditoController?error=Errore nell'inserimento#carte");
 			}
 			
-			response.sendRedirect("CarteDiCreditoController");	
+			response.sendRedirect("CarteDiCreditoController#carte");	
 		} else {
-			response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi");
+			response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi#carte");
 		}
 	}
 

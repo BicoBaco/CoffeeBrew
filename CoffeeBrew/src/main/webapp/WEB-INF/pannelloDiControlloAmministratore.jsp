@@ -53,12 +53,14 @@
 							<table class="table">
 								<tr>
 									<th>Locazione</th>
+									<th>Codice</th>
 								    <th>Utente connesso</th>
 								    <th>Tecnico connesso</th>
 								</tr>
 							<% for(DistributoreAutomaticoBean distr : listaDistributori) { %>
 								<tr>
 									<td> <%= distr.getLocazione() %> </td>
+									<td> <%= distr.getIdDistributore() %> </td>
 									<td> <%= distr.getOccupanteUtente() %> </td>
 									<td> <%= distr.getOccupanteTecnico() %> </td>
 									<td> <form action="RimozioneDistributoreAutomaticoController" method="POST">

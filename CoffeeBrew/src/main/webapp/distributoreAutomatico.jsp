@@ -17,59 +17,23 @@
 					<h1>Selezionare un prodotto:</h1>
 				</div>
 				<div class="row text-center my-auto" id="pulsantiProdotti">
-					<div class="col-md-4 themed-grid-col" id="templateSelezionaProdotto">
+					<div class="col-md-4 themed-grid-col" id="templateSelezionaProdotto" hidden>
 						<span id="nomeProdotto">Espresso</span><br>
 						<span id="costoProdotto"></span>&euro;<br>
 						<button class="prodotto btn" id="buttonProdotto">
 							<img id="productImg" alt="" src="images/espresso.png" class="product-img">
 						</button>
 					</div>
-					<!--
-					<div class="col-md-4 themed-grid-col">
-						Espresso <br>
-						<button class="btn">
-							<img alt="" src="images/espresso.png" class="product-img">
-						</button>
-					</div>
-					<div class="col-md-4 themed-grid-col">
-						Macchiato <br>
-						<button class="btn">
-							<img alt="" src="images/macchiato.png" class="product-img">
-						</button>
-					</div>
-					<div class="col-md-4 themed-grid-col">
-						Cappuccino <br>
-						<button class="btn">
-							<img alt="" src="images/espresso.png" class="product-img">
-						</button>
-					</div>
-					-->
 				</div>
+				<p id="scelta"></p>
+				<input type="hidden" id="importo" name="importo" value="">
+				<input type="hidden" id="utente" name="idUtente" value="">
+				<input id="acquistaButton" type="submit" value="Acquista">
 			</div>
 		</div>
 		
 		<button id="poll" type="button">Polling</button>
 		<input type="number" id="idDistributore" name="idDistributore">
-		<div id="demo"></div>
-		
-		<div id="_interfacciaUtente" hidden>
-			<h3>Benvenuto <span id="_nomeUtente"></span></h3>
-			<p>Credito Residuo: &euro;<span id="_credito"></span></p>
-			<div id="_templateSelezionaProdotto"><span id="_nomeProdotto"></span> [&euro;<span id="_costoProdotto"></span>]<button id="_buttonProdotto">Seleziona</button><br></div>
-			<div id="_pulsantiProdotti">
-				
-			</div>
-			<!-- 
-			Cappuccino		 [&euro;1,50] <button name="prodotto" id="cappuccino"	value="150">Seleziona</button><br>
-			Espresso		 [&euro;1,00] <button name="prodotto" id="espresso"		value="100">Seleziona</button><br>
-			Cioccolata calda [&euro;1,00] <button name="prodotto" id="cioccolata"	value="100">Seleziona</button><br>
-			Tè verde		 [&euro;0,50] <button name="prodotto" id="te verde"		value="50"> Seleziona</button><br>
-			-->
-			<p id="scelta"></p>
-			<input type="hidden" id="importo" name="importo" value="">
-			<input type="hidden" id="utente" name="idUtente" value="">
-			<input id="acquistaButton" type="submit" value="Acquista">
-		</div>
 		
 		<div id="interfacciaTecnico" hidden>
 			<h3>Benvenuto <span id="nomeTecnico"></span></h3>

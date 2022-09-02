@@ -11,6 +11,7 @@ class Prodotto {
 		this.quantita = quantita;
 		let prodottoReference = this;
 		this.nodeSelezionaProdotto = templateSelezionaProdotto.cloneNode(true);
+		this.nodeSelezionaProdotto.hidden = false;
 		this.nodeSelezionaProdotto.querySelector("#nomeProdotto").innerText = this.nome;
 		this.nodeSelezionaProdotto.querySelector("#nomeProdotto").id = "";
 		this.nodeSelezionaProdotto.querySelector("#costoProdotto").innerText = parseFloat(this.costo / 100).toFixed(2);
@@ -62,10 +63,12 @@ templateRicaricaProdotto = document.getElementById("templateRicaricaProdotto");
 
 let cappuccino = new Prodotto("cappuccino", 150, 80);
 let espresso = new Prodotto("espresso", 100, 90);
+let macchiato = new Prodotto("macchiato", 120, 70);
 
 let arrayProdotti = [];
-arrayProdotti.push(cappuccino);
 arrayProdotti.push(espresso);
+arrayProdotti.push(macchiato);
+arrayProdotti.push(cappuccino);
 
 arrayProdotti.forEach(prodotto => {
 	console.log(prodotto);
@@ -145,7 +148,7 @@ function sendPurchase(prodotto) {
 function clearInterfacciaUtente() {
 	divInterfacciaUtente.hidden = true;
 	inputImporto.value = "";
-	labelScelta.innerHTML = "Seleziona un prodotto";
+	labelScelta.innerHTML = "Nessun prodotto selezionato";
 }
 
 function exit() {
@@ -194,7 +197,7 @@ let prodottoScelto;
 
 function setCost(prodotto) {
 	prodottoScelto = prodotto;
-	inputImporto.value = this.value;
-	labelScelta.innerHTML = "Importo da pagare: &euro;" + parseFloat(this.value / 100).toFixed(2);
+	inputImporto.value = prodotto.costo;
+	labelScelta.innerHTML = "Importo da pagare: &euro;" + parseFloat(prodotto.costo / 100).toFixed(2);
 	console.log("premuto " + this);
 }

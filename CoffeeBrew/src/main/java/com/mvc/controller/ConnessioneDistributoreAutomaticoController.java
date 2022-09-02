@@ -39,20 +39,20 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 					distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
 					
 					//TODO pagina che mostra macchina libera
-					response.getWriter().print("macchina libera, connessione in corso...");
+					response.getWriter().print("Connection success");
 					
 				} else if (request.getSession().getAttribute("utente") != null) {
 					UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
 					distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
 					
 					//TODO pagina che mostra macchina libera
-					response.getWriter().print("macchina libera, connessione in corso...");
+					response.getWriter().print("Connection success");
 				}
 			} else {
-				response.getWriter().print("macchina non disponibile");
+				response.getWriter().print("Occupied");
 			}
 		} else {
-			response.getWriter().print("inserire idDistributore");
+			response.getWriter().print("Missing id");
 		}
 	}
 

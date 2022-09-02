@@ -33,6 +33,8 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
 			
+			System.out.print(idDistributore);
+			
 			if(!distributoreDAO.isOccupato(idDistributore)) {
 				if(request.getSession().getAttribute("tecnico") != null) {
 					TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");

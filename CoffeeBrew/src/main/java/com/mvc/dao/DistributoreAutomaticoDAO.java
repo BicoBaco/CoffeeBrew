@@ -153,6 +153,7 @@ public class DistributoreAutomaticoDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("ayyy");
 			return true;
 		}
 	}

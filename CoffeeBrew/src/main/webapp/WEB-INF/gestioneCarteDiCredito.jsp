@@ -67,15 +67,15 @@
 							<h6 class="card-title fw-bold">Inserisci Carta di credito</h6>	
 							<form action="InserimentoCartaDiCreditoController" method="POST">
 								<div class="form-floating formfloating-sm mb-3">
-									<input id="numeroCarta" type="text" class="form-control" name="numeroCarta" placeholder="Numero Carta">
+									<input id="numeroCarta" type="text" class="form-control" name="numeroCarta" placeholder="Numero Carta" maxlength=19 pattern="[0-9]{4}(-[0-9]{4}){3}">
 									<label for="numeroCarta" class="form-label">Numero Carta</label> 
 								</div>
 								<div class="form-floating mb-3">
-									<input id="nomeSullaCarta" type="text" class="form-control" name="nomeSullaCarta" placeholder="Nome sulla Carta">
+									<input id="nomeSullaCarta" type="text" class="form-control" name="nomeSullaCarta" placeholder="Nome sulla Carta" required>
 									<label for="nomeSullaCarta" class="form-label">Nome sulla Carta</label> 
 								</div>
 								<div class="form-floating mb-3">
-									<input id="dataScadenza" type="date" class="form-control" name="dataScadenza" placeholder="Data di scadenza">
+									<input id="dataScadenza" type="date" class="form-control" name="dataScadenza" placeholder="Data di scadenza" required>
 									<label for="dataScadenza" class="form-label">Data di scadenza</label> 
 								</div>
 								<button type="submit" class="w-50 btn btn-success text-center">Inserisci</button>
@@ -114,6 +114,17 @@
 			function attivaTab(tab){
 				$('.nav-tabs a[href="' + tab + '"]').tab('show');
 			};
+			
+			$('#numeroCarta').keyup(function() {
+				  var numero = $(this).val().split("-").join("");	//split delle cifre tra i - in elementi di un array per poi unirli
+
+				  if (numero.length > 0) {
+					  numero = numero.match(new RegExp('.{1,4}', 'g')).join("-");
+				  }
+				  $(this).val(numero);
+				});
+			
+			dataScadenza.min = new Date().toISOString().split("T")[0];
 		</script>
 	</body>
 </html>

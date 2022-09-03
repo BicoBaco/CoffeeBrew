@@ -57,7 +57,7 @@ public class CartaDiCreditoDAO {
 			while(rs.next()) {
 				CartaDiCreditoBean cdc = new CartaDiCreditoBean();
 				cdc.setIdCarta(rs.getInt("idCarta"));
-				cdc.setNumeroCarta(rs.getString("numeroCarta"));
+				cdc.setNumeroCarta("****-****-****-"+rs.getString("numeroCarta").substring(12)); //TODO che famo salviamo con i - o no?
 				cdc.setNomeSullaCarta(rs.getString("nomeSullaCarta"));
 				cdc.setDataScadenza(rs.getDate("dataScadenza"));
 				

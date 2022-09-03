@@ -34,7 +34,6 @@ public class PannelloDiControlloTecnicoController extends HttpServlet {
 			try {
 				listaDistributori = DistributoreAutomaticoDAO.getDistributori();
 			} catch (SQLException e) {
-				System.out.println("errore sql");
 				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
 			

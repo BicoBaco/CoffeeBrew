@@ -52,32 +52,7 @@ public class CarteDiCreditoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("numeroCarta") != null && request.getParameter("numeroCarta") != "" &&
-		   request.getParameter("nomeSullaCarta") != null && request.getParameter("nomeSullaCarta") != "" && 
-		   request.getParameter("dataScadenza") != null && request.getParameter("dataScadenza") != "") {
-			
-			String numeroCarta = request.getParameter("numeroCarta");
-			String nomeSullaCarta = request.getParameter("nomeSullaCarta");
-			Date dataScadenza = Date.valueOf(request.getParameter("dataScadenza"));
-			
-			CartaDiCreditoBean cartaDiCredito = new CartaDiCreditoBean();
-			cartaDiCredito.setNumeroCarta(numeroCarta);
-			cartaDiCredito.setNomeSullaCarta(nomeSullaCarta);
-			cartaDiCredito.setDataScadenza(dataScadenza);
-			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
-			cartaDiCredito.setIdUtente(u.getIdUtente());
-		
-			try {
-				CartaDiCreditoDAO.inserisciCarta(cartaDiCredito);
-			} catch (SQLException e) {
-				//TODO va bene così?
-				response.sendRedirect("CarteDiCreditoController?error=Errore nell'inserimento#carte");
-			}
-			
-			response.sendRedirect("CarteDiCreditoController#carte");	
-		} else {
-			response.sendRedirect("CarteDiCreditoController?error=Riempire tutti i campi#carte");
-		}
+		doGet(request, response);
 	}
 
 }

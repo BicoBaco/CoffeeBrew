@@ -55,13 +55,17 @@
 									<td><%=cdc.getNumeroCarta()%></td>
 									<td><%=cdc.getNomeSullaCarta()%></td>
 									<td><%=cdc.getDataScadenza()%></td>
+									<td> <form action="RimozioneCartaDiCreditoController" method="POST">
+										<input type="hidden" id="idCarta<%= cdc.getIdCarta() %>" name="idCarta" value=<%= cdc.getIdCarta() %>>
+										<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
+										</form> </td> 
 								</tr>
 								<% } %>
 						
 							</table>
 		
 							<h6 class="card-title fw-bold">Inserisci Carta di credito</h6>	
-							<form action="CarteDiCreditoController" method="POST">
+							<form action="InserimentoCartaDiCreditoController" method="POST">
 								<div class="form-floating formfloating-sm mb-3">
 									<input id="numeroCarta" type="text" class="form-control" name="numeroCarta" placeholder="Numero Carta">
 									<label for="numeroCarta" class="form-label">Numero Carta</label> 
@@ -78,7 +82,7 @@
 							</form>
 						</div>
 						<div class="tab-pane fade" id="ricarica">
-							<h6 class="card-title fw-bold">Credito attuale: ${utente.getCentesimiCredito()/100} &euro;</h6>
+							<h5 class="card-title fw-bold">Credito attuale: ${utente.getCentesimiCredito()/100} &euro;</h5>
 							<h6 class="card-title fw-bold">Ricarica il credito</h6>
 							<form action="RicaricaCreditoController" method="POST">
 								<div class="form-floating mb-3">

@@ -209,4 +209,24 @@
     <servlet-name>HomeUtenteController</servlet-name>
     <url-pattern>/HomeUtenteController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneCartaDiCreditoController</display-name>
+    <servlet-name>RimozioneCartaDiCreditoController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneCartaDiCreditoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneCartaDiCreditoController</servlet-name>
+    <url-pattern>/RimozioneCartaDiCreditoController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InserimentoCartaDiCreditoController</display-name>
+    <servlet-name>InserimentoCartaDiCreditoController</servlet-name>
+    <servlet-class>com.mvc.controller.InserimentoCartaDiCreditoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InserimentoCartaDiCreditoController</servlet-name>
+    <url-pattern>/InserimentoCartaDiCreditoController</url-pattern>
+  </servlet-mapping>
 </web-app>

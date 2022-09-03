@@ -45,30 +45,32 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			
-			if(password.length() < 8) response.sendRedirect("PannelloDiControlloAmministratoreController?error=Password minimo 8 caratteri");
-			
-			TecnicoBean registrazioneTecnico = new TecnicoBean();
-			registrazioneTecnico.setNome(nome);
-			registrazioneTecnico.setCognome(cognome);
-			registrazioneTecnico.setEmail(email);
-			registrazioneTecnico.setPassword(password);
-			
-			try {
-				TecnicoDAO.registraTecnico(registrazioneTecnico);
-			} catch(Exception e) {
-				if(e instanceof SQLIntegrityConstraintViolationException) {
-					response.sendRedirect("PannelloDiControlloAmministratoreController?error=Email già in uso");
+			if(password.length() < 8) {
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Password minimo 8 caratteri");
+			} else {
+				TecnicoBean registrazioneTecnico = new TecnicoBean();
+				registrazioneTecnico.setNome(nome);
+				registrazioneTecnico.setCognome(cognome);
+				registrazioneTecnico.setEmail(email);
+				registrazioneTecnico.setPassword(password);
+				
+				try {
+					TecnicoDAO.registraTecnico(registrazioneTecnico);
+				} catch(Exception e) {
+					if(e instanceof SQLIntegrityConstraintViolationException) {
+						response.sendRedirect("PannelloDiControlloAmministratoreController?error=Email già in uso");
+						return;
+					}
+					
+					if(e instanceof SQLException) { 
+						response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+					} else {
+						e.printStackTrace();
+					}
+	
 					return;
 				}
-				
-				if(e instanceof SQLException) { 
-					response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
-				} else {
-					e.printStackTrace();
-				}
-
-				return;
-		}
+			}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}
 	}

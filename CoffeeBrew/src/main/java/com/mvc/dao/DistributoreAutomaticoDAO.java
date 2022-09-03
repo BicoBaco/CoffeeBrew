@@ -170,7 +170,7 @@ public class DistributoreAutomaticoDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteTecnico = NULL, occupanteTecnico = NULL WHERE idDistributore = ?");
+			pstmt = conn.prepareStatement("UPDATE DistributoreAutomatico SET occupanteUtente = NULL, occupanteTecnico = NULL WHERE idDistributore = ?");
 			pstmt.setInt(1, idDistributore);
 			pstmt.executeUpdate();
 			

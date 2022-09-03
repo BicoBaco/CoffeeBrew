@@ -68,7 +68,7 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 				}
 
 				return;
-		}
+			}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}
 	}

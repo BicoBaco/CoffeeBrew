@@ -9,10 +9,18 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div class="container-fluid row px-0 vh-100">
-			<div class="card mx-auto my-auto w-50 bg-dark text-white bg-opacity-50 p-3" id="interfacciaUtente">
-				<h3 class="display-2">Benvenuto <span id="nomeUtente"></span></h3>
-				<p>Credito Residuo: &euro;<span id="credito"></span></p>
+		<div class="container-fluid row px-0 vh-100 font-monospace">
+			
+			<div class="divPollingStart">
+				<button id="poll" type="button">Polling</button>
+				<input type="number" id="idDistributore" name="idDistributore">
+			</div>
+			<div class="card w-75 mx-auto my-auto bg-dark text-white bg-opacity-50" id="divWait">
+				<h3 class="display-4">In attesa di connessione<span id="textWait">...</span></h3>
+			</div>
+			<div class="card mx-auto my-auto w-50 bg-dark text-white bg-opacity-50 p-3" id="interfacciaUtente" hidden>
+				<h3 class="display-3">Benvenuto <span id="nomeUtente"></span></h3>
+				<p class="fw-bold ">Credito Residuo: &euro;<span id="credito"></span></p>
 				<div class="w-100 text-center my-4">
 					<h1>Selezionare un prodotto:</h1>
 				</div>
@@ -25,31 +33,29 @@
 						</button>
 					</div>
 				</div>
-				<p id="scelta"></p>
+				<p class="text-center fs-3" id="scelta"></p>
 				<input type="hidden" id="importo" name="importo" value="">
 				<input type="hidden" id="utente" name="idUtente" value="">
-				<input id="acquistaButton" type="submit" value="Acquista">
+				<input class="btn btn-success" id="acquistaButton" type="submit" value="Acquista">
+				<input class="btn btn-primary mt-3" id="exitButton" onclick="exit()" type="submit" value="Esci">
 			</div>
-		</div>
-		
-		<button id="poll" type="button">Polling</button>
-		<input type="number" id="idDistributore" name="idDistributore">
-		
-		<div id="interfacciaTecnico" hidden>
-			<h3>Benvenuto <span id="nomeTecnico"></span></h3>
-			<div id="templateRicaricaProdotto"><span id="nomeRicaricaProdotto"></span>[<span id="qtyProdotto"></span>%]<button id="pulsanteRicarica">Ricarica</button></div>
-			<div id="listaProdotti">
 			
-			<!--
-				<span>Cappuccino:		<span id="qtyCappuccino">	</span><button onclick="ricaricaProdotto('cappuccino')">	Ricarica</button></span><br>
-				<span>Espresso:			<span id="qtyEspresso">		</span><button onclick="ricaricaProdotto('espresso')">		Ricarica</button></span><br>
-				<span>Cioccolata calda: <span id="qtyCioccolata">	</span><button onclick="ricaricaProdotto('cioccolata')">	Ricarica</button></span><br>
-				<span>Tè verde:			<span id="qtyTe">			</span><button onclick="ricaricaProdotto('te verde')">		Ricarica</button></span><br>
-			  -->
+			<div class="card mx-auto my-auto w-50 bg-dark text-white bg-opacity-50 p-3" id="interfacciaTecnico" hidden>
+				<h3 class="display-2">Benvenuto <span id="nomeTecnico"></span></h3>
+				<div class="w-100 text-center my-4">
+					<h1>Selezionare prodotto da ricaricare:</h1>
+				</div>
+				<div class="row text-center my-auto" id="listaProdotti">
+					<div class="col-md-4 themed-grid-col" id="templateRicaricaProdotto" hidden>
+						<span id="nomeRicaricaProdotto">Espresso</span><br>
+						<span id="qtyProdotto"></span>%<br>
+						<img id="productImgRicarica" alt="" src="images/espresso.png" class="product-img"><br>
+						<button class="w-100 btn btn-success" id="pulsanteRicarica">Ricarica</button>
+					</div>
+				</div>
+				<input class="btn btn-primary mt-3" id="exitButton" onclick="exit()" type="submit" value="Esci">
 			</div>
-			<input id="exitButton" onclick="exit()" type="submit" value="Esci">
 		</div>
-		
 		<script src="polling.js"></script>
 	</body>
 </html>

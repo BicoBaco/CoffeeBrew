@@ -76,6 +76,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			
 			if(request.getParameter("exit") != null) {
 				try {
+					System.out.println("Sto liberando " + idDistributore);
 					distributoreDAO.liberaDistributore(idDistributore);
 				} catch (SQLException e) {
 					e.printStackTrace();

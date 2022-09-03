@@ -27,7 +27,7 @@ public class CartaDiCreditoDAO {
 			pstmt.setString(1, numeroCarta);
 			pstmt.setString(2, nomeSullaCarta);
 			pstmt.setDate(3, dataScadenza);
-			pstmt.setInt(4, idUtente);
+			pstmt.setInt(4, idUtente);			
 			int result = pstmt.executeUpdate();
 			
 			return result > 0;
@@ -75,3 +75,6 @@ public class CartaDiCreditoDAO {
 		return null;
 	}
 }
+//TODO rimozione carte
+//TODO form control
+

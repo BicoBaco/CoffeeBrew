@@ -30,38 +30,39 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO check login
-		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
-			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
-			
-			System.out.print(idDistributore);
-			
-			try {
-				if(!distributoreDAO.isOccupato(idDistributore)) {
-					if(request.getSession().getAttribute("tecnico") != null) {
-						TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");
-						distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
-						
+
+		if(request.getSession().getAttribute("utente") != null || request.getSession().getAttribute("tecnico") != null) {		
+			if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
+				int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
+				
+				try {
+					if(!distributoreDAO.isOccupato(idDistributore)) {
+						if(request.getSession().getAttribute("tecnico") != null) {
+							TecnicoBean tecnico = (TecnicoBean) request.getSession().getAttribute("tecnico");
+							distributoreDAO.impostaOccupatoTecnico(idDistributore, tecnico.getIdTecnico());
+							
+						} else if (request.getSession().getAttribute("utente") != null) {
+							UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+							distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
+						}	
 						response.getWriter().print("Connesso");
-					} else if (request.getSession().getAttribute("utente") != null) {
-						UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-						distributoreDAO.impostaOccupatoUtente(idDistributore, utente.getIdUtente());
 						
-						response.getWriter().print("Connesso");
+					} else {
+						response.getWriter().print("Occupato");
 					}
-				} else {
-					response.getWriter().print("Occupato");
+				} catch (SQLException e) {
+					if(e.getMessage() == "Distributore non esistente") {
+						response.getWriter().print("Il distributore "+idDistributore+" non esiste");
+					} else {
+						e.printStackTrace();
+						response.getWriter().print("Errore, contattare l'amministratore");
+					}
 				}
-			} catch (SQLException e) {
-				if(e.getMessage() == "Distributore non esistente") {
-					response.getWriter().print("Il distributore "+idDistributore+" non esiste");
-				} else {
-					e.printStackTrace();
-					response.getWriter().print("Errore, contattare l'amministratore");
-				}
+			} else {
+				response.getWriter().print("Id mancante");
 			}
 		} else {
-			response.getWriter().print("Id mancante");
+			response.sendRedirect("AccessoUtenteController");
 		}
 	}
 

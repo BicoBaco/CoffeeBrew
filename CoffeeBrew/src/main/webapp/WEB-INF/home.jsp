@@ -38,7 +38,6 @@
 		</div>
 	</body>
 	<script>
-	
 		function feedback(risposta) {
 			var stato = $("#statoConnessione");
 			

@@ -9,9 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBHelper {
-	private static String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11516789";
-	private static String DBusername = "sql11516789";
-	private static String DBpassword = "dyMZ46HXYQ";
+	private static String DBurl = "jdbc:mysql://95.246.172.229:3306/coffeebrew";
+	private static String DBusername = "root";
+	private static String DBpassword = "bico";
+	
+	//private static String DBurl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11516789";
+	//private static String DBusername = "sql11516789";
+	//private static String DBpassword = "dyMZ46HXYQ";
 	
 	public static Connection connectToDB() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");

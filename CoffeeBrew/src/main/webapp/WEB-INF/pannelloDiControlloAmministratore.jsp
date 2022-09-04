@@ -68,7 +68,7 @@
 									<td> <%= distr.getOccupanteTecnico() %> </td>
 									<td> <form action="RimozioneDistributoreAutomaticoController" method="POST">
 											<input type="hidden" id="idDistributore<%= distr.getIdDistributore() %>" name="idDistributore" value=<%= distr.getIdDistributore() %>>
-											<input type="submit" value="Rimuovi"/> 
+											<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
 										</form> </td> 
 								</tr>
 							<% } %>

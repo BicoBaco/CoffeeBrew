@@ -57,7 +57,7 @@ public class CartaDiCreditoDAO {
 			while(rs.next()) {
 				CartaDiCreditoBean cdc = new CartaDiCreditoBean();
 				cdc.setIdCarta(rs.getInt("idCarta"));
-				cdc.setNumeroCarta(rs.getString("numeroCarta"));
+				cdc.setNumeroCarta("****-****-****-"+rs.getString("numeroCarta").substring(12)); //TODO che famo salviamo con i - o no?
 				cdc.setNomeSullaCarta(rs.getString("nomeSullaCarta"));
 				cdc.setDataScadenza(rs.getDate("dataScadenza"));
 				
@@ -74,7 +74,28 @@ public class CartaDiCreditoDAO {
 		
 		return null;
 	}
+	
+	public static boolean rimuoviCarta(int idCarta) throws SQLException {
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		int result;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("DELETE FROM CartaDiCredito WHERE idCarta = ?");
+			pstmt.setInt(1, idCarta);
+			result = pstmt.executeUpdate();
+			
+			return result > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false;
+	}
 }
-//TODO rimozione carte
 //TODO form control
 

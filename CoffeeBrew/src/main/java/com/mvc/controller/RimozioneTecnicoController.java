@@ -33,22 +33,23 @@ public class RimozioneTecnicoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("amministratore") == null)
+		if(request.getSession().getAttribute("amministratore") == null) {
 			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
-		
-		String temp = request.getParameter("idTecnico");
-		
-		if(temp == null)
-			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico");
-		
-		int idTecnico = Integer.parseInt(temp);
-		
-		try {
-			TecnicoDAO.rimuoviTecnico(idTecnico);
-		} catch (SQLException e) {
-			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+		} else {
+			String temp = request.getParameter("idTecnico");
+			
+			if(temp == null)
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico");
+			
+			int idTecnico = Integer.parseInt(temp);
+			
+			try {
+				TecnicoDAO.rimuoviTecnico(idTecnico);
+			} catch (SQLException e) {
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+			}
+			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}
-		response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 	}
 
 }

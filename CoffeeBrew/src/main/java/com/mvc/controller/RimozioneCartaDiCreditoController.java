@@ -7,18 +7,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.mvc.dao.UtenteDAO;
+import com.mvc.dao.CartaDiCreditoDAO;
 
 /**
- * Servlet implementation class RimozioneUtenteController
+ * Servlet implementation class RimozioneCartaDiCreditoController
  */
-public class RimozioneUtenteController extends HttpServlet {
+public class RimozioneCartaDiCreditoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RimozioneUtenteController() {
+    public RimozioneCartaDiCreditoController() {
         super();
     }
 
@@ -26,29 +26,29 @@ public class RimozioneUtenteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("PannelloDiControlloAmministratoreController");
+		response.sendRedirect("CarteDiCreditoController");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("amministratore") == null) {
-			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
+		if(request.getSession().getAttribute("utente") == null) {
+			response.sendRedirect("AccessoUtenteController?error=Accesso non autorizzato senza autenticazione");
 		} else {
-			String temp = request.getParameter("idUtente");
+			String temp = request.getParameter("idCarta");
 			
 			if(temp == null)
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione dell'utente");
+				response.sendRedirect("CarteDiCreditoController?error=Errore nella rimozione della carta");
 			
-			int idUtente = Integer.parseInt(temp);
+			int idCarta = Integer.parseInt(temp);
 			
 			try {
-				UtenteDAO.rimuoviUtente(idUtente);
+				CartaDiCreditoDAO.rimuoviCarta(idCarta);
 			} catch (SQLException e) {
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+				response.sendRedirect("CarteDiCreditoController?error=Errore del database");
 			}
-			response.sendRedirect("PannelloDiControlloAmministratoreController#utenti");
+			response.sendRedirect("CarteDiCreditoController");
 		}
 	}
 

@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.helper.DBHelper;
+import com.mvc.bean.StatisticaBean;
 
 public class StatisticaDAO {
 	public static void aggiornaStatistica(String tipoProdotto) throws SQLException{
@@ -38,5 +40,35 @@ public class StatisticaDAO {
 			pstmtCheck.close();
 			connection.close();
 		}
+	}
+	
+	public static ArrayList<StatisticaBean> getStatistiche() throws SQLException {
+		ArrayList<StatisticaBean> listaStatistiche = new ArrayList<StatisticaBean>();
+		
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT * FROM Statistica");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				StatisticaBean statistica = new StatisticaBean();
+				statistica.setIdStatistica(rs.getInt("idStatistica"));
+				statistica.setTipoProdotto(rs.getString("tipoProdotto"));
+				statistica.setQtaVendute(rs.getInt("qtaVendute"));
+				listaStatistiche.add(statistica);
+			}
+
+			return listaStatistiche;			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return null;
 	}
 }

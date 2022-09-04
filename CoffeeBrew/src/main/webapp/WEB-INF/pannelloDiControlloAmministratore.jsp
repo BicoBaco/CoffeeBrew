@@ -15,12 +15,15 @@
 		<%@ page import="com.mvc.bean.DistributoreAutomaticoBean" %>
 		<%@ page import="com.mvc.bean.TecnicoBean" %>
 		<%@ page import="com.mvc.bean.UtenteBean" %>
+		<%@ page import="com.mvc.bean.StatisticaBean" %>
 		<% ArrayList<DistributoreAutomaticoBean> listaDistributori = 
 			(ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); 
 			ArrayList<TecnicoBean> listaTecnici = 
 				(ArrayList<TecnicoBean>) request.getAttribute("listaTecnici");
 			ArrayList<UtenteBean> listaUtenti = 
 					(ArrayList<UtenteBean>) request.getAttribute("listaUtenti");
+			ArrayList<StatisticaBean> listaStatistiche = 
+					(ArrayList<StatisticaBean>) request.getAttribute("listaStatistiche");
 		%>
 		<%@include file="/includes/navbar.jsp"%>
 		<div class="container-fluid row px-0 vh-100">	
@@ -149,7 +152,7 @@
 						</div>
 						<div class="tab-pane fade" id="statistiche">
 							<h5 class="card-title fw-bold">Statistiche</h5><hr>			
-							<div id="chart-container">
+							<div id="chart-container" >
 								<canvas id="myChart"></canvas>
 							</div>
 						</div>
@@ -169,16 +172,22 @@
 				$('.nav-tabs a[href="' + tab + '"]').tab('show');
 			};
 		</script>
-		<script>		
+		<script>
 		  const data = {
 				  labels: [
-				    'Red',
-				    'Blue',
-				    'Yellow'
+				  	<% for(int i = 0; i < listaStatistiche.size()-1; i++) { %>
+				    	'<%=listaStatistiche.get(i).getTipoProdotto()%>',
+				   	<% } %>
+				   	'<%=listaStatistiche.get(listaStatistiche.size()-1).getTipoProdotto()%>'
 				  ],
 				  datasets: [{
 				    label: 'My First Dataset',
-				    data: [300, 50, 100],
+				    data: [
+				    	<% for(int i = 0; i < listaStatistiche.size()-1; i++) { %>
+					    	<%=listaStatistiche.get(i).getQtaVendute()%>,
+					    <% } %>
+					    <%=listaStatistiche.get(listaStatistiche.size()-1).getQtaVendute()%>
+				    ],
 				    backgroundColor: [
 				      'rgb(255, 99, 132)',
 				      'rgb(54, 162, 235)',

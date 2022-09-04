@@ -9,9 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mvc.bean.DistributoreAutomaticoBean;
+import com.mvc.bean.StatisticaBean;
 import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
+import com.mvc.dao.StatisticaDAO;
 import com.mvc.dao.TecnicoDAO;
 import com.mvc.dao.UtenteDAO;
 
@@ -36,11 +38,13 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 			ArrayList<DistributoreAutomaticoBean> listaDistributori = null;
 			ArrayList<TecnicoBean> listaTecnici = null;
 			ArrayList<UtenteBean> listaUtenti = null;
+			ArrayList<StatisticaBean> listaStatistiche = null;
 			
 			try {
 				listaDistributori = DistributoreAutomaticoDAO.getDistributori();
 				listaTecnici = TecnicoDAO.getTecnici();
 				listaUtenti = UtenteDAO.getUtenti();
+				listaStatistiche = StatisticaDAO.getStatistiche();
 			} catch (SQLException e) {
 				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
@@ -48,6 +52,7 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 			request.setAttribute("listaDistributori", listaDistributori);
 			request.setAttribute("listaTecnici", listaTecnici);
 			request.setAttribute("listaUtenti", listaUtenti);
+			request.setAttribute("listaStatistiche", listaStatistiche);
 			request.getRequestDispatcher("/WEB-INF/pannelloDiControlloAmministratore.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("AccessoAmministratoreController");

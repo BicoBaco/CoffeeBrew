@@ -139,12 +139,12 @@ public class UtenteDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				UtenteBean tecnico = new UtenteBean();
-				tecnico.setIdUtente(rs.getInt("idUtente"));
-				tecnico.setNome(rs.getString("nome"));
-				tecnico.setCognome(rs.getString("cognome"));
-				tecnico.setEmail(rs.getString("email"));
-				listaUtenti.add(tecnico);
+				UtenteBean utente = new UtenteBean();
+				utente.setIdUtente(rs.getInt("idUtente"));
+				utente.setNome(rs.getString("nome"));
+				utente.setCognome(rs.getString("cognome"));
+				utente.setEmail(rs.getString("email"));
+				listaUtenti.add(utente);
 			}
 
 			return listaUtenti;			

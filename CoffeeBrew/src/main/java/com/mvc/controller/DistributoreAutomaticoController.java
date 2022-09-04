@@ -11,6 +11,7 @@ import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.UtenteDAO;
+import com.mvc.dao.StatisticaDAO;
 
 /**
  * Servlet implementation class DistributoreAutomaticoController
@@ -87,10 +88,12 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			}
 			
 			if(request.getParameter("idUtente") != null && request.getParameter("idUtente") != "" &&
-			   request.getParameter("importo") != null && request.getParameter("importo") != "") {
+			   request.getParameter("importo") != null && request.getParameter("importo") != "" &&
+			   request.getParameter("tipoProdotto") != null && request.getParameter("tipoProdotto") != "") {
 				
 				int idUtente = Integer.parseInt(request.getParameter("idUtente"));
 				int importo = Integer.parseInt(request.getParameter("importo"));
+				String tipoProdotto = request.getParameter("tipoProdotto");
 				
 				UtenteBean utente = new UtenteBean();
 				utente.setIdUtente(idUtente);
@@ -98,6 +101,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 				try {
 					distributoreDAO.impostaLiberoUtente(idDistributore);
 					UtenteDAO.rimuoviCredito(utente, importo);
+					StatisticaDAO.aggiornaStatistica(tipoProdotto);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

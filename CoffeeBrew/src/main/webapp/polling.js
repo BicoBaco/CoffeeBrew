@@ -38,6 +38,7 @@ class Prodotto {
 	
 	consuma() {
 		this.quantita -= 5;
+		this.nodeRicaricaProdotto.querySelector("#" + this.nome + "QtyProdotto").innerText = this.quantita;
 	}
 } 
 

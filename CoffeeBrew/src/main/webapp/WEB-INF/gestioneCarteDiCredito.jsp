@@ -56,8 +56,8 @@
 									<td><%=cdc.getNomeSullaCarta()%></td>
 									<td><%=cdc.getDataScadenza()%></td>
 									<td> <form action="RimozioneCartaDiCreditoController" method="POST">
-										<input type="hidden" id="idCarta<%= cdc.getIdCarta() %>" name="idCarta" value=<%= cdc.getIdCarta() %>>
-										<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
+											<input type="hidden" id="idCarta<%= cdc.getIdCarta() %>" name="idCarta" value=<%= cdc.getIdCarta() %>>
+											<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
 										</form> </td> 
 								</tr>
 								<% } %>

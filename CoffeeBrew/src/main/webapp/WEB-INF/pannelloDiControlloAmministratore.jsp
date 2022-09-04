@@ -101,7 +101,7 @@
 									<td> <%= tecnico.getEmail() %> </td>
 									<td> <form action="RimozioneTecnicoController" method="POST">
 										<input type="hidden" id="idTecnico<%= tecnico.getIdTecnico() %>" name="idTecnico" value=<%= tecnico.getIdTecnico() %>>
-											<input type="submit" value="Rimuovi"/> 
+											<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
 										</form> </td>
 								</tr>
 							<% } %>			

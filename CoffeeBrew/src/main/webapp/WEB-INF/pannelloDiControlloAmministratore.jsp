@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="js/formCheck.js"></script>
+		
 	</head>
 	<body>
 		<%@ page import="java.util.ArrayList" %>
@@ -35,6 +35,9 @@
 					     </li>
 					     <li class="nav-item">
 					     	<a class="nav-link" href="#utenti" data-bs-toggle="tab">Utenti</a>
+					     </li>
+					     <li class="nav-item">
+					     	<a class="nav-link" href="#statistiche" data-bs-toggle="tab">Statistiche</a>
 					     </li>
 						<li class="nav-item ms-auto">
 						     <a class="nav-link" href="LogoutController">Logout</a>
@@ -144,10 +147,17 @@
 								<% } %>			
 							</table>
 						</div>
+						<div class="tab-pane fade" id="statistiche">
+							<h5 class="card-title fw-bold">Statistiche</h5><hr>			
+							<div id="chart-container">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<script>
 			$(document).ready(function(){
 				var tab = window.location.hash
@@ -159,5 +169,36 @@
 				$('.nav-tabs a[href="' + tab + '"]').tab('show');
 			};
 		</script>
+		<script>		
+		  const data = {
+				  labels: [
+				    'Red',
+				    'Blue',
+				    'Yellow'
+				  ],
+				  datasets: [{
+				    label: 'My First Dataset',
+				    data: [300, 50, 100],
+				    backgroundColor: [
+				      'rgb(255, 99, 132)',
+				      'rgb(54, 162, 235)',
+				      'rgb(255, 205, 86)'
+				    ],
+				    hoverOffset: 4
+				  }]
+				};
+		
+		  const config = {
+		    type: 'doughnut',
+		    data: data,
+		    options: {}
+		  };
+		  
+		  const myChart = new Chart(
+				    document.getElementById('myChart'),
+				    config
+				);
+		</script>		
+		<script src="js/formCheck.js"></script>
 	</body>
 </html>

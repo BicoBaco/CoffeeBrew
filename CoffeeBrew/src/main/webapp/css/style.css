@@ -16,6 +16,11 @@ body {
   	text-shadow: 2px 2px 4px #000000;
 }
 
+#chart-container {
+	width: 500px;
+    height:500px
+}
+
 .product-img {
 	width: 150px;
 }

@@ -72,6 +72,8 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 				}
 			}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
+		} else {
+			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Dati mancanti#tecnici");
 		}
 	}
 

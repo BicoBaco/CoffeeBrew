@@ -40,6 +40,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/formCheck.js"></script>
+		<script src="js/formUtilities.js"></script>
 	</body>
 </html>

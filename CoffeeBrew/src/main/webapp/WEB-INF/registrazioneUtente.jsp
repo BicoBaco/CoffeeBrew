@@ -21,22 +21,22 @@
 					<% } %>
 					<form id="formRegistrazioneUtente" action="RegistrazioneUtenteController" method="POST">
 						<div class="form-floating formfloating-sm mb-3">
-							<input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
+							<input id="nome" type="text" class="form-control" name="nome" placeholder="Nome" required>
 							<label for="nome" class="form-label">Nome</label> 
 						</div>
 						<div class="form-floating mb-3">
-							<input id="cognome" type="text" class="form-control" name="cognome" placeholder="Cognome">
+							<input id="cognome" type="text" class="form-control" name="cognome" placeholder="Cognome" required>
 							<label for="cognome" class="form-label">Cognome</label> 
 						</div>
 						<div class="form-floating mb-3">
-							<input id="email" type="email" class="form-control" name="email" placeholder="Indirizzo email">
+							<input id="email" type="email" class="form-control" name="email" placeholder="Indirizzo email" required>
 							<label for="email" class="form-label">Indirizzo email</label> 
 						</div>
 						<div class="input-group form-floating mb-3">
-							<input type="password" class="form-control" id="newPassword" name="password" placeholder="Password" aria-describedby="visualizzaBtn"
-							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="almeno un numero, una lettera maiuscola e minuscola, e almeno 8 caratteri" required>
+							<input type="password" class="form-control newPassword" id="password" name="password" placeholder="Password" aria-describedby="visualizzaBtn"
+							 	pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="almeno un numero, una lettera maiuscola e minuscola, e almeno 8 caratteri" required>
 							<button id="visualizzaBtn" type="button" class="btn btn-outline-secondary">Visualizza</button>
-							<label for="newPassword" class="form-label">Password</label>
+							<label for="password" class="form-label">Password</label>
 						</div>
 						<div class="text-center w-100">
 							<button type="submit" class="w-50 btn btn-success text-center">Registrati</button>
@@ -51,6 +51,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/formCheck.js"></script>
+		<script src="js/formUtilities.js"></script>
 	</body>
 </html>

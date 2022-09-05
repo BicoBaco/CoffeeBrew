@@ -20,8 +20,7 @@
 					<a class="btn btn-success w-100 mb-2"	href="AccessoTecnicoController">Accesso Tecnici</a>
 					<a class="btn btn-success w-100"		href="AccessoAmministratoreController">Accesso Amministratori</a>
 				</div>
-			</div>
-		    
+			</div>    
 		</div>
 	</body>
 </html>

@@ -47,6 +47,8 @@ public class RegistrazioneDistributoreAutomaticoController extends HttpServlet {
 			}
 			
 			response.sendRedirect("PannelloDiControlloAmministratoreController#distributori");
+		} else {
+			response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella registrazione del distributore#distributori");
 		}
 	}
 }

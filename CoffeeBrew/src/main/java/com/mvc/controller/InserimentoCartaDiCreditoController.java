@@ -40,7 +40,8 @@ public class InserimentoCartaDiCreditoController extends HttpServlet {
 			request.getParameter("nomeSullaCarta") != null && request.getParameter("nomeSullaCarta") != "" && 
 			request.getParameter("dataScadenza") != null && request.getParameter("dataScadenza") != "") {
 			
-			String numeroCarta = request.getParameter("numeroCarta");
+			String numeroCarta = request.getParameter("numeroCarta").replaceAll("-", "");
+			System.out.println(numeroCarta);
 			String nomeSullaCarta = request.getParameter("nomeSullaCarta");
 			Date dataScadenza = Date.valueOf(request.getParameter("dataScadenza"));
 			

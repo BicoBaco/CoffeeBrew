@@ -76,6 +76,8 @@ public class RegistrazioneUtenteController extends HttpServlet {
 				request.getSession(true).setAttribute("utente", registrazioneUtente);
 				request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 			}
+		} else {
+			response.sendRedirect("RegistrazioneUtenteController?error=Dati mancanti");
 		}
 	}
 

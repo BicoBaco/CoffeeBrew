@@ -29,7 +29,7 @@ public class ProdottoDAO {
 		
 	}
 	
-	public static ArrayList<ProdottoBean> getStatistiche() throws SQLException {
+	public static ArrayList<ProdottoBean> getProdotti() throws SQLException {
 		ArrayList<ProdottoBean> listaProdotti = new ArrayList<ProdottoBean>();
 		
 		Connection connection = null;	

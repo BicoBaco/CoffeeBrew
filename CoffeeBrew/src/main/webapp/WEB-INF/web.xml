@@ -229,4 +229,14 @@
     <servlet-name>InserimentoCartaDiCreditoController</servlet-name>
     <url-pattern>/InserimentoCartaDiCreditoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InserimentoProdottoController</display-name>
+    <servlet-name>InserimentoProdottoController</servlet-name>
+    <servlet-class>com.mvc.controller.InserimentoProdottoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InserimentoProdottoController</servlet-name>
+    <url-pattern>/InserimentoProdottoController</url-pattern>
+  </servlet-mapping>
 </web-app>

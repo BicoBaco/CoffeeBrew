@@ -91,7 +91,7 @@ function sendPurchase(prodotto) {
 			}
 			xhttp.open("POST", "DistributoreAutomaticoController", true);
 			xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value + "&tipoProdotto=" + prodottoScelto.nome);
+			xhttp.send("importo=" + inputImporto.value + "&idDistributore=" + idTextbox.value + "&idUtente=" + inputIdUtente.value + "&idProdotto=" + prodottoScelto.idProdotto);
 			clearInterfacciaUtente();
 		} else {
 			alert("Credito insufficente");

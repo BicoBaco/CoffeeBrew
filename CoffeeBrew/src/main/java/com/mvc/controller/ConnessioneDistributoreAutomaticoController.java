@@ -39,7 +39,7 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 		ArrayList<ProdottoBean> listaProdotti = null;
 		
 		try {
-			listaProdotti = ProdottoDAO.getStatistiche();
+			listaProdotti = ProdottoDAO.getProdotti();
 		} catch (SQLException e) {
 			response.sendRedirect("landing.jsp?error=Errore del database");
 		}

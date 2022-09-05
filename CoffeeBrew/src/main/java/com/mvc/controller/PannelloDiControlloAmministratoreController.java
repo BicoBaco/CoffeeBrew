@@ -44,7 +44,7 @@ public class PannelloDiControlloAmministratoreController extends HttpServlet {
 				listaDistributori = DistributoreAutomaticoDAO.getDistributori();
 				listaTecnici = TecnicoDAO.getTecnici();
 				listaUtenti = UtenteDAO.getUtenti();
-				listaProdotti = ProdottoDAO.getStatistiche();
+				listaProdotti = ProdottoDAO.getProdotti();
 			} catch (SQLException e) {
 				response.sendRedirect("landing.jsp?error=Errore del database");
 			}

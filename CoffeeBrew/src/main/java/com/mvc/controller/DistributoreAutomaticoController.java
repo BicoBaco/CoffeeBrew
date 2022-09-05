@@ -89,7 +89,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 			
 			if(request.getParameter("idUtente") != null && request.getParameter("idUtente") != "" &&
 			   request.getParameter("importo") != null && request.getParameter("importo") != "" &&
-			   request.getParameter("tipoProdotto") != null && request.getParameter("tipoProdotto") != "") {
+			   request.getParameter("idProdotto") != null && request.getParameter("idProdotto") != "") {
 				
 				int idUtente = Integer.parseInt(request.getParameter("idUtente"));
 				int importo = Integer.parseInt(request.getParameter("importo"));

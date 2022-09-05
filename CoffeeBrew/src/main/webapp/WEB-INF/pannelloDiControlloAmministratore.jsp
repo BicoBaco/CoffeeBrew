@@ -173,7 +173,22 @@
 										</form> </td> 
 								</tr>
 							<% } %>
-							</table> <br>
+							</table>
+							<h6 class="card-text fw-bold">Inserimento Prodotto</h6>
+							<form action="InserimentoProdottoController" method="POST">
+								<div class="form-floating mb-2">
+									<input id="nome" type="text" class="form-control" name="nome" placeholder="Nome" required>
+									<label for="nome" class="form-label">Nome</label>
+								</div>
+								<div class="form-floating mb-2">
+									<input type="number" class="form-control" id="costo" name="costo" placeholder="Costo" required>
+									<label for="costo" class="form-label">Costo</label>
+								</div>
+								<div class="form-floating mb-2">
+									<!--  -->
+								</div>								
+								<button type="submit" class="btn btn-success text-center">Invia</button>		 	 
+							</form> 
 						</div>
 						<div class="tab-pane fade" id="statistiche">
 							<h5 class="card-title fw-bold">Statistiche</h5><hr>			

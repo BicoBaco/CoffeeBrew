@@ -6,10 +6,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mvc.bean.UtenteBean;
+import com.mvc.bean.DistributoreAutomaticoBean;
+import com.mvc.bean.ProdottoBean;
 import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
+import com.mvc.dao.ProdottoDAO;
+import com.mvc.dao.TecnicoDAO;
+import com.mvc.dao.UtenteDAO;
 
 /**
  * Servlet implementation class ConnessioneDistributoreAutomaticoController
@@ -30,7 +36,23 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<ProdottoBean> listaProdotti = null;
+		
+		try {
+			listaProdotti = ProdottoDAO.getStatistiche();
+		} catch (SQLException e) {
+			response.sendRedirect("landing.jsp?error=Errore del database");
+		}
+		
+		System.out.println(listaProdotti);
+		request.setAttribute("listaProdotti", listaProdotti);
+		request.getRequestDispatcher("/WEB-INF/distributoreAutomatico.jsp").forward(request, response);
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("utente") != null || request.getSession().getAttribute("tecnico") != null) {		
 			if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 				int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
@@ -59,18 +81,11 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 					}
 				}
 			} else {
-				response.getWriter().print("Id mancante");
+				response.getWriter().print("Codice mancante");
 			}
 		} else {
 			response.sendRedirect("AccessoUtenteController");
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

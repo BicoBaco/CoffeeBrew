@@ -11,7 +11,7 @@ import com.mvc.bean.TecnicoBean;
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.UtenteDAO;
-import com.mvc.dao.StatisticaDAO;
+import com.mvc.dao.ProdottoDAO;
 
 /**
  * Servlet implementation class DistributoreAutomaticoController
@@ -93,7 +93,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 				
 				int idUtente = Integer.parseInt(request.getParameter("idUtente"));
 				int importo = Integer.parseInt(request.getParameter("importo"));
-				String tipoProdotto = request.getParameter("tipoProdotto");
+				int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
 				
 				UtenteBean utente = new UtenteBean();
 				utente.setIdUtente(idUtente);
@@ -101,7 +101,7 @@ public class DistributoreAutomaticoController extends HttpServlet {
 				try {
 					distributoreDAO.impostaLiberoUtente(idDistributore);
 					UtenteDAO.rimuoviCredito(utente, importo);
-					StatisticaDAO.aggiornaStatistica(tipoProdotto);
+					ProdottoDAO.aggiornaStatistica(idProdotto);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

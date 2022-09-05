@@ -93,7 +93,6 @@ public class TecnicoDAO {
 			
 			while(rs.next()) {
 				TecnicoBean tecnico = new TecnicoBean();
-				//TODO è sicuro mandare l'id o evitiamo?
 				tecnico.setIdTecnico(rs.getInt("idTecnico"));
 				tecnico.setNome(rs.getString("nome"));
 				tecnico.setCognome(rs.getString("cognome"));

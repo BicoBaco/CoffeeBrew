@@ -15,15 +15,15 @@
 		<%@ page import="com.mvc.bean.DistributoreAutomaticoBean" %>
 		<%@ page import="com.mvc.bean.TecnicoBean" %>
 		<%@ page import="com.mvc.bean.UtenteBean" %>
-		<%@ page import="com.mvc.bean.StatisticaBean" %>
+		<%@ page import="com.mvc.bean.ProdottoBean" %>
 		<% ArrayList<DistributoreAutomaticoBean> listaDistributori = 
 			(ArrayList<DistributoreAutomaticoBean>) request.getAttribute("listaDistributori"); 
 			ArrayList<TecnicoBean> listaTecnici = 
 				(ArrayList<TecnicoBean>) request.getAttribute("listaTecnici");
 			ArrayList<UtenteBean> listaUtenti = 
 					(ArrayList<UtenteBean>) request.getAttribute("listaUtenti");
-			ArrayList<StatisticaBean> listaStatistiche = 
-					(ArrayList<StatisticaBean>) request.getAttribute("listaStatistiche");
+			ArrayList<ProdottoBean> listaProdotti = 
+					(ArrayList<ProdottoBean>) request.getAttribute("listaProdotti");
 		%>
 		<%@include file="/includes/navbar.jsp"%>
 		<div class="container-fluid row px-0 vh-100">	
@@ -38,6 +38,9 @@
 					     </li>
 					     <li class="nav-item">
 					     	<a class="nav-link" href="#utenti" data-bs-toggle="tab">Utenti</a>
+					     </li>
+					     <li class="nav-item">
+					     	<a class="nav-link" href="#prodotti" data-bs-toggle="tab">Prodotti</a>
 					     </li>
 					     <li class="nav-item">
 					     	<a class="nav-link" href="#statistiche" data-bs-toggle="tab">Statistiche</a>
@@ -151,6 +154,27 @@
 								<% } %>			
 							</table>
 						</div>
+						<div class="tab-pane fade" id="prodotti">
+							<h5 class="card-title fw-bold">Prodotti</h5><hr>			
+							<table class="table">
+								<tr>
+									<th>idProdotto</th>
+									<th>Nome</th>
+								    <th>Costo</th>
+								</tr>
+							<% for(ProdottoBean prodotto : listaProdotti) { %>
+								<tr>
+									<td> <%= prodotto.getIdProdotto() %> </td>
+									<td> <%= prodotto.getNome() %> </td>
+									<td> <%= prodotto.getCosto() %> </td>
+									<td> <form action="RimozioneProdottoController" method="POST">
+											<input type="hidden" id="idProdotto<%= prodotto.getIdProdotto() %>" name="idProdotto" value=<%= prodotto.getIdProdotto() %>>
+											<button type="submit" class="btn btn-outline-dark">Rimuovi</button>
+										</form> </td> 
+								</tr>
+							<% } %>
+							</table> <br>
+						</div>
 						<div class="tab-pane fade" id="statistiche">
 							<h5 class="card-title fw-bold">Statistiche</h5><hr>			
 							<div id="chart-container" >
@@ -173,21 +197,22 @@
 				$('.nav-tabs a[href="' + tab + '"]').tab('show');
 			};
 		</script>
+		<% if (listaProdotti != null) { %>
 		<script>
 		  const data = {
 				  labels: [
-				  	<% for(int i = 0; i < listaStatistiche.size()-1; i++) { %>
-				    	'<%=listaStatistiche.get(i).getTipoProdotto()%>',
+				  	<% for(int i = 0; i < listaProdotti.size()-1; i++) { %>
+				    	'<%=listaProdotti.get(i).getNome()%>',
 				   	<% } %>
-				   	'<%=listaStatistiche.get(listaStatistiche.size()-1).getTipoProdotto()%>'
+				   	'<%=listaProdotti.get(listaProdotti.size()-1).getNome()%>'
 				  ],
 				  datasets: [{
 				    label: 'My First Dataset',
 				    data: [
-				    	<% for(int i = 0; i < listaStatistiche.size()-1; i++) { %>
-					    	<%=listaStatistiche.get(i).getQtaVendute()%>,
+				    	<% for(int i = 0; i < listaProdotti.size()-1; i++) { %>
+					    	<%=listaProdotti.get(i).getQtaVendute()%>,
 					    <% } %>
-					    <%=listaStatistiche.get(listaStatistiche.size()-1).getQtaVendute()%>
+					    <%=listaProdotti.get(listaProdotti.size()-1).getQtaVendute()%>
 				    ],
 				    backgroundColor: [
 				      'rgb(255, 99, 132)',
@@ -208,7 +233,8 @@
 				    document.getElementById('myChart'),
 				    config
 				);
-		</script>		
-		<script src="js/formUtilities.js"></script>
+		</script>
+		<% } %>
+		<script src="js/formCheck.js"></script>
 	</body>
 </html>

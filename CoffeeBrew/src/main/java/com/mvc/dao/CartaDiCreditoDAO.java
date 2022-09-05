@@ -20,6 +20,8 @@ public class CartaDiCreditoDAO {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		
+		System.out.println();
+		
 		try {
 			connection = DBHelper.connectToDB();
 			pstmt = null;

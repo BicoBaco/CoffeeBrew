@@ -9,8 +9,13 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<%@ page import="java.util.ArrayList" %>
+		<%@ page import="com.mvc.bean.ProdottoBean" %>
+		<% 
+			ArrayList<ProdottoBean> listaProdotti = 
+					(ArrayList<ProdottoBean>) request.getAttribute("listaProdotti");
+		%>
 		<div class="container-fluid row px-0 vh-100 font-monospace">
-			
 			<div class="divPollingStart">
 				<button id="poll" type="button">Polling</button>
 				<input type="number" id="idDistributore" name="idDistributore">
@@ -56,6 +61,20 @@
 				<input class="btn btn-primary mt-3" id="exitButton" onclick="exit()" type="submit" value="Esci">
 			</div>
 		</div>
-		<script src="polling.js"></script>
+		<script src="js/prodotto.js"></script>
+		<script type="text/javascript">
+			let arrayProdotti = [];
+			
+			<% 
+				if(listaProdotti != null) {
+					for(ProdottoBean prodotto : listaProdotti) {
+			%>
+					<%= prodotto.getNome() %> = new Prodotto(<%= prodotto.getIdProdotto() %>, "<%= prodotto.getNome() %>", <%= prodotto.getCosto() %>, 50);
+					arrayProdotti.push(<%= prodotto.getNome() %>);
+			<% 
+					}		
+				} %>
+		</script>
+		<script src="js/polling.js"></script>
 	</body>
 </html>

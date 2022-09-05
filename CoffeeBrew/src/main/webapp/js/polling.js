@@ -7,29 +7,12 @@ let divInterfacciaTecnico = document.getElementById("interfacciaTecnico");
 let divListaProdotti = document.getElementById("listaProdotti");
 let templateRicaricaProdotto = document.getElementById("templateRicaricaProdotto");
 
-/*
-let cappuccino = new Prodotto(10, "cappuccino", 150, 80);
-let espresso = new Prodotto(11, "espresso", 100, 90);
-let macchiato = new Prodotto(12, "macchiato", 120, 70);
-
-arrayProdotti.push(espresso);
-arrayProdotti.push(macchiato);
-arrayProdotti.push(cappuccino);
-*/
-
 arrayProdotti.forEach(prodotto => {
 	divPulsantiProdotti.appendChild(prodotto.nodeSelezionaProdotto);
 	divListaProdotti.appendChild(prodotto.nodeRicaricaProdotto);
 })
 
 let pulsantiProdotto = document.getElementsByName("prodotto");
-
-/*
-for (let i = 0; i < pulsantiProdotto.length; i++) {
- 	pulsantiProdotto[i].addEventListener("click", setCost, false);
-	console.log("aggiunto");
-}
-*/
 
 let datiOccupante;
 

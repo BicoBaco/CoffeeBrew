@@ -79,7 +79,7 @@
 							<h6 class="card-text fw-bold">Registrazione Distributore Automatico</h6>
 							<form action="RegistrazioneDistributoreAutomaticoController" method="POST">
 								<div class="form-floating mb-2">
-									<input id="locazione" type="text" class="form-control" name="locazione" placeholder="Locazione">
+									<input id="locazione" type="text" class="form-control" name="locazione" placeholder="Locazione" required>
 									<label for="locazione" class="form-label">Locazione</label>
 								</div>
 								<button type="submit" class="btn btn-success text-center">Invia</button>	 
@@ -109,21 +109,22 @@
 							<h6 class="card-text fw-bold">Registrazione Tecnico</h6>
 							<form action="RegistrazioneTecnicoController" method="POST">
 								<div class="form-floating mb-2">
-									<input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
+									<input id="nome" type="text" class="form-control" name="nome" placeholder="Nome" required>
 									<label for="nome" class="form-label">Nome</label>
 								</div>
 								<div class="form-floating mb-2">
-									<input type="text" class="form-control" id="cognome" name="cognome" placeholder="Cognome">
+									<input type="text" class="form-control" id="cognome" name="cognome" placeholder="Cognome" required>
 									<label for="cognome" class="form-label">Cognome</label>
 								</div>
 								<div class="form-floating mb-2">
-									<input type="text" class="form-control" id="email" name="email" placeholder="Indirizzo email">
+									<input type="text" class="form-control" id="email" name="email" placeholder="Indirizzo email" required>
 									<label for="email" class="form-label">Indirizzo email</label>
 								</div>
 								<div class="input-group form-floating mb-2">
-									<input id="newPassword" type="password" class="form-control" name="password" aria-describedby="visualizzaBtn" placeholder="Password">
+									<input id="password" type="password" class="form-control newPassword" name="password" aria-describedby="visualizzaBtn" placeholder="Password"
+										pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="almeno un numero, una lettera maiuscola e minuscola, e almeno 8 caratteri" required>
 									<button id="visualizzaBtn" type="button" class="btn btn-outline-secondary">Visualizza</button>
-									<label for="newPassword" class="form-label">Password</label>
+									<label for="password" class="form-label">Password</label>
 								</div>									
 								<button type="submit" class="btn btn-success text-center">Invia</button>		 	 
 							</form> 
@@ -208,6 +209,6 @@
 				    config
 				);
 		</script>		
-		<script src="js/formCheck.js"></script>
+		<script src="js/formUtilities.js"></script>
 	</body>
 </html>

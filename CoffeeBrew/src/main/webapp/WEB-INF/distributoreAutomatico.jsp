@@ -34,7 +34,7 @@
 						<span id="nomeProdotto">Espresso</span><br>
 						<span id="costoProdotto"></span>&euro;<br>
 						<button class="prodotto btn" id="buttonProdotto">
-							<img id="productImg" alt="" src="images/espresso.png" class="product-img">
+							<img id="productImg" alt="" src="images/espresso.png" class="product-img" onerror="this.onerror=null;this.src='images/default.png';">
 						</button>
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 					<div class="col-md-4 themed-grid-col" id="templateRicaricaProdotto" hidden>
 						<span id="nomeRicaricaProdotto">Espresso</span><br>
 						<span id="qtyProdotto"></span>%<br>
-						<img id="productImgRicarica" alt="" src="images/espresso.png" class="product-img"><br>
+						<img id="productImgRicarica" alt="" src="images/espresso.png" class="product-img" onerror="this.onerror=null;this.src='images/default.png';"><br>
 						<button class="w-100 btn btn-success" id="pulsanteRicarica">Ricarica</button>
 					</div>
 				</div>

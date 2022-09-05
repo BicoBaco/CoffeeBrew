@@ -166,7 +166,7 @@
 								<tr>
 									<td> <%= prodotto.getIdProdotto() %> </td>
 									<td> <%= prodotto.getNome() %> </td>
-									<td> <%= prodotto.getCosto() %> </td>
+									<td> <%= ((float) prodotto.getCosto() / 100) %>&euro; </td>
 									<td> <form action="RimozioneProdottoController" method="POST">
 											<input type="hidden" id="idProdotto<%= prodotto.getIdProdotto() %>" name="idProdotto" value=<%= prodotto.getIdProdotto() %>>
 											<button type="submit" class="btn btn-outline-dark">Rimuovi</button>

@@ -1,32 +1,35 @@
 package com.mvc.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.mvc.dao.UtenteDAO;
+import com.mvc.dao.ProdottoDAO;
 
 /**
- * Servlet implementation class RimozioneUtenteController
+ * Servlet implementation class RimozioneProdottoController
  */
-public class RimozioneUtenteController extends HttpServlet {
+public class RimozioneProdottoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RimozioneUtenteController() {
+    public RimozioneProdottoController() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("PannelloDiControlloAmministratoreController");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -36,19 +39,19 @@ public class RimozioneUtenteController extends HttpServlet {
 		if(request.getSession().getAttribute("amministratore") == null) {
 			response.sendRedirect("AccessoAmministratoreController?error=Accesso non autorizzato senza autenticazione");
 		} else {
-			String temp = request.getParameter("idUtente");
+			String temp = request.getParameter("idProdotto");
 			
 			if(temp == null)
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione dell'utente#utenti");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del prodotto#prodotti");
 			
-			int idUtente = Integer.parseInt(temp);
+			int idProdotto = Integer.parseInt(temp);
 			
 			try {
-				UtenteDAO.rimuoviUtente(idUtente);
+				ProdottoDAO.rimuoviProdotto(idProdotto);
 			} catch (SQLException e) {
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database#utenti");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database#prodotti");
 			}
-			response.sendRedirect("PannelloDiControlloAmministratoreController#utenti");
+			response.sendRedirect("PannelloDiControlloAmministratoreController#prodotti");
 		}
 	}
 

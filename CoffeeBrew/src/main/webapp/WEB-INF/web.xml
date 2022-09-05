@@ -239,4 +239,14 @@
     <servlet-name>InserimentoProdottoController</servlet-name>
     <url-pattern>/InserimentoProdottoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RimozioneProdottoController</display-name>
+    <servlet-name>RimozioneProdottoController</servlet-name>
+    <servlet-class>com.mvc.controller.RimozioneProdottoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimozioneProdottoController</servlet-name>
+    <url-pattern>/RimozioneProdottoController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -39,14 +39,14 @@ public class RimozioneDistributoreAutomaticoController extends HttpServlet {
 			String temp = request.getParameter("idDistributore");
 			
 			if(temp == null)
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del distributore");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del distributore#distributori");
 			
 			int idDistributore = Integer.parseInt(temp);
 			
 			try {
 				DistributoreAutomaticoDAO.rimuoviDistributoreAutomatico(idDistributore);
 			} catch (SQLException e) {
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database#distributori");
 			}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#distributori");
 		}

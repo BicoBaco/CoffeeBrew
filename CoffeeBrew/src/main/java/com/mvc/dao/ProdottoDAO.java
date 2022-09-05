@@ -78,4 +78,26 @@ public class ProdottoDAO {
 			connection.close();
 		}
 	}
+	
+	public static boolean rimuoviProdotto(int idProdotto) throws SQLException {
+		Connection connection = null;	
+		PreparedStatement pstmt = null;
+		int result;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("DELETE FROM Prodotto WHERE idProdotto = ?");
+			pstmt.setInt(1, idProdotto);
+			result = pstmt.executeUpdate();
+			
+			return result > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+		}
+		
+		return false;
+	}
 }

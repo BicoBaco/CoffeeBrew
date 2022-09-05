@@ -39,14 +39,14 @@ public class RimozioneTecnicoController extends HttpServlet {
 			String temp = request.getParameter("idTecnico");
 			
 			if(temp == null)
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore nella rimozione del tecnico#tecnici");
 			
 			int idTecnico = Integer.parseInt(temp);
 			
 			try {
 				TecnicoDAO.rimuoviTecnico(idTecnico);
 			} catch (SQLException e) {
-				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database");
+				response.sendRedirect("PannelloDiControlloAmministratoreController?error=Errore del database#tecnici");
 			}
 			response.sendRedirect("PannelloDiControlloAmministratoreController#tecnici");
 		}

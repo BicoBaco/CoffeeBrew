@@ -83,6 +83,31 @@ public class UtenteDAO {
 		return check;
 	}
 
+	public static int getCentesimiCredito(UtenteBean utente) throws SQLException {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = DBHelper.connectToDB();
+			pstmt = connection.prepareStatement("SELECT centesimiCredito FROM Utente WHERE idUtente = ?");
+			pstmt.setInt(1, utente.getIdUtente());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("centesimiCredito");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			pstmt.close();
+			connection.close();
+			rs.close();
+		}
+		
+		return 0;
+	}
+	
 	public static boolean ricaricaCredito(UtenteBean utente, int centesimiRicarica) throws SQLException {
 		Connection connection = null;
 		PreparedStatement pstmt = null;

@@ -24,9 +24,11 @@
 					<h2 class="card-text fw-bold">Ciao ${utente.getNome()}${tecnico.getNome()}${amministratore.getNome()}</h2>
 								
 					<div id="formConnessione" class="form-floating mb-3">
-						<input type="number" id="connessioneId" class="form-control" name="idDistributore" placeholder="Connetti al distributore">
-						<label for="connessioneId" class="form-label">Connetti al distributore</label>
-						<button id="connessioneButton" type="submit" class="w-50 btn btn-success text-center">Connetti</button>
+						<div class="input-group form-floating mb-2">
+							<input type="number" id="connessioneId" class="form-control" name="idDistributore" placeholder="Connetti al distributore">
+							<label for="connessioneId" class="form-label">Connetti al distributore</label>
+							<button id="connessioneButton" type="submit" class="w-25 btn btn-success text-center">Connetti</button>
+						</div>
 					</div>
 					
 					<div class="alert hidden" role="alert" id="statoConnessione"></div>

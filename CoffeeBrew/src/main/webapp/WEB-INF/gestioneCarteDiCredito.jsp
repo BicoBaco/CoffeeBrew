@@ -82,7 +82,7 @@
 							</form>
 						</div>
 						<div class="tab-pane fade" id="ricarica">
-							<h5 class="card-title fw-bold">Credito attuale: ${utente.getCentesimiCredito()/100} &euro;</h5>
+							<h5 class="card-title fw-bold">Credito attuale: <%= ((int) request.getAttribute("centesimiCredito"))/100.0 %> &euro;</h5>
 							<h6 class="card-title fw-bold">Ricarica il credito</h6>
 							<form action="RicaricaCreditoController" method="POST">
 								<div class="form-floating mb-3">

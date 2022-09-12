@@ -58,7 +58,7 @@ public class RegistrazioneTecnicoController extends HttpServlet {
 					TecnicoDAO.registraTecnico(registrazioneTecnico);
 				} catch(Exception e) {
 					if(e instanceof SQLIntegrityConstraintViolationException) {
-						response.sendRedirect("PannelloDiControlloAmministratoreController?error=Email già in uso");
+						response.sendRedirect("PannelloDiControlloAmministratoreController?error=Email gia' in uso");
 						return;
 					}
 					

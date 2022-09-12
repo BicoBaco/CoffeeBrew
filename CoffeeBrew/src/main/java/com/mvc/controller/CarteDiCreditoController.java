@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.mvc.bean.CartaDiCreditoBean;
 import com.mvc.bean.UtenteBean;
 import com.mvc.dao.CartaDiCreditoDAO;
+import com.mvc.dao.UtenteDAO;
 
 /**
  * Servlet implementation class CarteDiCreditoController
@@ -33,14 +34,17 @@ public class CarteDiCreditoController extends HttpServlet {
 			
 			UtenteBean u = (UtenteBean) request.getSession().getAttribute("utente");
 			ArrayList<CartaDiCreditoBean> listaCarte = null;
+			int centesimiCredito = 0;
 			
 			try {
 				listaCarte = CartaDiCreditoDAO.getCarte(u.getIdUtente());
+				centesimiCredito = UtenteDAO.getCentesimiCredito(u);
 			} catch (SQLException e) {
 				response.sendRedirect("landing.jsp?error=Errore del database");
 			}
 			
 			request.setAttribute("listaCarte", listaCarte);		
+			request.setAttribute("centesimiCredito", centesimiCredito);
 			request.getRequestDispatcher("/WEB-INF/gestioneCarteDiCredito.jsp").forward(request,response);
 		} else {
 			response.sendRedirect("AccessoUtenteController");

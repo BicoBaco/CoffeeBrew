@@ -33,10 +33,14 @@
 							<button type="submit" class="w-50 btn btn-success text-center">Accedi</button>
 						</div>
 					</form>
+					<br>
+					<div class="text-center">
+						Non sei registrato? <a href="RegistrazioneUtenteController">Registrati</a>
+					</div>
 					</p>
 				</div>
 				<div class="card-body border-top border-3">
-					<a class="btn btn-primary w-100 mb-1" href="RegistrazioneUtenteController">Registrazione Utenti</a>
+					<a class="btn btn-primary w-100 mb-1" href="landing.jsp">Home</a>
 				</div>
 			</div>
 		</div>

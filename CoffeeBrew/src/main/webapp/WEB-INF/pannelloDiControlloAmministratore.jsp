@@ -125,7 +125,7 @@
 								</div>
 								<div class="input-group form-floating mb-2">
 									<input id="password" type="password" class="form-control newPassword" name="password" aria-describedby="visualizzaBtn" placeholder="Password"
-										pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="almeno un numero, una lettera maiuscola e minuscola, e almeno 8 caratteri" required>
+										pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="almeno un numero, una lettera maiuscola, minuscola, un carattere speciale e almeno 8 caratteri" required>
 									<button id="visualizzaBtn" type="button" class="btn btn-outline-secondary">Visualizza</button>
 									<label for="password" class="form-label">Password</label>
 								</div>									
@@ -250,6 +250,6 @@
 				);
 		</script>
 		<% } %>
-		<script src="js/formCheck.js"></script>
+		<script src="js/formUtilities.js"></script>
 	</body>
 </html>

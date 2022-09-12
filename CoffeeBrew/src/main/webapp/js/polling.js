@@ -122,10 +122,17 @@ labelScelta = document.getElementById("scelta");
 inputImporto = document.getElementById("importo");
 inputIdUtente = document.getElementById("utente");
 
+divPolling = document.getElementById("divPolling");
+divCodiceDistributore = document.getElementById("divCodiceDistributore");
+spanCodice = document.getElementById("spanCodice");
+
 clearInterfacciaUtente();
 
 function startPolling() {
 	console.log("starting polling...")
+	divPolling.hidden = true;
+	divCodiceDistributore.hidden = false;
+	spanCodice.innerText = idTextbox.value;
 	const interval = setInterval(isConnected, 2000);
 }
 

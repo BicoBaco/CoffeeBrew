@@ -45,9 +45,7 @@
 					</p>
 				</div>
 				<div class="card-body border-top border-3">
-					<a class="btn btn-primary w-100 mb-1" href="AccessoUtenteController">Accesso Utenti</a>
-					<a class="btn btn-primary w-100 mb-1" href="AccessoTecnicoController">Accesso Tecnici</a>
-					<a class="btn btn-primary w-100 mb-1" href="AccessoAmministratoreController">Accesso Amministratore</a>
+					<a class="btn btn-primary w-100 mb-1" href="landing.jsp">Home</a>
 				</div>
 			</div>
 		</div>

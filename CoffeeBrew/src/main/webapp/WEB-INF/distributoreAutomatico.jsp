@@ -16,9 +16,13 @@
 					(ArrayList<ProdottoBean>) request.getAttribute("listaProdotti");
 		%>
 		<div class="container-fluid row px-0 vh-100 font-monospace">
-			<div class="divPollingStart">
+			<div id="divPolling" class="mx-3 mt-3">
+				<p class="text-white">Inserire codice del distributore</p>
 				<button id="poll" type="button">Polling</button>
 				<input type="number" id="idDistributore" name="idDistributore">
+			</div>
+			<div id="divCodiceDistributore" class="mx-3 mt-3" hidden>
+				<p class="text-white">Codice del distributore: <span id="spanCodice"></span></p>
 			</div>
 			<div class="card w-75 mx-auto my-auto bg-dark text-white bg-opacity-50" id="divWait">
 				<h3 class="display-4">In attesa di connessione<span id="textWait">...</span></h3>

@@ -50,18 +50,11 @@ public class DistributoreAutomaticoController extends HttpServlet {
 											"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
 											  ", \"idUtente\": " + occupante.getIdUtente() + 
 											  ", \"isTecnico\": false}");
-					System.out.println("{\"nome\": \"" + occupante.getNome() +
-									"\", \"centesimiCredito\": " + occupante.getCentesimiCredito() +
-									  ", \"idUtente\": " + occupante.getIdUtente() + 
-									  ", \"isTecnico\": false}");
 				}
 		    } else {
 		    	response.getWriter().print("{\"nome\": \"" + tecnico.getNome() +
 										"\", \"idTecnico\": " + tecnico.getIdTecnico() +
 		    							  ", \"isTecnico\": true}");
-		    	System.out.println("{\"nome\": \"" + tecnico.getNome() +
-								"\", \"idTecnico\": " + tecnico.getIdTecnico() +
-		    					  ", \"isTecnico\": true}");
 		    }
 		}
 	}
@@ -70,14 +63,11 @@ public class DistributoreAutomaticoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("arrivata la post con: " + request.getParameter("idDistributore"));
-		
 		if(request.getParameter("idDistributore") != null && request.getParameter("idDistributore") != "") {
 			int idDistributore = Integer.parseInt(request.getParameter("idDistributore"));
 			
 			if(request.getParameter("exit") != null) {
 				try {
-					System.out.println("Sto liberando " + idDistributore);
 					distributoreDAO.liberaDistributore(idDistributore);
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -105,8 +95,6 @@ public class DistributoreAutomaticoController extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				
-				System.out.println("liberato distributore " + idDistributore);
 				
 				response.setContentType("text/plain");
 			    response.setCharacterEncoding("UTF-8");

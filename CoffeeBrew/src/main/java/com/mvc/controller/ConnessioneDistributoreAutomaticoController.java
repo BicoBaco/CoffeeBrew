@@ -44,7 +44,6 @@ public class ConnessioneDistributoreAutomaticoController extends HttpServlet {
 			response.sendRedirect("landing.jsp?error=Errore del database");
 		}
 		
-		System.out.println(listaProdotti);
 		request.setAttribute("listaProdotti", listaProdotti);
 		request.getRequestDispatcher("/WEB-INF/distributoreAutomatico.jsp").forward(request, response);
 	}

@@ -49,7 +49,6 @@ public class DistributoreAutomaticoDAO {
 	}
 	
 	public void impostaOccupatoUtente(int idDistributore, int idUtente) throws SQLException {
-		System.out.println("provo a collegare " + idUtente);
 		PreparedStatement pstmt = null;
 		
 		try {
@@ -157,7 +156,6 @@ public class DistributoreAutomaticoDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("ziopera");
 			throw e;
 		} finally {
 			pstmt.close();

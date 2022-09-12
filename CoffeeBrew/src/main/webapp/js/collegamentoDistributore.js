@@ -21,13 +21,11 @@ function feedback(risposta) {
 function avviaConnessione() {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
-		console.log("richiesta inviata al distr "+connessioneId.value);
 		feedback(this.responseText);
 	}
 	xhttp.open("POST", "ConnessioneDistributoreAutomaticoController", true);
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("idDistributore=" + connessioneId.value);
-	console.log(connessioneId.value);
 }
 
 connessioneId = document.getElementById("connessioneId");

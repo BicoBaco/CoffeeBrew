@@ -30,10 +30,7 @@ function isConnected() {
 						divInterfacciaTecnico.hidden = false;
 						divWait.hidden = true;
 						nomeTecnicoLabel.innerHTML = occupante.nome;
-						
-						console.log(occupante);
 					} else {
-						console.log("errore dati tecnico")
 						divWait.hidden = false;
 					}
 				} else {
@@ -45,14 +42,11 @@ function isConnected() {
 						nomeUtenteLabel.innerHTML = occupante.nome;
 						creditoLabel.innerHTML = occupante.centesimiCredito / 100;
 						inputIdUtente.value = occupante.idUtente;
-						console.log(occupante);
 					} else {
-						console.log("errore dati utente")
 						divWait.hidden = false;
 					}
 				}
 			} else {
-				console.log("nessun utente collegato");
 				divWait.hidden = false;
 			}
 		}
@@ -66,9 +60,7 @@ function sendPurchase(prodotto) {
 		if(datiOccupante.centesimiCredito >= prodottoScelto.costo) {
 			const xhttp = new XMLHttpRequest();
 			xhttp.onload = function() {
-				console.log("inviata POST");
 				found = false;
-				console.log("consumo " + prodottoScelto);
 				prodottoScelto.consuma();
 				divWait.hidden = false;
 			}
@@ -93,7 +85,6 @@ function exit() {
 	divInterfacciaTecnico.hidden = true;
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
-		console.log("inviata POST");
 		found = false;
 		divWait.hidden = false;
 	}
@@ -129,7 +120,6 @@ spanCodice = document.getElementById("spanCodice");
 clearInterfacciaUtente();
 
 function startPolling() {
-	console.log("starting polling...")
 	divPolling.hidden = true;
 	divCodiceDistributore.hidden = false;
 	spanCodice.innerText = idTextbox.value;
@@ -157,5 +147,4 @@ function setCost(prodotto) {
 	prodottoScelto = prodotto;
 	inputImporto.value = prodotto.costo;
 	labelScelta.innerHTML = "Importo da pagare: &euro;" + parseFloat(prodotto.costo / 100).toFixed(2);
-	console.log("premuto " + this);
 }

@@ -111,8 +111,6 @@ public class TecnicoDAO {
 		return null;
 	}
 	
-	//TODO boolean o void?
-	
 	public static boolean rimuoviTecnico(int idTecnico) throws SQLException {
 		Connection connection = null;	
 		PreparedStatement pstmt = null;

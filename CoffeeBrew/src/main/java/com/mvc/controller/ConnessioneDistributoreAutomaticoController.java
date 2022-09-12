@@ -9,13 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mvc.bean.UtenteBean;
-import com.mvc.bean.DistributoreAutomaticoBean;
 import com.mvc.bean.ProdottoBean;
 import com.mvc.bean.TecnicoBean;
 import com.mvc.dao.DistributoreAutomaticoDAO;
 import com.mvc.dao.ProdottoDAO;
-import com.mvc.dao.TecnicoDAO;
-import com.mvc.dao.UtenteDAO;
 
 /**
  * Servlet implementation class ConnessioneDistributoreAutomaticoController
